@@ -336,20 +336,50 @@ def generate_html(explanations):
 
         explanation_js = js_and_html_escape(explanation)
 
+        # Build Russian options HTML for print
+        ru_options_html = []
+        for opt in ru_options:
+            opt_class = 'correct' if opt['label'] == correct_label else ''
+            ru_options_html.append(f'                    <div class="ru-option {opt_class}">{opt["label"]}) {opt["text"]}</div>')
+
+        # Build Spanish options as plain text for print
+        es_options_print_html = []
+        for opt in es_options:
+            opt_class = 'correct' if opt['label'] == correct_label else ''
+            es_options_print_html.append(f'                    <div class="print-option {opt_class}">{opt["label"]}) {opt["text"]}</div>')
+
         html_questions.append(f'''
         <div class="question-card" id="q{q_num}" data-correct="{correct_label}">
-            <div class="q-number">#{q_num}</div>
-            <div class="question">{es_q}</div>
-            <div class="options-container">
-                {''.join(options_html)}
-                <div class="result" id="result{q_num}"></div>
+            <div class="print-columns">
+                <div class="print-spanish">
+                    <div class="q-number">#{q_num}</div>
+                    <div class="question">{es_q}</div>
+                    <div class="print-options">
+{''.join(es_options_print_html)}
+                    </div>
+                </div>
+                <div class="print-russian">
+                    <div class="q-number-ru">#{q_num}</div>
+                    <div class="question-ru">{ru_q}</div>
+                    <div class="ru-options">
+{''.join(ru_options_html)}
+                    </div>
+                </div>
             </div>
-            <div class="buttons">
-                <button class="btn translate" onclick="toggleTranslate({q_num}, '{ru_q_js}', '{ru_options_js}', '{es_options_js}', '{correct_label}')">Перевод</button>
-                <button class="btn explain" onclick="toggleExplain({q_num}, '{explanation_js}')">Объяснение</button>
+            <div class="screen-only">
+                <div class="q-number">#{q_num}</div>
+                <div class="question">{es_q}</div>
+                <div class="options-container">
+                    {''.join(options_html)}
+                    <div class="result" id="result{q_num}"></div>
+                </div>
+                <div class="buttons">
+                    <button class="btn translate" onclick="toggleTranslate({q_num}, '{ru_q_js}', '{ru_options_js}', '{es_options_js}', '{correct_label}')">Перевод</button>
+                    <button class="btn explain" onclick="toggleExplain({q_num}, '{explanation_js}')">Объяснение</button>
+                </div>
+                <div class="translation" id="trans{q_num}"></div>
+                <div class="explanation" id="expl{q_num}"></div>
             </div>
-            <div class="translation" id="trans{q_num}"></div>
-            <div class="explanation" id="expl{q_num}"></div>
         </div>''')
 
     questions_html = '\n'.join(html_questions)
@@ -943,10 +973,19 @@ def generate_html(explanations):
             color: var(--success);
         }}
 
-        /* Print mode styles - Dense layout */
+        /* Hide print-columns on screen, show screen-only */
+        .print-columns {{
+            display: none;
+        }}
+
+        .screen-only {{
+            display: block;
+        }}
+
+        /* Print mode styles - Two-column layout */
         @media print {{
             @page {{
-                margin: 12mm 8mm;
+                margin: 10mm 8mm;
                 size: letter;
             }}
 
@@ -954,8 +993,8 @@ def generate_html(explanations):
                 background: white;
                 color: black;
                 padding: 0;
-                font-size: 8pt;
-                line-height: 1.15;
+                font-size: 6.5pt;
+                line-height: 1.1;
             }}
 
             .header, .stats, .search-box, .bottom-nav, .header-controls, .theme-toggle, .menu-toggle, .index-menu, .menu-overlay {{
@@ -968,28 +1007,28 @@ def generate_html(explanations):
 
             .container {{
                 max-width: 100%;
-                padding: 0 8mm;
+                padding: 0 6mm;
             }}
 
             .section-header {{
                 position: static;
                 page-break-after: avoid;
-                border-bottom: 1.5px solid #000;
-                padding: 2px 0;
-                margin: 8px 0 3px;
+                border-bottom: 1px solid #000;
+                padding: 1px 0;
+                margin: 6px 0 2px;
                 background: white;
             }}
 
             .section-header h2 {{
                 color: black;
-                font-size: 11pt;
+                font-size: 9pt;
                 margin: 0;
                 font-weight: 600;
             }}
 
             .section-ru {{
-                color: #555;
-                font-size: 8pt;
+                color: #666;
+                font-size: 7pt;
                 margin: 0;
             }}
 
@@ -997,11 +1036,10 @@ def generate_html(explanations):
                 background: white;
                 border: none;
                 border-bottom: 0.5px solid #ddd;
-                page-break-inside: auto;
-                orphans: 2;
-                widows: 2;
+                page-break-inside: avoid;
+                break-inside: avoid;
                 margin-bottom: 0;
-                padding: 3px 0;
+                padding: 2px 0;
                 box-shadow: none;
             }}
 
@@ -1009,88 +1047,62 @@ def generate_html(explanations):
                 display: none;
             }}
 
-            .q-number {{
-                color: #666;
-                font-size: 7pt;
-                margin-bottom: 1px;
-                font-weight: 500;
-            }}
-
-            .question {{
-                color: black;
-                font-size: 8.5pt;
-                margin-bottom: 2px;
-                line-height: 1.2;
-                font-weight: 600;
-            }}
-
-            .options-container {{
-                margin-bottom: 2px;
-            }}
-
-            .option {{
-                font-size: 7.5pt;
-                line-height: 1.2;
-                padding: 1px 0;
-                margin-bottom: 1px;
-                border: none;
-                background: none;
-                color: black;
-                display: block;
-            }}
-
-            .option.correct {{
-                font-weight: 600;
-                color: #059669;
-            }}
-
-            .option.incorrect {{
-                color: #999;
-            }}
-
-            .option.disabled {{
-                opacity: 1;
-            }}
-
-            .answer-container {{
-                margin-bottom: 2px;
-            }}
-
-            /* Don't show blurred answers in print */
-            .answer.hidden {{
-                display: none;
-            }}
-
-            /* Only show revealed answers clearly */
-            .answer.revealed {{
-                background: none;
-                border: none;
-                color: #059669;
-                font-size: 9pt;
-                padding: 2px 0;
-                font-weight: 600;
-            }}
-
-            .answer {{
-                background: #f5f5f5;
-                color: black;
-                border: 1px solid #ddd;
-                page-break-inside: avoid;
-                padding: 4px 8px;
-                margin-bottom: 4px;
-                font-size: 9pt;
-            }}
-
-            .buttons {{
-                display: none;
-            }}
-
-            .translation, .explanation {{
+            /* Hide screen-only content in print */
+            .screen-only {{
                 display: none !important;
             }}
 
-            .result {{
-                display: none;
+            /* Show print columns */
+            .print-columns {{
+                display: flex;
+                gap: 8mm;
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }}
+
+            .print-spanish {{
+                flex: 1;
+                border-right: 0.5px solid #ccc;
+                padding-right: 4mm;
+            }}
+
+            .print-russian {{
+                flex: 1;
+                padding-left: 4mm;
+            }}
+
+            .q-number, .q-number-ru {{
+                color: #666;
+                font-size: 6pt;
+                margin-bottom: 0.5px;
+                font-weight: 500;
+                page-break-after: avoid;
+            }}
+
+            .question, .question-ru {{
+                color: black;
+                font-size: 7pt;
+                margin-bottom: 1px;
+                line-height: 1.15;
+                font-weight: 600;
+                page-break-after: avoid;
+            }}
+
+            .print-options, .ru-options {{
+                margin-top: 1px;
+            }}
+
+            .print-option, .ru-option {{
+                font-size: 6.5pt;
+                line-height: 1.15;
+                padding: 0.5px 0;
+                margin-bottom: 0.5px;
+                color: black;
+            }}
+
+            .print-option.correct, .ru-option.correct {{
+                font-weight: 600;
+                color: #059669;
             }}
         }}
 
@@ -1586,20 +1598,22 @@ def generate_html(explanations):
             display: block;
         }}
 
-        body.quiz-results .container {{
-            display: none;
-        }}
-
-        body.quiz-results .quiz-header {{
-            display: none;
-        }}
-
-        body.quiz-results .index-menu {{
+        body.quiz-results .container,
+        body.quiz-results .quiz-header,
+        body.quiz-results .index-menu,
+        body.quiz-results .menu-toggle,
+        body.quiz-results .header,
+        body.quiz-results .stats,
+        body.quiz-results .search-box,
+        body.quiz-results .bottom-nav,
+        body.quiz-results .section-header,
+        body.quiz-results .menu-overlay {{
             display: none !important;
         }}
 
-        body.quiz-results .menu-toggle {{
-            display: none !important;
+        body.quiz-results {{
+            margin-left: 0;
+            padding: 40px 20px;
         }}
 
         .results-container {{
@@ -2316,7 +2330,10 @@ def generate_html(explanations):
 
             if (!toggleBtn || !toggleText) return;
 
-            if (quizMode.active || document.body.classList.contains('quiz-mode')) {{
+            // Check if quizMode is defined and active
+            const isQuizActive = typeof quizMode !== 'undefined' && (quizMode.active || document.body.classList.contains('quiz-mode'));
+
+            if (isQuizActive) {{
                 // In quiz mode - show "Study Mode" button
                 toggleText.textContent = t('studyMode');
                 toggleBtn.onclick = exitQuiz;
@@ -2328,7 +2345,7 @@ def generate_html(explanations):
         }}
 
         function toggleQuizMode() {{
-            if (quizMode.active || document.body.classList.contains('quiz-mode')) {{
+            if (typeof quizMode !== 'undefined' && (quizMode.active || document.body.classList.contains('quiz-mode'))) {{
                 exitQuiz();
             }} else {{
                 openQuizConfig();
@@ -2563,11 +2580,18 @@ def generate_html(explanations):
 
         function updateInterfaceLanguage() {{
             // Header
-            document.querySelector('.subtitle').textContent = t('subtitle');
-            document.querySelector('.search-box').placeholder = t('searchPlaceholder');
+            const subtitle = document.querySelector('.subtitle');
+            if (subtitle) subtitle.textContent = t('subtitle');
+
+            const searchBox = document.querySelector('.search-box');
+            if (searchBox) searchBox.placeholder = t('searchPlaceholder');
 
             // Sidebar buttons - update quiz toggle based on mode
-            updateQuizToggleButton();
+            try {{
+                updateQuizToggleButton();
+            }} catch (error) {{
+                console.error('Error updating quiz toggle button:', error);
+            }}
 
             const printBtns = document.querySelectorAll('.print-btn');
             if (printBtns[0]) printBtns[0].title = t('printAll');
@@ -2661,7 +2685,11 @@ def generate_html(explanations):
             }}
 
             // Update interface with current language
-            updateInterfaceLanguage();
+            try {{
+                updateInterfaceLanguage();
+            }} catch (error) {{
+                console.error('Error in updateInterfaceLanguage:', error);
+            }}
         }})();
 
         function changeLanguage(lang) {{
@@ -3011,8 +3039,16 @@ def generate_html(explanations):
 
         // Build index/table of contents
         function buildIndex() {{
+            console.log('buildIndex() called');
             const sections = document.querySelectorAll('.section-header');
             const indexContent = document.getElementById('indexContent');
+            console.log('Found sections:', sections.length);
+            console.log('indexContent element:', indexContent);
+
+            if (!indexContent) {{
+                console.error('indexContent element not found!');
+                return;
+            }}
 
             sections.forEach((section, idx) => {{
                 const sectionTitle = section.querySelector('h2').textContent;
@@ -3834,7 +3870,13 @@ def generate_html(explanations):
         setTimeout(restoreQuizSession, 500);
 
         // Build index on load
-        buildIndex();
+        console.log('About to call buildIndex()');
+        try {{
+            buildIndex();
+            console.log('buildIndex() completed');
+        }} catch (error) {{
+            console.error('Error in buildIndex():', error);
+        }}
     </script>
 </body>
 </html>'''
