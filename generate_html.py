@@ -428,16 +428,29 @@ def generate_html(explanations):
         .header {{
             margin-bottom: 48px;
             text-align: center;
-            position: relative;
         }}
 
-        .header-controls {{
-            position: absolute;
-            top: 0;
-            right: 0;
-            display: flex;
-            gap: 8px;
-            align-items: center;
+        .language-select {{
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 8px 12px;
+            border-radius: 24px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-family: 'Source Serif 4', Georgia, serif;
+            transition: all 0.2s ease;
+        }}
+
+        .language-select:hover {{
+            background: var(--accent-soft);
+            color: var(--accent);
+            border-color: var(--accent);
+        }}
+
+        .language-select:focus {{
+            outline: none;
+            border-color: var(--accent);
         }}
 
         .theme-toggle {{
@@ -781,8 +794,31 @@ def generate_html(explanations):
             background: var(--bg-card);
             border-right: 1px solid var(--border);
             z-index: 100;
+            display: flex;
+            flex-direction: column;
+        }}
+
+        .sidebar-top {{
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+        }}
+
+        #indexContent {{
+            flex: 1;
             overflow-y: auto;
-            padding: 32px 20px 100px 20px;
+            padding: 20px;
+        }}
+
+        .sidebar-bottom {{
+            padding: 20px;
+            border-top: 1px solid var(--border);
+            flex-shrink: 0;
+        }}
+
+        .sidebar-icon-group {{
+            display: flex;
+            gap: 6px;
         }}
 
         .menu-overlay {{
@@ -792,21 +828,99 @@ def generate_html(explanations):
         .index-title {{
             font-size: 1.25rem;
             font-weight: 600;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             color: var(--text);
         }}
 
+
+        .sidebar-btn {{
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            text-align: left;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Source Serif 4', Georgia, serif;
+        }}
+
+        .sidebar-btn:hover {{
+            background: var(--accent-soft);
+            color: var(--accent);
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }}
+
+        .icon-btn {{
+            text-align: center;
+            font-size: 1.1rem;
+            padding: 8px 10px;
+            flex: 1;
+        }}
+
+        .sidebar-top .quiz-toggle {{
+            background: var(--accent);
+            border-color: var(--accent);
+            font-weight: 600;
+            margin-top: 16px;
+            padding: 14px 20px;
+            font-size: 1.05rem;
+        }}
+
+        .sidebar-top .quiz-toggle:hover {{
+            background: #1d4ed8;
+            border-color: #1d4ed8;
+        }}
+
+        .quiz-toggle-text {{
+            color: white;
+        }}
+
         .index-section {{
-            margin-bottom: 24px;
+            margin-bottom: 16px;
         }}
 
         .index-section-title {{
             font-size: 0.9rem;
             font-weight: 600;
             color: var(--text);
-            margin-bottom: 8px;
-            padding-bottom: 4px;
-            border-bottom: 1px solid var(--border);
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: var(--bg);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s ease;
+            user-select: none;
+        }}
+
+        .index-section-title:hover {{
+            background: var(--accent-soft);
+            color: var(--accent);
+        }}
+
+        .index-section-title::after {{
+            content: '▼';
+            font-size: 0.7rem;
+            transition: transform 0.2s ease;
+        }}
+
+        .index-section-title.collapsed::after {{
+            transform: rotate(-90deg);
+        }}
+
+        .index-section-content {{
+            max-height: 1000px;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }}
+
+        .index-section-content.collapsed {{
+            max-height: 0;
         }}
 
         .index-link {{
@@ -1027,12 +1141,15 @@ def generate_html(explanations):
             .index-menu {{
                 left: -100%;
                 transition: left 0.3s ease;
-                padding: 80px 20px 100px 20px;
                 z-index: 250;
             }}
 
             .index-menu.open {{
                 left: 0;
+            }}
+
+            .sidebar-top {{
+                padding-top: 80px;
             }}
 
             .menu-toggle {{
@@ -1257,6 +1374,13 @@ def generate_html(explanations):
             box-shadow: 0 4px 12px var(--shadow-hover);
         }}
 
+        .quiz-next-card-btn {{
+            width: 100%;
+            margin-top: 24px;
+            padding: 16px 24px;
+            font-size: 1.1rem;
+        }}
+
         .btn-secondary {{
             background: var(--bg);
             color: var(--text-secondary);
@@ -1427,6 +1551,10 @@ def generate_html(explanations):
         }}
 
         body.quiz-results .quiz-header {{
+            display: none;
+        }}
+
+        body.quiz-results .index-menu {{
             display: none;
         }}
 
@@ -1660,8 +1788,21 @@ def generate_html(explanations):
 
     <!-- Index/Table of Contents Menu -->
     <div class="index-menu" id="indexMenu">
-        <div class="index-title">Índice</div>
+        <div class="sidebar-top">
+            <div class="index-title">Оглавление</div>
+            <button class="quiz-toggle sidebar-btn" onclick="openQuizConfig()">
+                <span class="quiz-toggle-text">Режим Экзамена</span>
+            </button>
+        </div>
         <div id="indexContent"></div>
+        <div class="sidebar-bottom">
+            <div class="sidebar-icon-group">
+                <button class="language-btn sidebar-btn icon-btn" onclick="cycleLanguage()" title="Язык">🇷🇺</button>
+                <button class="print-btn sidebar-btn icon-btn" onclick="window.print()" title="Печать всех">🖨️</button>
+                <button class="print-btn sidebar-btn icon-btn" onclick="printUnanswered()" title="Печать неотвеченных">📄</button>
+                <button class="theme-toggle sidebar-btn icon-btn" onclick="toggleTheme()" title="Темный режим">🌙</button>
+            </div>
+        </div>
     </div>
 
     <!-- Quiz Configuration Modal -->
@@ -1755,21 +1896,15 @@ def generate_html(explanations):
 
     <div class="container">
         <div class="header">
-            <div class="header-controls">
-                <button class="quiz-toggle" onclick="openQuizConfig()">📝 Modo Examen</button>
-                <button class="print-btn" onclick="window.print()" title="Imprimir todo">🖨️</button>
-                <button class="print-btn" onclick="printUnanswered()" title="Imprimir sin responder">📄</button>
-                <button class="theme-toggle" onclick="toggleTheme()">Modo oscuro</button>
-            </div>
             <h1>CCSE 2026</h1>
-            <p class="subtitle">Preguntas de Ciudadanía Española</p>
+            <p class="subtitle">Вопросы для гражданства Испании</p>
         </div>
 
         <div class="stats">
-            <span id="revealed">0</span> / {len(questions)} preguntas respondidas
+            <span id="revealed">0</span> / {len(questions)} вопросов отвечено
         </div>
 
-        <input type="text" class="search-box" placeholder="Buscar pregunta..." oninput="filterQuestions(this.value)">
+        <input type="text" class="search-box" placeholder="Поиск вопроса..." oninput="filterQuestions(this.value)">
 
         {questions_html}
     </div>
@@ -1800,6 +1935,308 @@ def generate_html(explanations):
         // All question numbers for quiz mode
         const allQuestionNumbers = {json.dumps(sorted(questions.keys()))};
 
+        // Language translations
+        const translations = {{
+            es: {{
+                // Header
+                title: 'CCSE 2026',
+                subtitle: 'Preguntas de Ciudadanía Española',
+                questionsAnswered: 'preguntas respondidas',
+                searchPlaceholder: 'Buscar pregunta...',
+
+                // Buttons
+                quizMode: 'Modo Examen',
+                printAll: 'Imprimir todo',
+                printUnanswered: 'Imprimir sin responder',
+                darkMode: 'Modo oscuro',
+                lightMode: 'Modo claro',
+                translate: 'Перевод',
+                explain: 'Объяснение',
+
+                // Quiz config modal
+                configureExam: 'Configurar Examen',
+                questionSelection: 'Selección de preguntas:',
+                fullExam: 'Examen completo (300 preguntas)',
+                bySection: 'Por sección:',
+                quickPractice: 'Práctica rápida:',
+                questions: 'preguntas',
+                randomOrder: 'Orden aleatorio',
+                timer: 'Temporizador:',
+                noTimer: 'Sin temporizador',
+                fullTimer: '45 minutos (examen completo)',
+                proportionalTimer: 'Proporcional al número de preguntas',
+                cancel: 'Cancelar',
+                startExam: 'Iniciar Examen',
+
+                // Quiz interface
+                question: 'Pregunta',
+                answered: 'respondidas',
+                previous: 'Anterior',
+                next: 'Siguiente',
+                finishExam: 'Terminar Examen',
+                exit: 'Salir',
+
+                // Results
+                passed: 'APROBADO',
+                failed: 'NO APROBADO',
+                correctAnswers: 'respuestas correctas',
+                time: 'Tiempo:',
+                sectionPerformance: 'Rendimiento por sección',
+                reviewQuestions: 'Revisar Preguntas',
+                newExam: 'Nuevo Examen',
+                studyMode: 'Modo Estudio',
+                detailedReview: 'Revisión Detallada',
+                correct: 'Correcta',
+                incorrect: 'Incorrecta',
+                yourAnswer: 'Tu respuesta:',
+                correctAnswer: 'Respuesta correcta:',
+                notAnswered: 'No respondida',
+
+                // Navigation
+                index: 'Índice',
+                home: 'Inicio',
+                nextUnanswered: 'Próxima',
+
+                // Alerts
+                confirmFinish: '¿Estás seguro de que quieres terminar el examen?',
+                unansweredQuestions: 'Tienes',
+                questionsUnanswered: 'pregunta(s) sin responder.',
+                confirmExit: '¿Seguro que quieres salir del examen? Se perderá tu progreso.',
+                timeExpired: '¡Tiempo agotado! El examen se enviará automáticamente.',
+                continueExam: '¿Quieres continuar el examen anterior?',
+                continueButton: 'Continuar',
+                startNewButton: 'Empezar nuevo',
+                examTimeExpired: 'El tiempo del examen ha expirado.',
+                confirmLeave: '¿Seguro que quieres salir? Se guardará tu progreso.'
+            }},
+            en: {{
+                // Header
+                title: 'CCSE 2026',
+                subtitle: 'Spanish Citizenship Questions',
+                questionsAnswered: 'questions answered',
+                searchPlaceholder: 'Search question...',
+
+                // Buttons
+                quizMode: 'Exam Mode',
+                printAll: 'Print all',
+                printUnanswered: 'Print unanswered',
+                darkMode: 'Dark mode',
+                lightMode: 'Light mode',
+                translate: 'Перевод',
+                explain: 'Объяснение',
+
+                // Quiz config modal
+                configureExam: 'Configure Exam',
+                questionSelection: 'Question selection:',
+                fullExam: 'Full exam (300 questions)',
+                bySection: 'By section:',
+                quickPractice: 'Quick practice:',
+                questions: 'questions',
+                randomOrder: 'Random order',
+                timer: 'Timer:',
+                noTimer: 'No timer',
+                fullTimer: '45 minutes (full exam)',
+                proportionalTimer: 'Proportional to number of questions',
+                cancel: 'Cancel',
+                startExam: 'Start Exam',
+
+                // Quiz interface
+                question: 'Question',
+                answered: 'answered',
+                previous: 'Previous',
+                next: 'Next',
+                finishExam: 'Finish Exam',
+                exit: 'Exit',
+
+                // Results
+                passed: 'PASSED',
+                failed: 'FAILED',
+                correctAnswers: 'correct answers',
+                time: 'Time:',
+                sectionPerformance: 'Performance by section',
+                reviewQuestions: 'Review Questions',
+                newExam: 'New Exam',
+                studyMode: 'Study Mode',
+                detailedReview: 'Detailed Review',
+                correct: 'Correct',
+                incorrect: 'Incorrect',
+                yourAnswer: 'Your answer:',
+                correctAnswer: 'Correct answer:',
+                notAnswered: 'Not answered',
+
+                // Navigation
+                index: 'Index',
+                home: 'Home',
+                nextUnanswered: 'Next',
+
+                // Alerts
+                confirmFinish: 'Are you sure you want to finish the exam?',
+                unansweredQuestions: 'You have',
+                questionsUnanswered: 'unanswered question(s).',
+                confirmExit: 'Are you sure you want to exit the exam? Your progress will be lost.',
+                timeExpired: 'Time expired! The exam will be submitted automatically.',
+                continueExam: 'Do you want to continue the previous exam?',
+                continueButton: 'Continue',
+                startNewButton: 'Start New',
+                examTimeExpired: 'The exam time has expired.',
+                confirmLeave: 'Are you sure you want to leave? Your progress will be saved.'
+            }},
+            ru: {{
+                // Header
+                title: 'CCSE 2026',
+                subtitle: 'Вопросы для гражданства Испании',
+                questionsAnswered: 'вопросов отвечено',
+                searchPlaceholder: 'Поиск вопроса...',
+
+                // Buttons
+                quizMode: 'Режим Экзамена',
+                printAll: 'Печать всех',
+                printUnanswered: 'Печать неотвеченных',
+                darkMode: 'Темный режим',
+                lightMode: 'Светлый режим',
+                translate: 'Перевод',
+                explain: 'Объяснение',
+
+                // Quiz config modal
+                configureExam: 'Настроить Экзамен',
+                questionSelection: 'Выбор вопросов:',
+                fullExam: 'Полный экзамен (300 вопросов)',
+                bySection: 'По разделу:',
+                quickPractice: 'Быстрая практика:',
+                questions: 'вопросов',
+                randomOrder: 'Случайный порядок',
+                timer: 'Таймер:',
+                noTimer: 'Без таймера',
+                fullTimer: '45 минут (полный экзамен)',
+                proportionalTimer: 'Пропорционально количеству вопросов',
+                cancel: 'Отмена',
+                startExam: 'Начать Экзамен',
+
+                // Quiz interface
+                question: 'Вопрос',
+                answered: 'отвечено',
+                previous: 'Назад',
+                next: 'Далее',
+                finishExam: 'Завершить Экзамен',
+                exit: 'Выход',
+
+                // Results
+                passed: 'СДАЛ',
+                failed: 'НЕ СДАЛ',
+                correctAnswers: 'правильных ответов',
+                time: 'Время:',
+                sectionPerformance: 'Результаты по разделам',
+                reviewQuestions: 'Просмотреть Вопросы',
+                newExam: 'Новый Экзамен',
+                studyMode: 'Режим Обучения',
+                detailedReview: 'Подробный Обзор',
+                correct: 'Правильно',
+                incorrect: 'Неправильно',
+                yourAnswer: 'Ваш ответ:',
+                correctAnswer: 'Правильный ответ:',
+                notAnswered: 'Не отвечено',
+
+                // Navigation
+                index: 'Оглавление',
+                home: 'Главная',
+                nextUnanswered: 'Следующий',
+
+                // Alerts
+                confirmFinish: 'Вы уверены, что хотите завершить экзамен?',
+                unansweredQuestions: 'У вас',
+                questionsUnanswered: 'неотвеченных вопроса(ов).',
+                confirmExit: 'Вы уверены, что хотите выйти из экзамена? Ваш прогресс будет потерян.',
+                timeExpired: 'Время истекло! Экзамен будет отправлен автоматически.',
+                continueExam: 'Хотите продолжить предыдущий экзамен?',
+                continueButton: 'Продолжить',
+                startNewButton: 'Начать новый',
+                examTimeExpired: 'Время экзамена истекло.',
+                confirmLeave: 'Вы уверены, что хотите выйти? Ваш прогресс будет сохранен.'
+            }}
+        }};
+
+        let currentLanguage = localStorage.getItem('language') || 'ru';
+
+        function t(key) {{
+            return translations[currentLanguage][key] || key;
+        }}
+
+        function updateInterfaceLanguage() {{
+            // Header
+            document.querySelector('.subtitle').textContent = t('subtitle');
+            document.querySelector('.search-box').placeholder = t('searchPlaceholder');
+
+            // Sidebar buttons
+            const quizBtn = document.querySelector('.quiz-toggle');
+            const quizBtnText = document.querySelector('.quiz-toggle-text');
+            if (quizBtnText) quizBtnText.textContent = t('quizMode');
+
+            const printBtns = document.querySelectorAll('.print-btn');
+            if (printBtns[0]) printBtns[0].title = t('printAll');
+            if (printBtns[1]) printBtns[1].title = t('printUnanswered');
+
+            const themeBtn = document.querySelector('.theme-toggle');
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            if (themeBtn) themeBtn.title = isDark ? t('lightMode') : t('darkMode');
+
+            // Stats
+            const statsText = document.querySelector('.stats');
+            if (statsText) {{
+                const count = document.getElementById('revealed').textContent;
+                statsText.innerHTML = `<span id="revealed">${{count}}</span> / ${{totalQuestions}} ${{t('questionsAnswered')}}`;
+            }}
+
+            // Quiz modal
+            const modalTitle = document.querySelector('#quizModal .modal-header h2');
+            if (modalTitle) modalTitle.textContent = t('configureExam');
+
+            const configLabels = document.querySelectorAll('.config-label');
+            if (configLabels[0]) configLabels[0].textContent = t('questionSelection');
+            if (configLabels[1]) configLabels[1].textContent = t('timer');
+
+            const modalRadios = document.querySelectorAll('#quizModal .radio-option span');
+            if (modalRadios.length >= 3) {{
+                modalRadios[0].textContent = t('fullExam');
+            }}
+
+            const randomCheckbox = document.querySelector('#randomOrder + span');
+            if (randomCheckbox) randomCheckbox.textContent = t('randomOrder');
+
+            const timerRadios = document.querySelectorAll('input[name="timerMode"] + span');
+            if (timerRadios.length >= 3) {{
+                timerRadios[0].textContent = t('noTimer');
+                timerRadios[1].textContent = t('fullTimer');
+                timerRadios[2].textContent = t('proportionalTimer');
+            }}
+
+            const modalButtons = document.querySelectorAll('#quizModal .modal-footer button');
+            if (modalButtons[0]) modalButtons[0].textContent = t('cancel');
+            if (modalButtons[1]) modalButtons[1].textContent = t('startExam');
+
+            // Quiz header
+            const quizPrevBtn = document.querySelector('#quizPrevBtn');
+            const quizNextBtn = document.querySelector('#quizNextBtn');
+            if (quizPrevBtn) quizPrevBtn.textContent = '← ' + t('previous');
+            if (quizNextBtn) quizNextBtn.textContent = t('next') + ' →';
+
+            const quizActions = document.querySelectorAll('.quiz-actions .btn-secondary');
+            if (quizActions[2]) quizActions[2].textContent = t('finishExam');
+            if (quizActions[3]) quizActions[3].textContent = t('exit');
+
+            // Index
+            const indexTitle = document.querySelector('.index-title');
+            if (indexTitle) indexTitle.textContent = t('index');
+
+            // Bottom nav
+            const navBtns = document.querySelectorAll('.nav-btn span');
+            if (navBtns.length >= 4) {{
+                navBtns[0].textContent = t('home');
+                navBtns[1].textContent = t('previous');
+                navBtns[2].textContent = t('nextUnanswered');
+                navBtns[3].textContent = t('next');
+            }}
+        }}
+
         // Theme management with system preference detection
         const themeToggleBtn = document.querySelector('.theme-toggle');
 
@@ -1809,9 +2246,52 @@ def generate_html(explanations):
 
             if (storedTheme === 'dark' || (!storedTheme && systemPrefersDark)) {{
                 document.documentElement.setAttribute('data-theme', 'dark');
-                themeToggleBtn.textContent = 'Modo claro';
+                themeToggleBtn.textContent = '☀️';
+                themeToggleBtn.title = t('lightMode');
+            }} else {{
+                themeToggleBtn.textContent = '🌙';
+                themeToggleBtn.title = t('darkMode');
             }}
+
+            // Set language button to current language
+            const flags = {{'ru': '🇷🇺', 'es': '🇪🇸', 'en': '🇬🇧'}};
+            const titles = {{'ru': 'Язык', 'es': 'Idioma', 'en': 'Language'}};
+            const langBtn = document.querySelector('.language-btn');
+            if (langBtn) {{
+                langBtn.textContent = flags[currentLanguage];
+                langBtn.title = titles[currentLanguage];
+            }}
+
+            // Update interface with current language
+            updateInterfaceLanguage();
         }})();
+
+        function changeLanguage(lang) {{
+            currentLanguage = lang;
+            localStorage.setItem('language', lang);
+            updateInterfaceLanguage();
+        }}
+
+        function cycleLanguage() {{
+            const languages = ['ru', 'es', 'en'];
+            const flags = {{'ru': '🇷🇺', 'es': '🇪🇸', 'en': '🇬🇧'}};
+            const titles = {{'ru': 'Язык', 'es': 'Idioma', 'en': 'Language'}};
+
+            const currentIndex = languages.indexOf(currentLanguage);
+            const nextIndex = (currentIndex + 1) % languages.length;
+            const nextLang = languages[nextIndex];
+
+            currentLanguage = nextLang;
+            localStorage.setItem('language', nextLang);
+
+            const langBtn = document.querySelector('.language-btn');
+            if (langBtn) {{
+                langBtn.textContent = flags[nextLang];
+                langBtn.title = titles[nextLang];
+            }}
+
+            updateInterfaceLanguage();
+        }}
 
         function toggleTheme() {{
             const html = document.documentElement;
@@ -1820,7 +2300,14 @@ def generate_html(explanations):
 
             html.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
-            themeToggleBtn.textContent = newTheme === 'dark' ? 'Modo claro' : 'Modo oscuro';
+
+            if (newTheme === 'dark') {{
+                themeToggleBtn.textContent = '☀️';
+                themeToggleBtn.title = t('lightMode');
+            }} else {{
+                themeToggleBtn.textContent = '🌙';
+                themeToggleBtn.title = t('darkMode');
+            }}
         }}
 
         function createEmojiExplosion(x, y) {{
@@ -2129,14 +2616,24 @@ def generate_html(explanations):
             const sections = document.querySelectorAll('.section-header');
             const indexContent = document.getElementById('indexContent');
 
-            sections.forEach(section => {{
+            sections.forEach((section, idx) => {{
                 const sectionTitle = section.querySelector('h2').textContent;
                 const sectionDiv = document.createElement('div');
                 sectionDiv.className = 'index-section';
 
                 const titleDiv = document.createElement('div');
-                titleDiv.className = 'index-section-title';
+                titleDiv.className = 'index-section-title collapsed';
                 titleDiv.textContent = sectionTitle;
+
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'index-section-content collapsed';
+
+                // Toggle collapse on click
+                titleDiv.onclick = () => {{
+                    titleDiv.classList.toggle('collapsed');
+                    contentDiv.classList.toggle('collapsed');
+                }};
+
                 sectionDiv.appendChild(titleDiv);
 
                 // Find all question cards in this section
@@ -2166,11 +2663,12 @@ def generate_html(explanations):
                                 toggleMenu();
                             }}
                         }};
-                        sectionDiv.appendChild(link);
+                        contentDiv.appendChild(link);
                     }}
                     nextEl = nextEl.nextElementSibling;
                 }}
 
+                sectionDiv.appendChild(contentDiv);
                 indexContent.appendChild(sectionDiv);
             }});
         }}
@@ -2323,6 +2821,18 @@ def generate_html(explanations):
                 if (card) {{
                     card.style.display = 'block';
                     card.scrollIntoView({{ behavior: 'smooth', block: 'center' }});
+
+                    // Show next button if question is already answered and not last question
+                    if (quizMode.session.answers[qNum] && index < quizMode.session.questions.length - 1) {{
+                        let quizNextCardBtn = card.querySelector('.quiz-next-card-btn');
+                        if (!quizNextCardBtn) {{
+                            quizNextCardBtn = document.createElement('button');
+                            quizNextCardBtn.className = 'quiz-next-card-btn btn-primary';
+                            quizNextCardBtn.textContent = t('next');
+                            quizNextCardBtn.onclick = () => navigateQuizQuestion(1);
+                            card.appendChild(quizNextCardBtn);
+                        }}
+                    }}
                 }}
             }}
         }}
@@ -2364,18 +2874,21 @@ def generate_html(explanations):
                 }}
             }});
 
+            // Show next button if not last question
+            let quizNextCardBtn = card.querySelector('.quiz-next-card-btn');
+            if (!quizNextCardBtn && quizMode.currentQuestionIndex < quizMode.session.questions.length - 1) {{
+                quizNextCardBtn = document.createElement('button');
+                quizNextCardBtn.className = 'quiz-next-card-btn btn-primary';
+                quizNextCardBtn.textContent = t('next');
+                quizNextCardBtn.onclick = () => navigateQuizQuestion(1);
+                card.appendChild(quizNextCardBtn);
+            }}
+
             // Update progress
             updateQuizProgress();
 
             // Save session
             saveQuizSession();
-
-            // Auto-advance to next question after a short delay
-            setTimeout(() => {{
-                if (quizMode.currentQuestionIndex < quizMode.session.questions.length - 1) {{
-                    navigateQuizQuestion(1);
-                }}
-            }}, 500);
         }}
 
         function updateQuizProgress() {{
@@ -2384,7 +2897,7 @@ def generate_html(explanations):
             const percentage = total > 0 ? (answered / total * 100) : 0;
             const current = quizMode.currentQuestionIndex + 1;
 
-            document.getElementById('quizProgressText').textContent = `Pregunta ${{current}}/${{total}} (${{answered}} respondidas)`;
+            document.getElementById('quizProgressText').textContent = `${{t('question')}} ${{current}}/${{total}} (${{answered}} ${{t('answered')}})`;
             document.getElementById('progressFill').style.width = percentage + '%';
         }}
 
@@ -2410,7 +2923,7 @@ def generate_html(explanations):
                 // Auto-submit at 0
                 if (remaining === 0) {{
                     stopTimer();
-                    alert('¡Tiempo agotado! El examen se enviará automáticamente.');
+                    alert(t('timeExpired'));
                     calculateResults();
                 }}
             }}
@@ -2427,22 +2940,25 @@ def generate_html(explanations):
         }}
 
         function submitQuiz() {{
+            console.log('submitQuiz called');
             const answered = Object.keys(quizMode.session.answers).length;
             const total = quizMode.session.questions.length;
             const unanswered = total - answered;
 
-            let message = '¿Estás seguro de que quieres terminar el examen?';
+            let message = t('confirmFinish');
             if (unanswered > 0) {{
-                message += `\\n\\nTienes ${{unanswered}} pregunta(s) sin responder.`;
+                message += `\\n\\n${{t('unansweredQuestions')}} ${{unanswered}} ${{t('questionsUnanswered')}}`;
             }}
 
             if (confirm(message)) {{
+                console.log('User confirmed, calculating results...');
                 stopTimer();
                 calculateResults();
             }}
         }}
 
         function calculateResults() {{
+            console.log('calculateResults called');
             quizMode.session.endTime = Date.now();
 
             const results = {{
@@ -2456,6 +2972,7 @@ def generate_html(explanations):
                 const userAnswer = quizMode.session.answers[qNum];
                 const card = document.getElementById('q' + qNum);
                 const correctLabel = card.dataset.correct;
+                console.log(`Question ${{qNum}}: user=${{userAnswer}}, correct=${{correctLabel}}`);
 
                 const isCorrect = userAnswer === correctLabel;
 
@@ -2490,10 +3007,12 @@ def generate_html(explanations):
         }}
 
         function showQuizResults() {{
+            console.log('showQuizResults called', quizMode.results);
             document.body.classList.remove('quiz-mode');
             document.body.classList.add('quiz-results');
 
             const results = quizMode.results;
+            console.log('Body classes:', document.body.className);
             const sectionTitles = {{
                 1: 'TAREA 1: Gobierno y legislación',
                 2: 'TAREA 2: Derechos y deberes',
@@ -2522,36 +3041,39 @@ def generate_html(explanations):
                 <div class="results-card">
                     <div class="results-score">${{results.percentage}}%</div>
                     <div class="results-status ${{results.passed ? 'passed' : 'failed'}}">
-                        ${{results.passed ? '✓ APROBADO' : '✗ NO APROBADO'}}
+                        ${{results.passed ? '✓ ' + t('passed') : '✗ ' + t('failed')}}
                     </div>
                     <div class="results-details">
-                        ${{results.correct}} / ${{results.total}} respuestas correctas
+                        ${{results.correct}} / ${{results.total}} ${{t('correctAnswers')}}
                     </div>
                     <div class="results-time">
-                        Tiempo: ${{results.timeTaken}}
+                        ${{t('time')}} ${{results.timeTaken}}
                     </div>
                 </div>
 
                 <div class="section-performance">
-                    <h3>Rendimiento por sección</h3>
+                    <h3>${{t('sectionPerformance')}}</h3>
                     ${{sectionHTML}}
                 </div>
 
                 <div class="results-actions">
-                    <button class="btn-secondary" onclick="reviewQuizQuestions()">Revisar Preguntas</button>
-                    <button class="btn-primary" onclick="retryQuiz()">Nuevo Examen</button>
-                    <button class="btn-secondary" onclick="exitToStudyMode()">Modo Estudio</button>
+                    <button class="btn-secondary" onclick="reviewQuizQuestions()">${{t('reviewQuestions')}}</button>
+                    <button class="btn-primary" onclick="retryQuiz()">${{t('newExam')}}</button>
+                    <button class="btn-secondary" onclick="exitToStudyMode()">${{t('studyMode')}}</button>
                 </div>
 
                 <div id="questionReviewContainer"></div>
             `;
 
-            document.getElementById('resultsPage').innerHTML = html;
+            const resultsPageEl = document.getElementById('resultsPage');
+            console.log('resultsPage element:', resultsPageEl);
+            resultsPageEl.innerHTML = html;
+            console.log('Results HTML inserted, resultsPage display:', window.getComputedStyle(resultsPageEl).display);
         }}
 
         function reviewQuizQuestions() {{
             const container = document.getElementById('questionReviewContainer');
-            let html = '<h3 style="margin: 32px 0 24px; font-size: 1.5rem;">Revisión Detallada</h3>';
+            let html = `<h3 style="margin: 32px 0 24px; font-size: 1.5rem;">${{t('detailedReview')}}</h3>`;
 
             quizMode.results.details.forEach(detail => {{
                 const qNum = detail.qNum;
@@ -2567,19 +3089,19 @@ def generate_html(explanations):
                         <div class="review-header">
                             <div class="q-number">#${{qNum}}</div>
                             <div class="review-status ${{detail.isCorrect ? 'correct-review' : 'incorrect-review'}}">
-                                ${{detail.isCorrect ? '✓ Correcta' : '✗ Incorrecta'}}
+                                ${{detail.isCorrect ? '✓ ' + t('correct') : '✗ ' + t('incorrect')}}
                             </div>
                         </div>
                         <div class="review-question">${{question}}</div>
                         <div class="review-answers">
                             ${{detail.userAnswer ? `
                                 <div class="review-answer ${{detail.isCorrect ? 'user-correct' : 'user-incorrect'}}">
-                                    Tu respuesta: ${{userOption ? userOption.textContent : 'No respondida'}}
+                                    ${{t('yourAnswer')}} ${{userOption ? userOption.textContent : t('notAnswered')}}
                                 </div>
-                            ` : '<div class="review-answer user-incorrect">No respondida</div>'}}
+                            ` : `<div class="review-answer user-incorrect">${{t('notAnswered')}}</div>`}}
                             ${{!detail.isCorrect ? `
                                 <div class="review-answer correct-answer">
-                                    Respuesta correcta: ${{correctOption ? correctOption.textContent : 'N/A'}}
+                                    ${{t('correctAnswer')}} ${{correctOption ? correctOption.textContent : 'N/A'}}
                                 </div>
                             ` : ''}}
                         </div>
@@ -2609,7 +3131,7 @@ def generate_html(explanations):
         }}
 
         function exitQuiz() {{
-            if (confirm('¿Seguro que quieres salir del examen? Se perderá tu progreso.')) {{
+            if (confirm(t('confirmExit'))) {{
                 stopTimer();
                 document.body.classList.remove('quiz-mode');
                 quizMode.active = false;
@@ -2627,6 +3149,55 @@ def generate_html(explanations):
                 // Scroll to top
                 window.scrollTo({{ top: 0, behavior: 'smooth' }});
             }}
+        }}
+
+        // Custom confirmation dialog
+        function showConfirmDialog(message, confirmText, cancelText, onConfirm, onCancel) {{
+            // Create modal overlay
+            const overlay = document.createElement('div');
+            overlay.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 20px;';
+
+            // Create dialog box
+            const dialog = document.createElement('div');
+            dialog.style.cssText = 'background: var(--bg-card); border-radius: 16px; padding: 32px; max-width: 500px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,0.3); border: 1px solid var(--border);';
+
+            // Message
+            const msg = document.createElement('p');
+            msg.textContent = message;
+            msg.style.cssText = 'color: var(--text); font-size: 1.125rem; margin-bottom: 24px; line-height: 1.6;';
+            dialog.appendChild(msg);
+
+            // Button container
+            const buttons = document.createElement('div');
+            buttons.style.cssText = 'display: flex; gap: 12px; justify-content: flex-end; flex-wrap: wrap;';
+
+            // Cancel button
+            const cancelBtn = document.createElement('button');
+            cancelBtn.textContent = cancelText;
+            cancelBtn.style.cssText = 'padding: 14px 28px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); color: var(--text-secondary); cursor: pointer; font-size: 1rem; font-family: inherit; transition: all 0.2s; min-width: 120px; touch-action: manipulation;';
+            cancelBtn.onmouseover = () => cancelBtn.style.background = 'var(--accent-soft)';
+            cancelBtn.onmouseout = () => cancelBtn.style.background = 'var(--bg)';
+            cancelBtn.onclick = () => {{
+                document.body.removeChild(overlay);
+                if (onCancel) onCancel();
+            }};
+
+            // Confirm button
+            const confirmBtn = document.createElement('button');
+            confirmBtn.textContent = confirmText;
+            confirmBtn.style.cssText = 'padding: 14px 28px; border-radius: 10px; border: none; background: var(--success); color: white; cursor: pointer; font-size: 1rem; font-weight: 600; font-family: inherit; transition: all 0.2s; min-width: 120px; touch-action: manipulation;';
+            confirmBtn.onmouseover = () => confirmBtn.style.background = '#047857';
+            confirmBtn.onmouseout = () => confirmBtn.style.background = 'var(--success)';
+            confirmBtn.onclick = () => {{
+                document.body.removeChild(overlay);
+                if (onConfirm) onConfirm();
+            }};
+
+            buttons.appendChild(cancelBtn);
+            buttons.appendChild(confirmBtn);
+            dialog.appendChild(buttons);
+            overlay.appendChild(dialog);
+            document.body.appendChild(overlay);
         }}
 
         function saveQuizSession() {{
@@ -2648,57 +3219,67 @@ def generate_html(explanations):
             if (saved) {{
                 try {{
                     const session = JSON.parse(saved);
-                    if (confirm('¿Quieres continuar el examen anterior?')) {{
-                        quizMode.config = session.config;
-                        quizMode.active = true;
-                        quizMode.currentQuestionIndex = session.currentQuestionIndex || 0;
-                        quizMode.session.questions = session.questions;
-                        quizMode.session.answers = session.answers;
-                        quizMode.session.flagged = new Set(session.flagged);
-                        quizMode.session.startTime = session.startTime;
 
-                        document.body.classList.add('quiz-mode');
+                    // Show custom confirmation dialog
+                    showConfirmDialog(
+                        t('continueExam'),
+                        t('continueButton'),
+                        t('startNewButton'),
+                        // On Continue
+                        () => {{
+                            quizMode.config = session.config;
+                            quizMode.active = true;
+                            quizMode.currentQuestionIndex = session.currentQuestionIndex || 0;
+                            quizMode.session.questions = session.questions;
+                            quizMode.session.answers = session.answers;
+                            quizMode.session.flagged = new Set(session.flagged);
+                            quizMode.session.startTime = session.startTime;
 
-                        // Hide all cards first
-                        allCards.forEach(card => {{
-                            card.style.display = 'none';
-                        }});
+                            document.body.classList.add('quiz-mode');
 
-                        // Restore answer state for all quiz questions
-                        session.questions.forEach(qNum => {{
-                            const card = document.getElementById('q' + qNum);
-                            if (card && session.answers[qNum]) {{
-                                const options = card.querySelectorAll('.option');
-                                options.forEach(opt => {{
-                                    if (opt.dataset.label === session.answers[qNum]) {{
-                                        opt.classList.add('selected-quiz');
-                                    }}
-                                }});
-                            }}
-                        }});
+                            // Hide all cards first
+                            allCards.forEach(card => {{
+                                card.style.display = 'none';
+                            }});
 
-                        // Show only the current question
-                        showQuizQuestion(quizMode.currentQuestionIndex);
+                            // Restore answer state for all quiz questions
+                            session.questions.forEach(qNum => {{
+                                const card = document.getElementById('q' + qNum);
+                                if (card && session.answers[qNum]) {{
+                                    const options = card.querySelectorAll('.option');
+                                    options.forEach(opt => {{
+                                        if (opt.dataset.label === session.answers[qNum]) {{
+                                            opt.classList.add('selected-quiz');
+                                        }}
+                                    }});
+                                }}
+                            }});
 
-                        updateQuizProgress();
-                        updateQuizNavButtons();
+                            // Show only the current question
+                            showQuizQuestion(quizMode.currentQuestionIndex);
 
-                        // Resume timer if enabled
-                        if (session.config.timerEnabled) {{
-                            const elapsed = Date.now() - session.startTime;
-                            const remaining = session.config.timerMinutes * 60 * 1000 - elapsed;
-                            if (remaining > 0) {{
-                                startTimer(Math.ceil(remaining / 60000));
+                            updateQuizProgress();
+                            updateQuizNavButtons();
+
+                            // Resume timer if enabled
+                            if (session.config.timerEnabled) {{
+                                const elapsed = Date.now() - session.startTime;
+                                const remaining = session.config.timerMinutes * 60 * 1000 - elapsed;
+                                if (remaining > 0) {{
+                                    startTimer(Math.ceil(remaining / 60000));
+                                }} else {{
+                                    alert(t('examTimeExpired'));
+                                    calculateResults();
+                                }}
                             }} else {{
-                                alert('El tiempo del examen ha expirado.');
-                                calculateResults();
+                                document.getElementById('quizTimer').textContent = '';
                             }}
-                        }} else {{
-                            document.getElementById('quizTimer').textContent = '';
+                        }},
+                        // On Start New
+                        () => {{
+                            localStorage.removeItem('quizSession');
                         }}
-                    }} else {{
-                        localStorage.removeItem('quizSession');
-                    }}
+                    );
                 }} catch (e) {{
                     console.error('Error restoring quiz session:', e);
                     localStorage.removeItem('quizSession');
@@ -2710,7 +3291,7 @@ def generate_html(explanations):
         window.addEventListener('beforeunload', (e) => {{
             if (quizMode.active && !quizMode.results) {{
                 e.preventDefault();
-                e.returnValue = '¿Seguro que quieres salir? Se guardará tu progreso.';
+                e.returnValue = t('confirmLeave');
             }}
         }});
 
