@@ -327,10 +327,17 @@ def generate_html(explanations):
         } for opt in ru_options], ensure_ascii=False)
         ru_options_js = js_and_html_escape(ru_options_json_str)
 
+        # Also prepare Spanish options to show in parenthesis for correct answer
+        es_options_json_str = json.dumps([{
+            'label': opt['label'],
+            'text': opt['text']
+        } for opt in es_options], ensure_ascii=False)
+        es_options_js = js_and_html_escape(es_options_json_str)
+
         explanation_js = js_and_html_escape(explanation)
 
         html_questions.append(f'''
-        <div class="question-card" id="q{q_num}">
+        <div class="question-card" id="q{q_num}" data-correct="{correct_label}">
             <div class="q-number">#{q_num}</div>
             <div class="question">{es_q}</div>
             <div class="options-container">
@@ -338,7 +345,7 @@ def generate_html(explanations):
                 <div class="result" id="result{q_num}"></div>
             </div>
             <div class="buttons">
-                <button class="btn translate" onclick="toggleTranslate({q_num}, '{ru_q_js}', '{ru_options_js}', '{correct_label}')">Перевод</button>
+                <button class="btn translate" onclick="toggleTranslate({q_num}, '{ru_q_js}', '{ru_options_js}', '{es_options_js}', '{correct_label}')">Перевод</button>
                 <button class="btn explain" onclick="toggleExplain({q_num}, '{explanation_js}')">Объяснение</button>
             </div>
             <div class="translation" id="trans{q_num}"></div>
@@ -1046,6 +1053,589 @@ def generate_html(explanations):
                 display: block;
             }}
         }}
+
+        /* Quiz Mode Styles */
+        .quiz-toggle {{
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 24px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-family: 'Source Serif 4', Georgia, serif;
+            transition: all 0.2s ease;
+        }}
+
+        .quiz-toggle:hover {{
+            background: var(--accent-soft);
+            color: var(--accent);
+            border-color: var(--accent);
+        }}
+
+        /* Modal Overlay */
+        .modal-overlay {{
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }}
+
+        .modal-content {{
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px var(--shadow-hover);
+        }}
+
+        .modal-header {{
+            padding: 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }}
+
+        .modal-header h2 {{
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--text);
+            margin: 0;
+        }}
+
+        .modal-close {{
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            padding: 4px 8px;
+            transition: all 0.2s ease;
+            line-height: 1;
+        }}
+
+        .modal-close:hover {{
+            color: var(--error);
+            transform: scale(1.1);
+        }}
+
+        .modal-body {{
+            padding: 24px;
+        }}
+
+        .config-section {{
+            margin-bottom: 24px;
+        }}
+
+        .config-label {{
+            display: block;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text);
+            font-size: 1.05rem;
+        }}
+
+        .radio-group {{
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }}
+
+        .radio-option {{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: var(--bg);
+        }}
+
+        .radio-option:hover {{
+            border-color: var(--accent);
+            background: var(--accent-soft);
+        }}
+
+        .radio-option input[type="radio"] {{
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }}
+
+        .radio-option input[type="number"] {{
+            width: 80px;
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--bg-card);
+            color: var(--text);
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 1rem;
+        }}
+
+        .radio-option input[type="number"]:disabled {{
+            opacity: 0.5;
+            cursor: not-allowed;
+        }}
+
+        .radio-option select {{
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--bg-card);
+            color: var(--text);
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 1rem;
+            cursor: pointer;
+        }}
+
+        .radio-option select:disabled {{
+            opacity: 0.5;
+            cursor: not-allowed;
+        }}
+
+        .checkbox-option {{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: var(--bg);
+        }}
+
+        .checkbox-option:hover {{
+            border-color: var(--accent);
+            background: var(--accent-soft);
+        }}
+
+        .checkbox-option input[type="checkbox"] {{
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }}
+
+        .modal-footer {{
+            padding: 24px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }}
+
+        .btn-primary, .btn-secondary {{
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }}
+
+        .btn-primary {{
+            background: var(--accent);
+            color: white;
+        }}
+
+        .btn-primary:hover {{
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--shadow-hover);
+        }}
+
+        .btn-secondary {{
+            background: var(--bg);
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }}
+
+        .btn-secondary:hover {{
+            background: var(--bg-card);
+            border-color: var(--text-secondary);
+        }}
+
+        /* Quiz Mode Active State */
+        body.quiz-mode .header,
+        body.quiz-mode .stats,
+        body.quiz-mode .search-box,
+        body.quiz-mode .index-menu,
+        body.quiz-mode .menu-toggle {{
+            display: none !important;
+        }}
+
+        body.quiz-mode {{
+            margin-left: 0;
+        }}
+
+        /* Quiz Header */
+        .quiz-header {{
+            position: sticky;
+            top: 0;
+            background: var(--bg-card);
+            border-bottom: 2px solid var(--accent);
+            padding: 16px 24px;
+            z-index: 500;
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px var(--shadow);
+        }}
+
+        body.quiz-mode .quiz-header {{
+            display: flex;
+        }}
+
+        .quiz-timer {{
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text);
+            font-variant-numeric: tabular-nums;
+        }}
+
+        .quiz-timer.warning {{
+            color: #ef4444;
+            animation: pulse 1s infinite;
+        }}
+
+        @keyframes pulse {{
+            0%, 100% {{
+                opacity: 1;
+            }}
+            50% {{
+                opacity: 0.6;
+            }}
+        }}
+
+        .quiz-progress {{
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }}
+
+        .progress-bar {{
+            width: 150px;
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }}
+
+        .progress-fill {{
+            height: 100%;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }}
+
+        .quiz-actions {{
+            display: flex;
+            gap: 8px;
+        }}
+
+        /* Quiz Option States */
+        .option.selected-quiz {{
+            border-color: var(--accent);
+            background: var(--accent-soft);
+        }}
+
+        .option.flagged {{
+            border-color: #f59e0b;
+            background: #fff7ed;
+        }}
+
+        [data-theme="dark"] .option.flagged {{
+            background: #451a03;
+        }}
+
+        body.quiz-mode .option:hover {{
+            border-color: var(--accent);
+            background: var(--accent-soft);
+        }}
+
+        body.quiz-mode .buttons {{
+            display: none;
+        }}
+
+        /* Flag Button */
+        .flag-btn {{
+            padding: 8px 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.25rem;
+            transition: all 0.2s ease;
+        }}
+
+        .flag-btn:hover {{
+            border-color: #f59e0b;
+            background: #fff7ed;
+        }}
+
+        .flag-btn.active {{
+            border-color: #f59e0b;
+            background: #fff7ed;
+        }}
+
+        [data-theme="dark"] .flag-btn:hover,
+        [data-theme="dark"] .flag-btn.active {{
+            background: #451a03;
+        }}
+
+        /* Results Page */
+        .results-page {{
+            display: none;
+            padding: 48px 24px;
+            max-width: 900px;
+            margin: 0 auto;
+        }}
+
+        body.quiz-results .results-page {{
+            display: block;
+        }}
+
+        body.quiz-results .container {{
+            display: none;
+        }}
+
+        body.quiz-results .quiz-header {{
+            display: none;
+        }}
+
+        .results-card {{
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            padding: 48px;
+            text-align: center;
+            margin-bottom: 48px;
+            box-shadow: 0 8px 24px var(--shadow-hover);
+        }}
+
+        .results-score {{
+            font-size: 5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--accent), var(--success));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }}
+
+        .results-status {{
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }}
+
+        .results-status.passed {{
+            color: var(--success);
+        }}
+
+        .results-status.failed {{
+            color: var(--error);
+        }}
+
+        .results-details {{
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }}
+
+        .results-time {{
+            font-size: 1rem;
+            color: var(--text-tertiary);
+        }}
+
+        .section-performance {{
+            margin-bottom: 48px;
+        }}
+
+        .section-performance h3 {{
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+            color: var(--text);
+        }}
+
+        .performance-bar {{
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            gap: 16px;
+        }}
+
+        .performance-label {{
+            flex: 0 0 200px;
+            color: var(--text);
+            font-weight: 500;
+        }}
+
+        .performance-track {{
+            flex: 1;
+            height: 32px;
+            background: var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }}
+
+        .performance-fill {{
+            height: 100%;
+            background: var(--success);
+            border-radius: 8px;
+            transition: width 0.5s ease;
+        }}
+
+        .performance-percentage {{
+            flex: 0 0 60px;
+            text-align: right;
+            font-weight: 600;
+            color: var(--text);
+        }}
+
+        .results-actions {{
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }}
+
+        .results-actions .btn-primary,
+        .results-actions .btn-secondary {{
+            padding: 14px 28px;
+            font-size: 1.125rem;
+        }}
+
+        /* Question Review */
+        .question-review {{
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 16px;
+        }}
+
+        .review-header {{
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }}
+
+        .review-status {{
+            font-size: 1.5rem;
+            font-weight: 600;
+        }}
+
+        .review-status.correct-review {{
+            color: var(--success);
+        }}
+
+        .review-status.incorrect-review {{
+            color: var(--error);
+        }}
+
+        .review-question {{
+            font-size: 1.125rem;
+            margin-bottom: 16px;
+            color: var(--text);
+        }}
+
+        .review-answers {{
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }}
+
+        .review-answer {{
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 1rem;
+        }}
+
+        .review-answer.user-correct {{
+            background: var(--success-soft);
+            border: 2px solid var(--success);
+            color: var(--success);
+            font-weight: 600;
+        }}
+
+        .review-answer.user-incorrect {{
+            background: var(--error-soft);
+            border: 2px solid var(--error);
+            color: var(--error);
+            text-decoration: line-through;
+        }}
+
+        .review-answer.correct-answer {{
+            background: var(--success-soft);
+            border: 2px solid var(--success);
+            color: var(--success);
+            font-weight: 600;
+        }}
+
+        /* Mobile quiz mode */
+        @media (max-width: 768px) {{
+            .quiz-header {{
+                padding: 12px 16px;
+                flex-wrap: wrap;
+            }}
+
+            .quiz-timer {{
+                font-size: 1.25rem;
+            }}
+
+            .quiz-progress {{
+                font-size: 1rem;
+            }}
+
+            .progress-bar {{
+                width: 100px;
+            }}
+
+            .results-card {{
+                padding: 32px 24px;
+            }}
+
+            .results-score {{
+                font-size: 3.5rem;
+            }}
+
+            .results-status {{
+                font-size: 1.5rem;
+            }}
+
+            .modal-content {{
+                width: 95%;
+                max-height: 85vh;
+            }}
+
+            .performance-label {{
+                flex: 0 0 120px;
+                font-size: 0.9rem;
+            }}
+
+            .performance-percentage {{
+                flex: 0 0 50px;
+                font-size: 0.9rem;
+            }}
+        }}
     </style>
 </head>
 <body>
@@ -1061,9 +1651,99 @@ def generate_html(explanations):
         <div id="indexContent"></div>
     </div>
 
+    <!-- Quiz Configuration Modal -->
+    <div class="modal-overlay" id="quizModal" style="display: none;">
+        <div class="modal-content quiz-config">
+            <div class="modal-header">
+                <h2>Configurar Examen</h2>
+                <button class="modal-close" onclick="closeQuizConfig()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="config-section">
+                    <label class="config-label">Selección de preguntas:</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="questionMode" value="all" checked>
+                            <span>Examen completo (300 preguntas)</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="questionMode" value="section">
+                            <span>Por sección:</span>
+                            <select id="sectionSelect" disabled>
+                                <option value="1">TAREA 1 (120 preguntas)</option>
+                                <option value="2">TAREA 2 (36 preguntas)</option>
+                                <option value="3">TAREA 3 (24 preguntas)</option>
+                                <option value="4">TAREA 4 (36 preguntas)</option>
+                                <option value="5">TAREA 5 (84 preguntas)</option>
+                            </select>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="questionMode" value="custom">
+                            <span>Práctica rápida:</span>
+                            <input type="number" id="customCount" min="1" max="300" value="25" disabled>
+                            <span>preguntas</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="config-section">
+                    <label class="checkbox-option">
+                        <input type="checkbox" id="randomOrder">
+                        <span>Orden aleatorio</span>
+                    </label>
+                </div>
+
+                <div class="config-section">
+                    <label class="config-label">Temporizador:</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="timerMode" value="none" checked>
+                            <span>Sin temporizador</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="timerMode" value="full">
+                            <span>45 minutos (examen completo)</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="timerMode" value="proportional">
+                            <span>Proporcional al número de preguntas</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeQuizConfig()">Cancelar</button>
+                <button class="btn-primary" onclick="startQuizFromConfig()">Iniciar Examen</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Header (shown only in quiz mode) -->
+    <div class="quiz-header" id="quizHeader">
+        <div class="quiz-timer" id="quizTimer"></div>
+        <div class="quiz-progress">
+            <span id="quizProgressText">Pregunta 1/25 (0 respondidas)</span>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+        </div>
+        <div class="quiz-actions">
+            <button class="btn-secondary" onclick="navigateQuizQuestion(-1)" id="quizPrevBtn">← Anterior</button>
+            <button class="btn-secondary" onclick="navigateQuizQuestion(1)" id="quizNextBtn">Siguiente →</button>
+            <button class="btn-secondary" onclick="submitQuiz()">Terminar Examen</button>
+            <button class="btn-secondary" onclick="exitQuiz()">Salir</button>
+        </div>
+    </div>
+
+    <!-- Results Page (shown only after quiz completion) -->
+    <div class="results-page" id="resultsPage">
+        <!-- Content will be dynamically generated -->
+    </div>
+
     <div class="container">
         <div class="header">
             <div class="header-controls">
+                <button class="quiz-toggle" onclick="openQuizConfig()">📝 Modo Examen</button>
                 <button class="print-btn" onclick="window.print()" title="Imprimir todo">🖨️</button>
                 <button class="print-btn" onclick="printUnanswered()" title="Imprimir sin responder">📄</button>
                 <button class="theme-toggle" onclick="toggleTheme()">Modo oscuro</button>
@@ -1103,6 +1783,9 @@ def generate_html(explanations):
     <script>
         let revealedCount = 0;
         const totalQuestions = {len(questions)};
+
+        // All question numbers for quiz mode
+        const allQuestionNumbers = {json.dumps(sorted(questions.keys()))};
 
         // Theme management with system preference detection
         const themeToggleBtn = document.querySelector('.theme-toggle');
@@ -1160,7 +1843,13 @@ def generate_html(explanations):
         let answeredQuestions = new Set();
 
         function selectOption(button, qNum, selectedLabel, correctLabel) {{
-            // Prevent multiple answers
+            // Check if in quiz mode
+            if (quizMode.active) {{
+                selectQuizAnswer(qNum, selectedLabel);
+                return;
+            }}
+
+            // Prevent multiple answers in study mode
             if (answeredQuestions.has(qNum)) {{
                 return;
             }}
@@ -1199,21 +1888,34 @@ def generate_html(explanations):
             }}
         }}
 
-        function toggleTranslate(qNum, ruQ, ruOptionsJson, correctLabel) {{
+        function toggleTranslate(qNum, ruQ, ruOptionsJson, esOptionsJson, correctLabel) {{
+            // Disable in quiz mode until results
+            if (quizMode.active && !quizMode.results) return;
+
             const el = document.getElementById('trans' + qNum);
             if (el.classList.contains('show')) {{
                 el.classList.remove('show');
                 el.innerHTML = '';
             }} else {{
                 let ruOptions = [];
+                let esOptions = [];
                 try {{
                     // Parse the JSON directly - it's already properly escaped by Python
                     ruOptions = JSON.parse(ruOptionsJson);
+                    esOptions = JSON.parse(esOptionsJson);
                 }} catch (e) {{
-                    console.error('Error parsing Russian options:', e);
-                    console.error('JSON string:', ruOptionsJson);
+                    console.error('Error parsing options:', e);
+                    console.error('RU JSON string:', ruOptionsJson);
+                    console.error('ES JSON string:', esOptionsJson);
                     ruOptions = [];
+                    esOptions = [];
                 }}
+
+                // Create a map of Spanish options by label
+                const esMap = {{}};
+                esOptions.forEach(opt => {{
+                    esMap[opt.label] = opt.text;
+                }});
 
                 let html = '<strong>Вопрос:</strong> ' + ruQ + '<br><br>';
 
@@ -1222,8 +1924,9 @@ def generate_html(explanations):
                     ruOptions.forEach(opt => {{
                         const isCorrect = opt.label === correctLabel;
                         const checkmark = isCorrect ? ' ✓' : '';
+                        const spanishText = isCorrect && esMap[opt.label] ? ' <span style="color: var(--text-secondary); font-weight: 400; font-size: 0.95em;">(' + esMap[opt.label] + ')</span>' : '';
                         const style = isCorrect ? ' style="color: var(--success); font-weight: 600;"' : '';
-                        html += opt.label + ') ' + '<span' + style + '>' + opt.text + checkmark + '</span><br>';
+                        html += opt.label + ') ' + '<span' + style + '>' + opt.text + checkmark + '</span>' + spanishText + '<br>';
                     }});
                 }} else {{
                     html += '<em style="color: var(--text-tertiary);">Перевод вариантов пока недоступен</em>';
@@ -1235,6 +1938,9 @@ def generate_html(explanations):
         }}
 
         function toggleExplain(qNum, explanation) {{
+            // Disable in quiz mode until results
+            if (quizMode.active && !quizMode.results) return;
+
             const el = document.getElementById('expl' + qNum);
             if (el.classList.contains('show')) {{
                 el.classList.remove('show');
@@ -1451,6 +2157,526 @@ def generate_html(explanations):
                 indexContent.appendChild(sectionDiv);
             }});
         }}
+
+        // Quiz Mode Implementation
+        let quizMode = {{
+            active: false,
+            currentQuestionIndex: 0,
+            config: {{
+                questionCount: 25,
+                sections: [],
+                randomOrder: false,
+                timerEnabled: false,
+                timerMinutes: 45
+            }},
+            session: {{
+                questions: [],
+                answers: {{}},
+                flagged: new Set(),
+                startTime: null,
+                endTime: null,
+                timerInterval: null
+            }},
+            results: null
+        }};
+
+        // Enable/disable inputs based on radio selection
+        document.querySelectorAll('input[name="questionMode"]').forEach(radio => {{
+            radio.addEventListener('change', (e) => {{
+                const mode = e.target.value;
+                document.getElementById('sectionSelect').disabled = (mode !== 'section');
+                document.getElementById('customCount').disabled = (mode !== 'custom');
+            }});
+        }});
+
+        function openQuizConfig() {{
+            document.getElementById('quizModal').style.display = 'flex';
+        }}
+
+        function closeQuizConfig() {{
+            document.getElementById('quizModal').style.display = 'none';
+        }}
+
+        function startQuizFromConfig() {{
+            const questionMode = document.querySelector('input[name="questionMode"]:checked').value;
+            const timerMode = document.querySelector('input[name="timerMode"]:checked').value;
+            const randomOrder = document.getElementById('randomOrder').checked;
+
+            const config = {{
+                randomOrder: randomOrder,
+                timerEnabled: timerMode !== 'none',
+                timerMinutes: 45
+            }};
+
+            // Determine question selection
+            if (questionMode === 'all') {{
+                config.questionCount = {len(questions)};
+                config.sections = [];
+            }} else if (questionMode === 'section') {{
+                const section = parseInt(document.getElementById('sectionSelect').value);
+                config.sections = [section];
+                const ranges = {{1:[1001,1120], 2:[2001,2036], 3:[3001,3024], 4:[4001,4036], 5:[5001,5084]}};
+                config.questionCount = ranges[section][1] - ranges[section][0] + 1;
+            }} else {{
+                config.questionCount = parseInt(document.getElementById('customCount').value) || 25;
+                config.sections = [];
+            }}
+
+            // Adjust timer for proportional mode
+            if (timerMode === 'proportional') {{
+                config.timerMinutes = Math.ceil(config.questionCount * 45 / 300);
+            }} else if (timerMode === 'full') {{
+                config.timerMinutes = 45;
+            }}
+
+            closeQuizConfig();
+            startQuiz(config);
+        }}
+
+        function getQuizQuestions(config) {{
+            let pool = [];
+
+            if (config.sections.length === 0) {{
+                // All questions
+                pool = [...allQuestionNumbers];
+            }} else {{
+                // Specific sections
+                const ranges = {{1:[1001,1120], 2:[2001,2036], 3:[3001,3024], 4:[4001,4036], 5:[5001,5084]}};
+                config.sections.forEach(s => {{
+                    const [start, end] = ranges[s];
+                    for (let i = start; i <= end; i++) {{
+                        pool.push(i);
+                    }}
+                }});
+            }}
+
+            if (config.randomOrder) {{
+                pool = pool.sort(() => Math.random() - 0.5);
+            }}
+
+            return pool.slice(0, config.questionCount);
+        }}
+
+        function startQuiz(config) {{
+            quizMode.config = config;
+            quizMode.active = true;
+            quizMode.currentQuestionIndex = 0;
+            quizMode.session.questions = getQuizQuestions(config);
+            quizMode.session.answers = {{}};
+            quizMode.session.flagged = new Set();
+            quizMode.session.startTime = Date.now();
+            quizMode.results = null;
+
+            // Add quiz mode class to body
+            document.body.classList.add('quiz-mode');
+
+            // Hide all questions initially
+            allCards.forEach(card => {{
+                card.style.display = 'none';
+            }});
+
+            // Show only the current question
+            showQuizQuestion(0);
+
+            // Update progress
+            updateQuizProgress();
+
+            // Start timer if enabled
+            if (config.timerEnabled) {{
+                startTimer(config.timerMinutes);
+            }} else {{
+                document.getElementById('quizTimer').textContent = '';
+            }}
+
+            // Save session to localStorage
+            saveQuizSession();
+        }}
+
+        function showQuizQuestion(index) {{
+            // Hide all cards
+            allCards.forEach(card => {{
+                card.style.display = 'none';
+            }});
+
+            // Show only the current quiz question
+            if (index >= 0 && index < quizMode.session.questions.length) {{
+                const qNum = quizMode.session.questions[index];
+                const card = document.getElementById('q' + qNum);
+                if (card) {{
+                    card.style.display = 'block';
+                    card.scrollIntoView({{ behavior: 'smooth', block: 'center' }});
+                }}
+            }}
+        }}
+
+        function navigateQuizQuestion(direction) {{
+            const newIndex = quizMode.currentQuestionIndex + direction;
+            if (newIndex >= 0 && newIndex < quizMode.session.questions.length) {{
+                quizMode.currentQuestionIndex = newIndex;
+                showQuizQuestion(newIndex);
+                updateQuizProgress();
+                saveQuizSession();
+            }}
+        }}
+
+        function selectQuizAnswer(qNum, label) {{
+            quizMode.session.answers[qNum] = label;
+
+            // Update visual state
+            const card = document.getElementById('q' + qNum);
+            const options = card.querySelectorAll('.option');
+            options.forEach(opt => {{
+                opt.classList.remove('selected-quiz');
+                if (opt.dataset.label === label) {{
+                    opt.classList.add('selected-quiz');
+                }}
+            }});
+
+            // Update progress
+            updateQuizProgress();
+
+            // Save session
+            saveQuizSession();
+
+            // Auto-advance to next question after a short delay
+            setTimeout(() => {{
+                if (quizMode.currentQuestionIndex < quizMode.session.questions.length - 1) {{
+                    navigateQuizQuestion(1);
+                }}
+            }}, 500);
+        }}
+
+        function updateQuizProgress() {{
+            const answered = Object.keys(quizMode.session.answers).length;
+            const total = quizMode.session.questions.length;
+            const percentage = total > 0 ? (answered / total * 100) : 0;
+            const current = quizMode.currentQuestionIndex + 1;
+
+            document.getElementById('quizProgressText').textContent = `Pregunta ${{current}}/${{total}} (${{answered}} respondidas)`;
+            document.getElementById('progressFill').style.width = percentage + '%';
+        }}
+
+        function startTimer(minutes) {{
+            const endTime = Date.now() + minutes * 60 * 1000;
+
+            function updateTimer() {{
+                const remaining = Math.max(0, endTime - Date.now());
+                const mins = Math.floor(remaining / 60000);
+                const secs = Math.floor((remaining % 60000) / 1000);
+
+                const display = `${{String(mins).padStart(2, '0')}}:${{String(secs).padStart(2, '0')}}`;
+                const timerEl = document.getElementById('quizTimer');
+                timerEl.textContent = display;
+
+                // Warning at 5 minutes
+                if (mins < 5) {{
+                    timerEl.classList.add('warning');
+                }} else {{
+                    timerEl.classList.remove('warning');
+                }}
+
+                // Auto-submit at 0
+                if (remaining === 0) {{
+                    stopTimer();
+                    alert('¡Tiempo agotado! El examen se enviará automáticamente.');
+                    calculateResults();
+                }}
+            }}
+
+            updateTimer();
+            quizMode.session.timerInterval = setInterval(updateTimer, 1000);
+        }}
+
+        function stopTimer() {{
+            if (quizMode.session.timerInterval) {{
+                clearInterval(quizMode.session.timerInterval);
+                quizMode.session.timerInterval = null;
+            }}
+        }}
+
+        function submitQuiz() {{
+            const answered = Object.keys(quizMode.session.answers).length;
+            const total = quizMode.session.questions.length;
+            const unanswered = total - answered;
+
+            let message = '¿Estás seguro de que quieres terminar el examen?';
+            if (unanswered > 0) {{
+                message += `\\n\\nTienes ${{unanswered}} pregunta(s) sin responder.`;
+            }}
+
+            if (confirm(message)) {{
+                stopTimer();
+                calculateResults();
+            }}
+        }}
+
+        function calculateResults() {{
+            quizMode.session.endTime = Date.now();
+
+            const results = {{
+                correct: 0,
+                total: quizMode.session.questions.length,
+                bySection: {{}},
+                details: []
+            }};
+
+            quizMode.session.questions.forEach(qNum => {{
+                const userAnswer = quizMode.session.answers[qNum];
+                const card = document.getElementById('q' + qNum);
+                const correctLabel = card.dataset.correct;
+
+                const isCorrect = userAnswer === correctLabel;
+
+                if (isCorrect) results.correct++;
+
+                const section = Math.floor(qNum / 1000);
+                if (!results.bySection[section]) {{
+                    results.bySection[section] = {{correct: 0, total: 0}};
+                }}
+                results.bySection[section].total++;
+                if (isCorrect) results.bySection[section].correct++;
+
+                results.details.push({{qNum, userAnswer, correctLabel, isCorrect}});
+            }});
+
+            results.percentage = (results.correct / results.total * 100).toFixed(1);
+            results.passed = results.percentage >= 60;
+
+            // Calculate time taken
+            const timeMs = quizMode.session.endTime - quizMode.session.startTime;
+            const mins = Math.floor(timeMs / 60000);
+            const secs = Math.floor((timeMs % 60000) / 1000);
+            results.timeTaken = `${{mins}}m ${{secs}}s`;
+
+            quizMode.results = results;
+
+            // Clear quiz session from localStorage
+            localStorage.removeItem('quizSession');
+
+            // Show results
+            showQuizResults();
+        }}
+
+        function showQuizResults() {{
+            document.body.classList.remove('quiz-mode');
+            document.body.classList.add('quiz-results');
+
+            const results = quizMode.results;
+            const sectionTitles = {{
+                1: 'TAREA 1: Gobierno y legislación',
+                2: 'TAREA 2: Derechos y deberes',
+                3: 'TAREA 3: Geografía',
+                4: 'TAREA 4: Cultura e historia',
+                5: 'TAREA 5: Sociedad'
+            }};
+
+            // Build section performance HTML
+            let sectionHTML = '';
+            Object.keys(results.bySection).sort().forEach(section => {{
+                const data = results.bySection[section];
+                const pct = (data.correct / data.total * 100).toFixed(0);
+                sectionHTML += `
+                    <div class="performance-bar">
+                        <div class="performance-label">${{sectionTitles[section] || 'Sección ' + section}}</div>
+                        <div class="performance-track">
+                            <div class="performance-fill" style="width: ${{pct}}%"></div>
+                        </div>
+                        <div class="performance-percentage">${{pct}}%</div>
+                    </div>
+                `;
+            }});
+
+            const html = `
+                <div class="results-card">
+                    <div class="results-score">${{results.percentage}}%</div>
+                    <div class="results-status ${{results.passed ? 'passed' : 'failed'}}">
+                        ${{results.passed ? '✓ APROBADO' : '✗ NO APROBADO'}}
+                    </div>
+                    <div class="results-details">
+                        ${{results.correct}} / ${{results.total}} respuestas correctas
+                    </div>
+                    <div class="results-time">
+                        Tiempo: ${{results.timeTaken}}
+                    </div>
+                </div>
+
+                <div class="section-performance">
+                    <h3>Rendimiento por sección</h3>
+                    ${{sectionHTML}}
+                </div>
+
+                <div class="results-actions">
+                    <button class="btn-secondary" onclick="reviewQuizQuestions()">Revisar Preguntas</button>
+                    <button class="btn-primary" onclick="retryQuiz()">Nuevo Examen</button>
+                    <button class="btn-secondary" onclick="exitToStudyMode()">Modo Estudio</button>
+                </div>
+
+                <div id="questionReviewContainer"></div>
+            `;
+
+            document.getElementById('resultsPage').innerHTML = html;
+        }}
+
+        function reviewQuizQuestions() {{
+            const container = document.getElementById('questionReviewContainer');
+            let html = '<h3 style="margin: 32px 0 24px; font-size: 1.5rem;">Revisión Detallada</h3>';
+
+            quizMode.results.details.forEach(detail => {{
+                const qNum = detail.qNum;
+                const card = document.getElementById('q' + qNum);
+                const question = card.querySelector('.question').textContent;
+                const options = Array.from(card.querySelectorAll('.option'));
+
+                const userOption = options.find(opt => opt.dataset.label === detail.userAnswer);
+                const correctOption = options.find(opt => opt.dataset.label === detail.correctLabel);
+
+                html += `
+                    <div class="question-review">
+                        <div class="review-header">
+                            <div class="q-number">#${{qNum}}</div>
+                            <div class="review-status ${{detail.isCorrect ? 'correct-review' : 'incorrect-review'}}">
+                                ${{detail.isCorrect ? '✓ Correcta' : '✗ Incorrecta'}}
+                            </div>
+                        </div>
+                        <div class="review-question">${{question}}</div>
+                        <div class="review-answers">
+                            ${{detail.userAnswer ? `
+                                <div class="review-answer ${{detail.isCorrect ? 'user-correct' : 'user-incorrect'}}">
+                                    Tu respuesta: ${{userOption ? userOption.textContent : 'No respondida'}}
+                                </div>
+                            ` : '<div class="review-answer user-incorrect">No respondida</div>'}}
+                            ${{!detail.isCorrect ? `
+                                <div class="review-answer correct-answer">
+                                    Respuesta correcta: ${{correctOption ? correctOption.textContent : 'N/A'}}
+                                </div>
+                            ` : ''}}
+                        </div>
+                    </div>
+                `;
+            }});
+
+            container.innerHTML = html;
+        }}
+
+        function retryQuiz() {{
+            openQuizConfig();
+        }}
+
+        function exitToStudyMode() {{
+            document.body.classList.remove('quiz-results');
+            quizMode.active = false;
+            quizMode.results = null;
+
+            // Show all cards
+            allCards.forEach(card => {{
+                card.style.display = 'block';
+            }});
+
+            // Scroll to top
+            window.scrollTo({{ top: 0, behavior: 'smooth' }});
+        }}
+
+        function exitQuiz() {{
+            if (confirm('¿Seguro que quieres salir del examen? Se perderá tu progreso.')) {{
+                stopTimer();
+                document.body.classList.remove('quiz-mode');
+                quizMode.active = false;
+
+                // Clear session
+                localStorage.removeItem('quizSession');
+
+                // Remove quiz option states
+                allCards.forEach(card => {{
+                    const options = card.querySelectorAll('.option');
+                    options.forEach(opt => opt.classList.remove('selected-quiz'));
+                    card.style.display = 'block';
+                }});
+
+                // Scroll to top
+                window.scrollTo({{ top: 0, behavior: 'smooth' }});
+            }}
+        }}
+
+        function saveQuizSession() {{
+            if (quizMode.active && !quizMode.results) {{
+                const session = {{
+                    config: quizMode.config,
+                    questions: quizMode.session.questions,
+                    answers: quizMode.session.answers,
+                    flagged: Array.from(quizMode.session.flagged),
+                    startTime: quizMode.session.startTime
+                }};
+                localStorage.setItem('quizSession', JSON.stringify(session));
+            }}
+        }}
+
+        function restoreQuizSession() {{
+            const saved = localStorage.getItem('quizSession');
+            if (saved) {{
+                try {{
+                    const session = JSON.parse(saved);
+                    if (confirm('¿Quieres continuar el examen anterior?')) {{
+                        quizMode.config = session.config;
+                        quizMode.active = true;
+                        quizMode.session.questions = session.questions;
+                        quizMode.session.answers = session.answers;
+                        quizMode.session.flagged = new Set(session.flagged);
+                        quizMode.session.startTime = session.startTime;
+
+                        document.body.classList.add('quiz-mode');
+
+                        // Hide non-quiz cards
+                        allCards.forEach(card => {{
+                            const qNum = parseInt(card.id.substring(1));
+                            if (session.questions.includes(qNum)) {{
+                                card.style.display = 'block';
+                                // Restore answer state
+                                if (session.answers[qNum]) {{
+                                    const options = card.querySelectorAll('.option');
+                                    options.forEach(opt => {{
+                                        if (opt.dataset.label === session.answers[qNum]) {{
+                                            opt.classList.add('selected-quiz');
+                                        }}
+                                    }});
+                                }}
+                            }} else {{
+                                card.style.display = 'none';
+                            }}
+                        }});
+
+                        updateQuizProgress();
+
+                        // Resume timer if enabled
+                        if (session.config.timerEnabled) {{
+                            const elapsed = Date.now() - session.startTime;
+                            const remaining = session.config.timerMinutes * 60 * 1000 - elapsed;
+                            if (remaining > 0) {{
+                                startTimer(Math.ceil(remaining / 60000));
+                            }} else {{
+                                alert('El tiempo del examen ha expirado.');
+                                calculateResults();
+                            }}
+                        }}
+                    }} else {{
+                        localStorage.removeItem('quizSession');
+                    }}
+                }} catch (e) {{
+                    console.error('Error restoring quiz session:', e);
+                    localStorage.removeItem('quizSession');
+                }}
+            }}
+        }}
+
+        // Warn before leaving during quiz
+        window.addEventListener('beforeunload', (e) => {{
+            if (quizMode.active && !quizMode.results) {{
+                e.preventDefault();
+                e.returnValue = '¿Seguro que quieres salir? Se guardará tu progreso.';
+            }}
+        }});
+
+        // Try to restore quiz session on page load
+        setTimeout(restoreQuizSession, 500);
 
         // Build index on load
         buildIndex();
