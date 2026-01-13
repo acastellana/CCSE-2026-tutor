@@ -1,0 +1,4958 @@
+{
+  "1001": {
+    "question": "España es…",
+    "options": [
+      {
+        "label": "a",
+        "text": "una monarquía parlamentaria."
+      },
+      {
+        "label": "b",
+        "text": "una república federal."
+      },
+      {
+        "label": "c",
+        "text": "una monarquía federal."
+      }
+    ]
+  },
+  "1002": {
+    "question": "La ley fundamental de España se llama…",
+    "options": [
+      {
+        "label": "a",
+        "text": "Constitución."
+      },
+      {
+        "label": "b",
+        "text": "Ley básica."
+      },
+      {
+        "label": "c",
+        "text": "Ordenamiento esencial."
+      }
+    ]
+  },
+  "1003": {
+    "question": "Según la Constitución española, la soberanía nacional reside en…",
+    "options": [
+      {
+        "label": "a",
+        "text": "el pueblo español."
+      },
+      {
+        "label": "b",
+        "text": "el Gobierno del Estado."
+      },
+      {
+        "label": "c",
+        "text": "el Congreso de los Diputados."
+      }
+    ]
+  },
+  "1004": {
+    "question": "El Instituto de las Mujeres es…",
+    "options": [
+      {
+        "label": "a",
+        "text": "una institución europea."
+      },
+      {
+        "label": "b",
+        "text": "un organismo español."
+      },
+      {
+        "label": "c",
+        "text": "una ONG."
+      }
+    ]
+  },
+  "1005": {
+    "question": "¿Cuándo puedo hacer los trámites en la sede electrónica?",
+    "options": [
+      {
+        "label": "a",
+        "text": "En cualquier horario."
+      },
+      {
+        "label": "b",
+        "text": "Únicamente por la mañana."
+      },
+      {
+        "label": "c",
+        "text": "De lunes a viernes."
+      }
+    ]
+  },
+  "1006": {
+    "question": "El castellano o español es lengua oficial…",
+    "options": [
+      {
+        "label": "a",
+        "text": "en toda España."
+      },
+      {
+        "label": "b",
+        "text": "solo donde no hay otras lenguas."
+      },
+      {
+        "label": "c",
+        "text": "en toda la península ibérica."
+      }
+    ]
+  },
+  "1007": {
+    "question": "¿Cuál de estas fuerzas de seguridad es de ámbito autonómico?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Policía local."
+      },
+      {
+        "label": "b",
+        "text": "Guardia Civil."
+      },
+      {
+        "label": "c",
+        "text": "Policía Foral de Navarra."
+      }
+    ]
+  },
+  "1008": {
+    "question": "¿Qué fuerza de seguridad está en toda España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "La Policía Foral de Navarra."
+      },
+      {
+        "label": "b",
+        "text": "El Cuerpo Nacional de Policía."
+      },
+      {
+        "label": "c",
+        "text": "Los Mossos d’Esquadra."
+      }
+    ]
+  },
+  "1009": {
+    "question": "En la Constitución se establece la separación de poderes: el poder ejecutivo, el legislativo y el…",
+    "options": [
+      {
+        "label": "a",
+        "text": "judicial."
+      },
+      {
+        "label": "b",
+        "text": "informativo."
+      },
+      {
+        "label": "c",
+        "text": "político."
+      }
+    ]
+  },
+  "1010": {
+    "question": "La bandera de España debe utilizarse…",
+    "options": [
+      {
+        "label": "a",
+        "text": "solo los días de fiesta oficial."
+      },
+      {
+        "label": "b",
+        "text": "en todos los edificios públicos."
+      },
+      {
+        "label": "c",
+        "text": "solo en actos del Gobierno español."
+      }
+    ]
+  },
+  "1011": {
+    "question": "¿Quién es el jefe del Estado en España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El presidente del Gobierno."
+      },
+      {
+        "label": "b",
+        "text": "El rey."
+      },
+      {
+        "label": "c",
+        "text": "El ministro de Economía."
+      }
+    ]
+  },
+  "1012": {
+    "question": "La gestión de la sanidad es competencia de…",
+    "options": [
+      {
+        "label": "a",
+        "text": "el Estado."
+      },
+      {
+        "label": "b",
+        "text": "las comunidades autónomas."
+      },
+      {
+        "label": "c",
+        "text": "los ayuntamientos."
+      }
+    ]
+  },
+  "1013": {
+    "question": "¿Quién fue el primer presidente del Gobierno de España en democracia?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Mariano Rajoy."
+      },
+      {
+        "label": "b",
+        "text": "Adolfo Suárez."
+      },
+      {
+        "label": "c",
+        "text": "José Luis Rodríguez Zapatero."
+      }
+    ]
+  },
+  "1014": {
+    "question": "¿Cuál de estos organismos se encarga de interpretar la Constitución?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El Poder Constitucional."
+      },
+      {
+        "label": "b",
+        "text": "El Tribunal Constitucional."
+      },
+      {
+        "label": "c",
+        "text": "El Consejo General del Poder Judicial."
+      }
+    ]
+  },
+  "1015": {
+    "question": "¿Quién modera el funcionamiento de las instituciones españolas?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El presidente del Gobierno."
+      },
+      {
+        "label": "b",
+        "text": "El rey."
+      },
+      {
+        "label": "c",
+        "text": "El director de la Real Academia Española."
+      }
+    ]
+  },
+  "1016": {
+    "question": "¿Cómo se llama la cámara de representación territorial en España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Senado."
+      },
+      {
+        "label": "b",
+        "text": "Diputación permanente."
+      },
+      {
+        "label": "c",
+        "text": "Congreso de los Diputados."
+      }
+    ]
+  },
+  "1017": {
+    "question": "¿Qué se necesita para hacer trámites por internet con la Administración?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Un pasaporte válido."
+      },
+      {
+        "label": "b",
+        "text": "Una firma electrónica."
+      },
+      {
+        "label": "c",
+        "text": "Una firma en papel."
+      }
+    ]
+  },
+  "1018": {
+    "question": "¿Cómo se aprobó la Constitución?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Por imposición legal."
+      },
+      {
+        "label": "b",
+        "text": "Por referéndum."
+      },
+      {
+        "label": "c",
+        "text": "Por el Tribunal Constitucional."
+      }
+    ]
+  },
+  "1019": {
+    "question": "¿Cómo se llama la ley más importante de cada comunidad autónoma?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Estatuto de Autonomía."
+      },
+      {
+        "label": "b",
+        "text": "Normativa autonómica."
+      },
+      {
+        "label": "c",
+        "text": "Ley de la comunidad."
+      }
+    ]
+  },
+  "1020": {
+    "question": "Las instalaciones culturales y deportivas públicas son competencia del…",
+    "options": [
+      {
+        "label": "a",
+        "text": "Ayuntamiento."
+      },
+      {
+        "label": "b",
+        "text": "Ministerio de Educación, Formación Profesional y Deportes."
+      },
+      {
+        "label": "c",
+        "text": "Ministerio de Igualdad."
+      }
+    ]
+  },
+  "1021": {
+    "question": "¿Quién dirige la administración militar de España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Los ayuntamientos."
+      },
+      {
+        "label": "b",
+        "text": "El Gobierno."
+      },
+      {
+        "label": "c",
+        "text": "Las Cortes Generales."
+      }
+    ]
+  },
+  "1022": {
+    "question": "¿Qué hay en las Islas Baleares, en vez de diputaciones?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Cabildos."
+      },
+      {
+        "label": "b",
+        "text": "Consejos insulares."
+      },
+      {
+        "label": "c",
+        "text": "Centros de diputados."
+      }
+    ]
+  },
+  "1023": {
+    "question": "¿Qué ciudad tiene más habitantes?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Sevilla."
+      },
+      {
+        "label": "b",
+        "text": "Barcelona."
+      },
+      {
+        "label": "c",
+        "text": "Zaragoza."
+      }
+    ]
+  },
+  "1024": {
+    "question": "Las Cortes Generales representan…",
+    "options": [
+      {
+        "label": "a",
+        "text": "al pueblo español."
+      },
+      {
+        "label": "b",
+        "text": "a los partidos políticos."
+      },
+      {
+        "label": "c",
+        "text": "a los ministros."
+      }
+    ]
+  },
+  "1025": {
+    "question": "El Congreso de los Diputados y el Senado constituyen el poder…",
+    "options": [
+      {
+        "label": "a",
+        "text": "ejecutivo."
+      },
+      {
+        "label": "b",
+        "text": "legislativo."
+      },
+      {
+        "label": "c",
+        "text": "judicial."
+      }
+    ]
+  },
+  "1026": {
+    "question": "¿Cómo pueden los ciudadanos proponer nuevas leyes al Congreso?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Reuniendo 500 000 firmas."
+      },
+      {
+        "label": "b",
+        "text": "Solicitándolo al rey."
+      },
+      {
+        "label": "c",
+        "text": "Creando una asociación."
+      }
+    ]
+  },
+  "1027": {
+    "question": "¿Cuántas comunidades autónomas hay en España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "8."
+      },
+      {
+        "label": "b",
+        "text": "17."
+      },
+      {
+        "label": "c",
+        "text": "25."
+      }
+    ]
+  },
+  "1028": {
+    "question": "Los colores de la bandera española son…",
+    "options": [
+      {
+        "label": "a",
+        "text": "blanco y rojo."
+      },
+      {
+        "label": "b",
+        "text": "rojo y amarillo."
+      },
+      {
+        "label": "c",
+        "text": "amarillo y blanco."
+      }
+    ]
+  },
+  "1029": {
+    "question": "¿Dónde está la sede del Gobierno de España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "En Madrid."
+      },
+      {
+        "label": "b",
+        "text": "En Barcelona."
+      },
+      {
+        "label": "c",
+        "text": "En Sevilla."
+      }
+    ]
+  },
+  "1030": {
+    "question": "La bandera azul con 12 estrellas amarillas en círculo es la bandera de…",
+    "options": [
+      {
+        "label": "a",
+        "text": "la Unión Europea."
+      },
+      {
+        "label": "b",
+        "text": "el Parlamento Europeo."
+      },
+      {
+        "label": "c",
+        "text": "la Comisión de Europa."
+      }
+    ]
+  },
+  "1031": {
+    "question": "En las elecciones municiales se vota a…",
+    "options": [
+      {
+        "label": "a",
+        "text": "alcaldes y concejales"
+      },
+      {
+        "label": "b",
+        "text": "ministros y ministras."
+      },
+      {
+        "label": "c",
+        "text": "diputados y senadores."
+      }
+    ]
+  },
+  "1032": {
+    "question": "¿Qué lengua es oficial en el País Vasco?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El bable."
+      },
+      {
+        "label": "b",
+        "text": "el aragonés."
+      },
+      {
+        "label": "c",
+        "text": "El euskera."
+      }
+    ]
+  },
+  "1033": {
+    "question": "Todos los españoles tienen el deber de conocer la lengua…",
+    "options": [
+      {
+        "label": "a",
+        "text": "autonómica del Estado."
+      },
+      {
+        "label": "b",
+        "text": "oficial del Estado."
+      },
+      {
+        "label": "c",
+        "text": "local del Estado."
+      }
+    ]
+  },
+  "1034": {
+    "question": "El aranés es una lengua cooficial que se habla en un pequeño territorio de…",
+    "options": [
+      {
+        "label": "a",
+        "text": "Cataluña."
+      },
+      {
+        "label": "b",
+        "text": "La Rioja."
+      },
+      {
+        "label": "c",
+        "text": "Aragón."
+      }
+    ]
+  },
+  "1035": {
+    "question": "Las instituciones de una comunidad autónoma son: el consejo de gobierno, el presidente y…",
+    "options": [
+      {
+        "label": "a",
+        "text": "el ayuntamiento."
+      },
+      {
+        "label": "b",
+        "text": "la asamblea legislativa."
+      },
+      {
+        "label": "c",
+        "text": "la delegación de gobierno."
+      }
+    ]
+  },
+  "1036": {
+    "question": "¿Cuál de estas opciones es una lengua cooficial en alguna comunidad autónoma?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El gallego."
+      },
+      {
+        "label": "b",
+        "text": "El aragonés."
+      },
+      {
+        "label": "c",
+        "text": "El murciano."
+      }
+    ]
+  },
+  "1037": {
+    "question": "¿Qué institución tiene como fin la promoción de la enseñanza de la lengua española y la difusión de la cultura en español?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El Instituto Nacional de Administración Pública."
+      },
+      {
+        "label": "b",
+        "text": "El Instituto Nacional de Estadística."
+      },
+      {
+        "label": "c",
+        "text": "El Instituto Cervantes."
+      }
+    ]
+  },
+  "1038": {
+    "question": "¿Cuál de estos organismos trabaja para conseguir la normalización lingüística?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El Institut Ramon Llull."
+      },
+      {
+        "label": "b",
+        "text": "El Instituto Cervantes."
+      },
+      {
+        "label": "c",
+        "text": "La Real Academia Española."
+      }
+    ]
+  },
+  "1039": {
+    "question": "¿Dónde vive el presidente del Gobierno?",
+    "options": [
+      {
+        "label": "a",
+        "text": "En el Palacio Real."
+      },
+      {
+        "label": "b",
+        "text": "En el Palacio de la Zarzuela."
+      },
+      {
+        "label": "c",
+        "text": "En el Palacio de la Moncloa."
+      }
+    ]
+  },
+  "1040": {
+    "question": "¿Cuál de los siguientes cuerpos forma parte de las Fuerzas Armadas de España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "La Policía Foral."
+      },
+      {
+        "label": "b",
+        "text": "La Guardia Civil."
+      },
+      {
+        "label": "c",
+        "text": "El Ejército del Aire."
+      }
+    ]
+  },
+  "1041": {
+    "question": "¿Quiénes forman parte del Gobierno?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Los ministros."
+      },
+      {
+        "label": "b",
+        "text": "los concejales."
+      },
+      {
+        "label": "c",
+        "text": "Los alcaldes."
+      }
+    ]
+  },
+  "1042": {
+    "question": "España es un…",
+    "options": [
+      {
+        "label": "a",
+        "text": "estado social y democrático de Derecho."
+      },
+      {
+        "label": "b",
+        "text": "estado libre asociado."
+      },
+      {
+        "label": "c",
+        "text": "estado confederado."
+      }
+    ]
+  },
+  "1043": {
+    "question": "¿Cuál de las siguientes siglas corresponde a un partido político?",
+    "options": [
+      {
+        "label": "a",
+        "text": "PP."
+      },
+      {
+        "label": "b",
+        "text": "PIB."
+      },
+      {
+        "label": "c",
+        "text": "UE."
+      }
+    ]
+  },
+  "1044": {
+    "question": "¿Qué título tiene la futura reina, hija del rey?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Princesa de Asturias."
+      },
+      {
+        "label": "b",
+        "text": "Princesa de Aragón."
+      },
+      {
+        "label": "c",
+        "text": "Duquesa de Alba."
+      }
+    ]
+  },
+  "1045": {
+    "question": "¿Con qué rey se restaura la democracia en España después del régimen de Franco?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Con Carlos III."
+      },
+      {
+        "label": "b",
+        "text": "Con Alfonso XIII."
+      },
+      {
+        "label": "c",
+        "text": "Con Juan Carlos I."
+      }
+    ]
+  },
+  "1046": {
+    "question": "¿En qué año se aprobó la Constitución española?",
+    "options": [
+      {
+        "label": "a",
+        "text": "En 1957."
+      },
+      {
+        "label": "b",
+        "text": "En 1978."
+      },
+      {
+        "label": "c",
+        "text": "En 2001."
+      }
+    ]
+  },
+  "1047": {
+    "question": "¿Cuántas comunidades autónomas tienen su propia bandera?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Ninguna."
+      },
+      {
+        "label": "b",
+        "text": "Todas."
+      },
+      {
+        "label": "c",
+        "text": "Las que tienen una lengua cooficial."
+      }
+    ]
+  },
+  "1048": {
+    "question": "¿Qué organismo oficial atiende las quejas de los ciudadanos por el mal funcionamiento de las administraciones?",
+    "options": [
+      {
+        "label": "a",
+        "text": "La Oficina de Atención al Consumidor."
+      },
+      {
+        "label": "b",
+        "text": "La Policía Nacional."
+      },
+      {
+        "label": "c",
+        "text": "El Defensor del Pueblo."
+      }
+    ]
+  },
+  "1049": {
+    "question": "¿Cuántas firmas, como mínimo, deben recoger los ciudadanos para poder presentar una proposición de ley?",
+    "options": [
+      {
+        "label": "a",
+        "text": "250 000."
+      },
+      {
+        "label": "b",
+        "text": "100 000."
+      },
+      {
+        "label": "c",
+        "text": "500 000."
+      }
+    ]
+  },
+  "1050": {
+    "question": "¿A cuál de las siguientes organizaciones internacionales pertenece España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Comunidad de Estados Independientes (CEI)."
+      },
+      {
+        "label": "b",
+        "text": "Fondo Monetario Internacional (FMI)."
+      },
+      {
+        "label": "c",
+        "text": "Unión Económica Euroasiática (UEE)."
+      }
+    ]
+  },
+  "1051": {
+    "question": "En la organización de la Administración se distinguen tres niveles: central, autonómica y…",
+    "options": [
+      {
+        "label": "a",
+        "text": "estatal."
+      },
+      {
+        "label": "b",
+        "text": "regional."
+      },
+      {
+        "label": "c",
+        "text": "local."
+      }
+    ]
+  },
+  "1052": {
+    "question": "El poder legislativo corresponde...",
+    "options": [
+      {
+        "label": "a",
+        "text": "al presidente y los ministros."
+      },
+      {
+        "label": "b",
+        "text": "a los jueces y magistrados."
+      },
+      {
+        "label": "c",
+        "text": "a los diputados y senadores."
+      }
+    ]
+  },
+  "1053": {
+    "question": "¿Dónde vive el rey?",
+    "options": [
+      {
+        "label": "a",
+        "text": "En el Palacio de la Moneda."
+      },
+      {
+        "label": "b",
+        "text": "En el Palacio de la Zarzuela."
+      },
+      {
+        "label": "c",
+        "text": "En el Palacio de la Moncloa."
+      }
+    ]
+  },
+  "1054": {
+    "question": "El nombre oficial del parlamento español es…",
+    "options": [
+      {
+        "label": "a",
+        "text": "Cortes Generales."
+      },
+      {
+        "label": "b",
+        "text": "Congreso de los Diputados."
+      },
+      {
+        "label": "c",
+        "text": "Senado."
+      }
+    ]
+  },
+  "1055": {
+    "question": "El Instituto de Comercio Exterior de España, el Instituto de las Mujeres y la Dirección General de Tráfico…",
+    "options": [
+      {
+        "label": "a",
+        "text": "son organismos autónomos."
+      },
+      {
+        "label": "b",
+        "text": "dependen de ministerios."
+      },
+      {
+        "label": "c",
+        "text": "son organismos internacionales."
+      }
+    ]
+  },
+  "1056": {
+    "question": "¿Quién puede reinar en España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Solo los hombres."
+      },
+      {
+        "label": "b",
+        "text": "Solo las mujeres."
+      },
+      {
+        "label": "c",
+        "text": "Tanto los hombres como las mujeres."
+      }
+    ]
+  },
+  "1057": {
+    "question": "El Tribunal de Cuentas depende de…",
+    "options": [
+      {
+        "label": "a",
+        "text": "la Presidencia del Gobierno."
+      },
+      {
+        "label": "b",
+        "text": "las Cortes Generales."
+      },
+      {
+        "label": "c",
+        "text": "el Ministerio de Hacienda."
+      }
+    ]
+  },
+  "1058": {
+    "question": "¿Quién es la tercera autoridad del Estado, después del rey y el presidente del Gobierno?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El presidente del Senado."
+      },
+      {
+        "label": "b",
+        "text": "El ministro de Economía."
+      },
+      {
+        "label": "c",
+        "text": "El presidente del Congreso de los Diputados."
+      }
+    ]
+  },
+  "1059": {
+    "question": "¿Quién modera el funcionamiento de las instituciones españolas?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El presidente del Gobierno."
+      },
+      {
+        "label": "b",
+        "text": "El rey."
+      },
+      {
+        "label": "c",
+        "text": "El director de la Real Academia Española."
+      }
+    ]
+  },
+  "1060": {
+    "question": "La Constitución defiende valores tales como la libertad, la igualdad, el pluralismo político y…",
+    "options": [
+      {
+        "label": "a",
+        "text": "la justicia."
+      },
+      {
+        "label": "b",
+        "text": "la solidaridad."
+      },
+      {
+        "label": "c",
+        "text": "la fraternidad."
+      }
+    ]
+  },
+  "1061": {
+    "question": "Cuando una ley ya está aprobada, ¿qué necesita para poder aplicarse?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Nada."
+      },
+      {
+        "label": "b",
+        "text": "Normas que la desarrollen."
+      },
+      {
+        "label": "c",
+        "text": "Ser revisada por el Parlamento."
+      }
+    ]
+  },
+  "1062": {
+    "question": "¿Cuántos habitantes hay en España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "95 millones."
+      },
+      {
+        "label": "b",
+        "text": "49 millones."
+      },
+      {
+        "label": "c",
+        "text": "67 millones."
+      }
+    ]
+  },
+  "1063": {
+    "question": "¿Cuál de estos es un órgano consultivo del Gobierno de España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El Parlamento Europeo."
+      },
+      {
+        "label": "b",
+        "text": "El Consejo de Estado."
+      },
+      {
+        "label": "c",
+        "text": "El Tribunal Constitucional."
+      }
+    ]
+  },
+  "1064": {
+    "question": "¿Quién dirige la política interior y exterior de España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El rey."
+      },
+      {
+        "label": "b",
+        "text": "El Gobierno."
+      },
+      {
+        "label": "c",
+        "text": "El Congreso de los Diputados."
+      }
+    ]
+  },
+  "1065": {
+    "question": "El Defensor del Pueblo depende de…",
+    "options": [
+      {
+        "label": "a",
+        "text": "el Consejo de Ministros."
+      },
+      {
+        "label": "b",
+        "text": "el Tribunal de Cuentas."
+      },
+      {
+        "label": "c",
+        "text": "las Cortes Generales."
+      }
+    ]
+  },
+  "1066": {
+    "question": "El Instituto Etxepare tiene como misión la difusión del…",
+    "options": [
+      {
+        "label": "a",
+        "text": "euskera y la cultura vasca."
+      },
+      {
+        "label": "b",
+        "text": "bable y la cultura cántabra."
+      },
+      {
+        "label": "c",
+        "text": "gallego y la cultura galaica."
+      }
+    ]
+  },
+  "1067": {
+    "question": "¿Cuál de estas ciudades se encuentra entre las 10 más pobladas de España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Cádiz."
+      },
+      {
+        "label": "b",
+        "text": "Málaga."
+      },
+      {
+        "label": "c",
+        "text": "Albacete."
+      }
+    ]
+  },
+  "1068": {
+    "question": "¿Quién puede realizar trámites en línea ante la Administración Pública?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Jueces y magistrados."
+      },
+      {
+        "label": "b",
+        "text": "Cualquier ciudadano."
+      },
+      {
+        "label": "c",
+        "text": "Abogados colegiados."
+      }
+    ]
+  },
+  "1069": {
+    "question": "¿Cómo se llama el rey de España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Juan Carlos I."
+      },
+      {
+        "label": "b",
+        "text": "Felipe VI."
+      },
+      {
+        "label": "c",
+        "text": "Alfonso XIII."
+      }
+    ]
+  },
+  "1070": {
+    "question": "¿Cómo se llama el órgano de gobierno de los jueces y magistrados?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Tribunal Supremo."
+      },
+      {
+        "label": "b",
+        "text": "Consejo General del Poder Judicial."
+      },
+      {
+        "label": "c",
+        "text": "Consejo de Estado."
+      }
+    ]
+  },
+  "1071": {
+    "question": "¿Quién aprueba los presupuestos generales del Estado?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Las Cortes Generales."
+      },
+      {
+        "label": "b",
+        "text": "El Tribunal de Cuentas."
+      },
+      {
+        "label": "c",
+        "text": "El Gobierno de España."
+      }
+    ]
+  },
+  "1072": {
+    "question": "La Constitución española es…",
+    "options": [
+      {
+        "label": "a",
+        "text": "la ley fundamental."
+      },
+      {
+        "label": "b",
+        "text": "parte de otra ley."
+      },
+      {
+        "label": "c",
+        "text": "una ley secundaria."
+      }
+    ]
+  },
+  "1073": {
+    "question": "Las Cortes Generales están compuestas por el Senado y…",
+    "options": [
+      {
+        "label": "a",
+        "text": "el Congreso de los Diputados."
+      },
+      {
+        "label": "b",
+        "text": "el Tribunal Supremo."
+      },
+      {
+        "label": "c",
+        "text": "el Consejo de Estado."
+      }
+    ]
+  },
+  "1074": {
+    "question": "¿Quién elabora las leyes?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El poder ejecutivo."
+      },
+      {
+        "label": "b",
+        "text": "El poder legislativo."
+      },
+      {
+        "label": "c",
+        "text": "El poder judicial."
+      }
+    ]
+  },
+  "1075": {
+    "question": "La defensa de la integridad territorial de España corresponde a…",
+    "options": [
+      {
+        "label": "a",
+        "text": "la Policía Nacional y la Guardia Civil."
+      },
+      {
+        "label": "b",
+        "text": "las Fuerzas Armadas."
+      },
+      {
+        "label": "c",
+        "text": "la Policía Nacional y las policías autonómicas."
+      }
+    ]
+  },
+  "1076": {
+    "question": "El Ejército español participa desde 1989 en misiones de paz de la…",
+    "options": [
+      {
+        "label": "a",
+        "text": "Organización de Estados Iberoamericanos (OEI)."
+      },
+      {
+        "label": "b",
+        "text": "Unión Europea Occidental (UEO)."
+      },
+      {
+        "label": "c",
+        "text": "Organización de las Naciones Unidas (ONU)."
+      }
+    ]
+  },
+  "1077": {
+    "question": "¿Quién vigila puertos y aeropuertos, fronteras y costas?",
+    "options": [
+      {
+        "label": "a",
+        "text": "La Guardia Civil."
+      },
+      {
+        "label": "b",
+        "text": "La Policía local."
+      },
+      {
+        "label": "c",
+        "text": "La Policía Nacional."
+      }
+    ]
+  },
+  "1078": {
+    "question": "¿Quién hace el control de pasaportes en las fronteras de España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "La Guardia Civil."
+      },
+      {
+        "label": "b",
+        "text": "La Policía local."
+      },
+      {
+        "label": "c",
+        "text": "La Policía Nacional."
+      }
+    ]
+  },
+  "1079": {
+    "question": "¿Cuál de los siguientes políticos ha sido presidente del Gobierno en España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Manuel Fraga."
+      },
+      {
+        "label": "b",
+        "text": "José María Aznar."
+      },
+      {
+        "label": "c",
+        "text": "Yolanda Díaz."
+      }
+    ]
+  },
+  "1080": {
+    "question": "¿Cómo se llama la policía autonómica de Cataluña?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Guardia Civil."
+      },
+      {
+        "label": "b",
+        "text": "Ertzaintza."
+      },
+      {
+        "label": "c",
+        "text": "Mossos d'Esquadra."
+      }
+    ]
+  },
+  "1081": {
+    "question": "¿Cómo se llama la policía autonómica del País Vasco?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Ertzaintza."
+      },
+      {
+        "label": "b",
+        "text": "Guardia Civil."
+      },
+      {
+        "label": "c",
+        "text": "Mossos d'Esquadra."
+      }
+    ]
+  },
+  "1082": {
+    "question": "¿Desde qué año es rey Felipe VI?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Desde 1975."
+      },
+      {
+        "label": "b",
+        "text": "Desde 2014."
+      },
+      {
+        "label": "c",
+        "text": "Desde 2020."
+      }
+    ]
+  },
+  "1083": {
+    "question": "¿Quién regula el tráfico en los pueblos y ciudades?",
+    "options": [
+      {
+        "label": "a",
+        "text": "La Guardia Civil."
+      },
+      {
+        "label": "b",
+        "text": "Protección Civil."
+      },
+      {
+        "label": "c",
+        "text": "La Policía Local."
+      }
+    ]
+  },
+  "1084": {
+    "question": "¿Quién puede presentar una queja al Defensor del Pueblo?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Solo los ciudadanos legalmente residentes."
+      },
+      {
+        "label": "b",
+        "text": "Solo los españoles mayores de 18 años."
+      },
+      {
+        "label": "c",
+        "text": "Todos los ciudadanos, españoles o extranjeros."
+      }
+    ]
+  },
+  "1085": {
+    "question": "En España el voto en las elecciones es…",
+    "options": [
+      {
+        "label": "a",
+        "text": "un derecho."
+      },
+      {
+        "label": "b",
+        "text": "un deber."
+      },
+      {
+        "label": "c",
+        "text": "una obligación."
+      }
+    ]
+  },
+  "1086": {
+    "question": "¿Quién vigila el tráfico en las carreteras?",
+    "options": [
+      {
+        "label": "a",
+        "text": "La Guardia Civil."
+      },
+      {
+        "label": "b",
+        "text": "La Policía Nacional."
+      },
+      {
+        "label": "c",
+        "text": "El Ejército de Tierra."
+      }
+    ]
+  },
+  "1087": {
+    "question": "¿Qué organismo se encarga de recaudar los impuestos?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El Tribunal de Cuentas."
+      },
+      {
+        "label": "b",
+        "text": "La Agencia Tributaria."
+      },
+      {
+        "label": "c",
+        "text": "El Consejo Económico y Social."
+      }
+    ]
+  },
+  "1088": {
+    "question": "¿Dónde se publican las leyes nacionales?",
+    "options": [
+      {
+        "label": "a",
+        "text": "En el boletín del Instituto Nacional de Estadística (INE)."
+      },
+      {
+        "label": "b",
+        "text": "En el Portal de la Administración Electrónica (PAe)."
+      },
+      {
+        "label": "c",
+        "text": "En el Boletín Oficial del Estado (BOE)."
+      }
+    ]
+  },
+  "1089": {
+    "question": "¿Cómo se llaman los órganos de gobierno que solo existen en Canarias?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Cabildos."
+      },
+      {
+        "label": "b",
+        "text": "Consejos insulares."
+      },
+      {
+        "label": "c",
+        "text": "Diputaciones."
+      }
+    ]
+  },
+  "1090": {
+    "question": "¿Cuál de estos trámites administrativos puede realizarse en la sede electrónica?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Tramitar el DNI."
+      },
+      {
+        "label": "b",
+        "text": "Renovar el pasaporte."
+      },
+      {
+        "label": "c",
+        "text": "Pagar los impuestos."
+      }
+    ]
+  },
+  "1091": {
+    "question": "¿Cuál es el número de teléfono de información de la Administración General del Estado?",
+    "options": [
+      {
+        "label": "a",
+        "text": "010."
+      },
+      {
+        "label": "b",
+        "text": "060."
+      },
+      {
+        "label": "c",
+        "text": "091."
+      }
+    ]
+  },
+  "1092": {
+    "question": "España está organizada en…",
+    "options": [
+      {
+        "label": "a",
+        "text": "cantones."
+      },
+      {
+        "label": "b",
+        "text": "comunidades autónomas."
+      },
+      {
+        "label": "c",
+        "text": "estados federales."
+      }
+    ]
+  },
+  "1093": {
+    "question": "¿Cuántos partidos políticos hay en España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Ninguno."
+      },
+      {
+        "label": "b",
+        "text": "Uno."
+      },
+      {
+        "label": "c",
+        "text": "Muchos."
+      }
+    ]
+  },
+  "1094": {
+    "question": "¿Dónde tiene lugar la investidura del presidente del Gobierno?",
+    "options": [
+      {
+        "label": "a",
+        "text": "En el Palacio de la Moncloa."
+      },
+      {
+        "label": "b",
+        "text": "En el Congreso de los Diputados."
+      },
+      {
+        "label": "c",
+        "text": "En el Senado."
+      }
+    ]
+  },
+  "1095": {
+    "question": "¿Quién tiene el mando supremo de las Fuerzas Armadas?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El rey."
+      },
+      {
+        "label": "b",
+        "text": "El presidente del Gobierno."
+      },
+      {
+        "label": "c",
+        "text": "El ministro de Defensa."
+      }
+    ]
+  },
+  "1096": {
+    "question": "¿Quién es el representante del Estado en una comunidad autónoma?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El presidente de la comunidad autónoma."
+      },
+      {
+        "label": "b",
+        "text": "El delegado del Gobierno."
+      },
+      {
+        "label": "c",
+        "text": "El presidente de la Asamblea autonómica."
+      }
+    ]
+  },
+  "1097": {
+    "question": "¿Cuántas provincias hay en España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "45."
+      },
+      {
+        "label": "b",
+        "text": "50."
+      },
+      {
+        "label": "c",
+        "text": "55."
+      }
+    ]
+  },
+  "1098": {
+    "question": "La enseñanza de las lenguas cooficiales es competencia…",
+    "options": [
+      {
+        "label": "a",
+        "text": "del Estado."
+      },
+      {
+        "label": "b",
+        "text": "de la comunidad autónoma."
+      },
+      {
+        "label": "c",
+        "text": "de la provincia."
+      }
+    ]
+  },
+  "1099": {
+    "question": "El poder ejecutivo corresponde…",
+    "options": [
+      {
+        "label": "a",
+        "text": "al Gobierno del Estado."
+      },
+      {
+        "label": "b",
+        "text": "al Congreso y al Senado."
+      },
+      {
+        "label": "c",
+        "text": "a los jueces y magistrados."
+      }
+    ]
+  },
+  "1100": {
+    "question": "¿Cuántas cámaras hay en el Parlamento español?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Una."
+      },
+      {
+        "label": "b",
+        "text": "Dos."
+      },
+      {
+        "label": "c",
+        "text": "Tres."
+      }
+    ]
+  },
+  "1101": {
+    "question": "El suministro de agua y el alumbrado de las ciudades es competencia de…",
+    "options": [
+      {
+        "label": "a",
+        "text": "el ayuntamiento."
+      },
+      {
+        "label": "b",
+        "text": "el Gobierno autonómico."
+      },
+      {
+        "label": "c",
+        "text": "el Ministerio de Obras Públicas y Urbanismo."
+      }
+    ]
+  },
+  "1102": {
+    "question": "En materias como nacionalidad, inmigración, emigración o extranjería solo tiene competencia…",
+    "options": [
+      {
+        "label": "a",
+        "text": "el Estado."
+      },
+      {
+        "label": "b",
+        "text": "las comunidades autónomas."
+      },
+      {
+        "label": "c",
+        "text": "los ayuntamientos."
+      }
+    ]
+  },
+  "1103": {
+    "question": "¿Cuántas mujeres han sido presidentas de Gobierno en España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Ninguna."
+      },
+      {
+        "label": "b",
+        "text": "Una."
+      },
+      {
+        "label": "c",
+        "text": "Dos."
+      }
+    ]
+  },
+  "1104": {
+    "question": "Las relaciones internacionales son competencia de…",
+    "options": [
+      {
+        "label": "a",
+        "text": "el Estado."
+      },
+      {
+        "label": "b",
+        "text": "las comunidades autónomas."
+      },
+      {
+        "label": "c",
+        "text": "los ayuntamientos."
+      }
+    ]
+  },
+  "1105": {
+    "question": "El Ayuntamiento está formado por el alcalde y…",
+    "options": [
+      {
+        "label": "a",
+        "text": "los concejales."
+      },
+      {
+        "label": "b",
+        "text": "los diputados."
+      },
+      {
+        "label": "c",
+        "text": "los senadores."
+      }
+    ]
+  },
+  "1106": {
+    "question": "¿Quiénes forman el gobierno de las comunidades autónomas?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El presidente y los ministros."
+      },
+      {
+        "label": "b",
+        "text": "El alcalde y los concejales."
+      },
+      {
+        "label": "c",
+        "text": "El presidente y los consejeros."
+      }
+    ]
+  },
+  "1107": {
+    "question": "¿Cuál es el órgano de gobierno en los municipios?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El ayuntamiento."
+      },
+      {
+        "label": "b",
+        "text": "La diputación."
+      },
+      {
+        "label": "c",
+        "text": "El cabildo."
+      }
+    ]
+  },
+  "1108": {
+    "question": "¿Cómo se llaman los órganos de gobierno de las provincias españolas?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Cabildos."
+      },
+      {
+        "label": "b",
+        "text": "Consejos insulares."
+      },
+      {
+        "label": "c",
+        "text": "Diputaciones."
+      }
+    ]
+  },
+  "1109": {
+    "question": "¿Cuál es el órgano superior del poder ejecutivo?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El Gobierno."
+      },
+      {
+        "label": "b",
+        "text": "Las Fuerzas Armadas."
+      },
+      {
+        "label": "c",
+        "text": "Las Cortes Generales."
+      }
+    ]
+  },
+  "1110": {
+    "question": "El idioma español también se llama…",
+    "options": [
+      {
+        "label": "a",
+        "text": "aragonés."
+      },
+      {
+        "label": "b",
+        "text": "castellano."
+      },
+      {
+        "label": "c",
+        "text": "leonés."
+      }
+    ]
+  },
+  "1111": {
+    "question": "¿A quiénes se elige en las elecciones al Parlamento Europeo?",
+    "options": [
+      {
+        "label": "a",
+        "text": "A los ministros europeos."
+      },
+      {
+        "label": "b",
+        "text": "A los consejeros delegados."
+      },
+      {
+        "label": "c",
+        "text": "A los eurodiputados."
+      }
+    ]
+  },
+  "1112": {
+    "question": "Los españoles pueden votar a partir de los…",
+    "options": [
+      {
+        "label": "a",
+        "text": "16 años."
+      },
+      {
+        "label": "b",
+        "text": "18 años."
+      },
+      {
+        "label": "c",
+        "text": "21 años."
+      }
+    ]
+  },
+  "1113": {
+    "question": "Algunos ciudadanos extranjeros pueden votar en las elecciones…",
+    "options": [
+      {
+        "label": "a",
+        "text": "municipales."
+      },
+      {
+        "label": "b",
+        "text": "autonómicas."
+      },
+      {
+        "label": "c",
+        "text": "generales."
+      }
+    ]
+  },
+  "1114": {
+    "question": "¿Quién controla la gestión financiera del Estado?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El Banco de España."
+      },
+      {
+        "label": "b",
+        "text": "La Agencia Tributaria."
+      },
+      {
+        "label": "c",
+        "text": "El Tribunal de Cuentas."
+      }
+    ]
+  },
+  "1115": {
+    "question": "¿A quiénes se elige en las elecciones generales?",
+    "options": [
+      {
+        "label": "a",
+        "text": "A los senadores y diputados."
+      },
+      {
+        "label": "b",
+        "text": "A los eurodiputados."
+      },
+      {
+        "label": "c",
+        "text": "A los concejales."
+      }
+    ]
+  },
+  "1116": {
+    "question": "¿Cuántos miembros tiene el Congreso de los Diputados?",
+    "options": [
+      {
+        "label": "a",
+        "text": "300."
+      },
+      {
+        "label": "b",
+        "text": "350."
+      },
+      {
+        "label": "c",
+        "text": "400."
+      }
+    ]
+  },
+  "1117": {
+    "question": "Los municipios y provincias forman parte de la Administración…",
+    "options": [
+      {
+        "label": "a",
+        "text": "autonómica."
+      },
+      {
+        "label": "b",
+        "text": "local."
+      },
+      {
+        "label": "c",
+        "text": "central."
+      }
+    ]
+  },
+  "1118": {
+    "question": "La comunidad autónoma más poblada de España es…",
+    "options": [
+      {
+        "label": "a",
+        "text": "Andalucía."
+      },
+      {
+        "label": "b",
+        "text": "Cataluña."
+      },
+      {
+        "label": "c",
+        "text": "Castilla y León."
+      }
+    ]
+  },
+  "1119": {
+    "question": "¿Cómo se llama la organización que defiende los intereses de los trabajadores?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Asociación."
+      },
+      {
+        "label": "b",
+        "text": "Partido."
+      },
+      {
+        "label": "c",
+        "text": "Sindicato."
+      }
+    ]
+  },
+  "1120": {
+    "question": "¿Quién elige al presidente del Gobierno?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El Congreso de los Diputados."
+      },
+      {
+        "label": "b",
+        "text": "El rey."
+      },
+      {
+        "label": "c",
+        "text": "El Tribunal Supremo."
+      }
+    ]
+  },
+  "2001": {
+    "question": "En España, la Constitución obliga a todos los ciudadanos a practicar una religión.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2002": {
+    "question": "Los españoles que obtienen la nacionalidad por residencia deben esperar tres años para poder votar en las elecciones.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2003": {
+    "question": "En España, la Constitución prohíbe la tortura y la pena de muerte.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2004": {
+    "question": "El funcionamiento de los partidos políticos tiene que ser democrático.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2005": {
+    "question": "Se puede obligar a alguien a decir cuáles son sus ideas políticas o religiosas.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2006": {
+    "question": "Se puede limitar a una persona el derecho a entrar y salir libremente de España por motivos ideológicos.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2007": {
+    "question": "La Educación Primaria (de 6 a 12 años) es gratuita y obligatoria.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2008": {
+    "question": "La Constitución garantiza el derecho de los españoles a una vivienda digna.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2009": {
+    "question": "En España la policía puede entrar en cualquier casa sin resolución judicial en cualquier momento.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2010": {
+    "question": "Se garantiza el secreto de las comunicaciones de los españoles, salvo resolución judicial.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2011": {
+    "question": "La Constitución reconoce el derecho de los ciudadanos a asociarse libremente.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2012": {
+    "question": "Los profesores pueden enseñar con libertad, dentro de los límites de la Constitución.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2013": {
+    "question": "La Constitución reconoce únicamente los derechos fundamentales de los españoles.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2014": {
+    "question": "Los ciudadanos deben colaborar con los jueces si se lo piden.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2015": {
+    "question": "La ley limita el acceso de terceras personas a datos de carácter personal.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2016": {
+    "question": "La libertad de prensa está limitada por el respeto al honor de las personas.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2017": {
+    "question": "En España las causas de separación y divorcio están reguladas por la ley.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2018": {
+    "question": "La atención sanitaria gratuita es solo para personas mayores de 65 años.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2019": {
+    "question": "En España los hombres y las mujeres tienen los mismos derechos.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2020": {
+    "question": "La enseñanza obligatoria consta de dos etapas: Educación Primaria y Educación Secundaria Obligatoria.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2021": {
+    "question": "En España hay una religión oficial.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2022": {
+    "question": "La atención sanitaria pública es gratuita.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2023": {
+    "question": "La enseñanza básica en España es solo para los extranjeros.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2024": {
+    "question": "En España está reconocido el derecho de asociación.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2025": {
+    "question": "Los sindicatos pueden participar en negociaciones con empresarios y con el Gobierno.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2026": {
+    "question": "2026 Los trabajadores tienen derecho a hacer huelga.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2027": {
+    "question": "2027 La libertad ideológica está garantizada solo en parte del territorio nacional.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2028": {
+    "question": "2028 Todos los ciudadanos tienen acceso al sistema de Seguridad Social público, excepto si están desempleados.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2029": {
+    "question": "2029 Todos tienen derecho a disfrutar de un medio ambiente adecuado para el desarrollo de la persona, así como el deber de conservarlo.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2030": {
+    "question": "2030 En España, los poderes públicos deben proteger la salud y promover el deporte.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2031": {
+    "question": "La enseñanza básica en España es obligatoria y gratuita.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2032": {
+    "question": "La ley prohíbe la discriminación por cualquier circunstancia personal o social.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2033": {
+    "question": "En España, los ciudadanos pueden desplazarse libremente por todo el territorio nacional.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2034": {
+    "question": "Los jueces administran la justicia en España según las indicaciones del Gobierno.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2035": {
+    "question": "Los españoles deben ayudar en los casos de catástrofe o calamidad pública.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "2036": {
+    "question": "En España los ciudadanos pueden elegir en qué ciudad quieren vivir.",
+    "options": [
+      {
+        "label": "a",
+        "text": "Verdadero."
+      },
+      {
+        "label": "b",
+        "text": "Falso."
+      }
+    ]
+  },
+  "3001": {
+    "question": "¿Dónde están Cáceres y Badajoz?",
+    "options": [
+      {
+        "label": "a",
+        "text": "En el Principado de Asturias."
+      },
+      {
+        "label": "b",
+        "text": "En Andalucía."
+      },
+      {
+        "label": "c",
+        "text": "En Extremadura."
+      }
+    ]
+  },
+  "3002": {
+    "question": "¿Cuál es la capital la Comunidad Valenciana?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Alicante."
+      },
+      {
+        "label": "b",
+        "text": "Castellón."
+      },
+      {
+        "label": "c",
+        "text": "Valencia."
+      }
+    ]
+  },
+  "3003": {
+    "question": "¿Dónde están las islas Baleares?",
+    "options": [
+      {
+        "label": "a",
+        "text": "En el mar Cantábrico."
+      },
+      {
+        "label": "b",
+        "text": "En el mar Mediterráneo."
+      },
+      {
+        "label": "c",
+        "text": "En el océano Atlántico."
+      }
+    ]
+  },
+  "3004": {
+    "question": "¿Cómo se llama la extensa llanura situada en el centro de la península ibérica?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Marisma."
+      },
+      {
+        "label": "b",
+        "text": "Cordillera."
+      },
+      {
+        "label": "c",
+        "text": "Meseta."
+      }
+    ]
+  },
+  "3005": {
+    "question": "El parque nacional de Ordesa está en...",
+    "options": [
+      {
+        "label": "a",
+        "text": "Aragón."
+      },
+      {
+        "label": "b",
+        "text": "Navarra."
+      },
+      {
+        "label": "c",
+        "text": "Castilla-La Mancha."
+      }
+    ]
+  },
+  "3006": {
+    "question": "¿En qué comunidad autónoma están Guadalajara y Cuenca?",
+    "options": [
+      {
+        "label": "a",
+        "text": "En Castilla y León."
+      },
+      {
+        "label": "b",
+        "text": "En Castilla-La Mancha."
+      },
+      {
+        "label": "c",
+        "text": "En Cantabria."
+      }
+    ]
+  },
+  "3007": {
+    "question": "¿Qué comunidad autónoma tiene como capital Santiago de Compostela?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Galicia."
+      },
+      {
+        "label": "b",
+        "text": "Asturias."
+      },
+      {
+        "label": "c",
+        "text": "Cantabria."
+      }
+    ]
+  },
+  "3008": {
+    "question": "¿Dónde está Almería?",
+    "options": [
+      {
+        "label": "a",
+        "text": "En Andalucía."
+      },
+      {
+        "label": "b",
+        "text": "En Canarias."
+      },
+      {
+        "label": "c",
+        "text": "En Aragón."
+      }
+    ]
+  },
+  "3009": {
+    "question": "La capital de la comunidad autónoma de Galicia es…",
+    "options": [
+      {
+        "label": "a",
+        "text": "A Coruña."
+      },
+      {
+        "label": "b",
+        "text": "Vigo."
+      },
+      {
+        "label": "c",
+        "text": "Santiago de Compostela."
+      }
+    ]
+  },
+  "3010": {
+    "question": "¿Cuál de estos ríos desemboca en el mar Mediterráneo?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El Tajo."
+      },
+      {
+        "label": "b",
+        "text": "El Júcar."
+      },
+      {
+        "label": "c",
+        "text": "El Duero."
+      }
+    ]
+  },
+  "3011": {
+    "question": "¿Dónde está el monte Aneto?",
+    "options": [
+      {
+        "label": "a",
+        "text": "En los Pirineos."
+      },
+      {
+        "label": "b",
+        "text": "En el Sistema Central."
+      },
+      {
+        "label": "c",
+        "text": "En Sierra Nevada."
+      }
+    ]
+  },
+  "3012": {
+    "question": "La ciudad de Vitoria es la sede administrativa de…",
+    "options": [
+      {
+        "label": "a",
+        "text": "Navarra."
+      },
+      {
+        "label": "b",
+        "text": "País Vasco."
+      },
+      {
+        "label": "c",
+        "text": "La Rioja."
+      }
+    ]
+  },
+  "3013": {
+    "question": "España se divide en…",
+    "options": [
+      {
+        "label": "a",
+        "text": "departamentos y regiones."
+      },
+      {
+        "label": "b",
+        "text": "comunidades y ciudades autónomas."
+      },
+      {
+        "label": "c",
+        "text": "regiones autónomas y distritos."
+      }
+    ]
+  },
+  "3014": {
+    "question": "El parque nacional de Aigüestortes está en...",
+    "options": [
+      {
+        "label": "a",
+        "text": "Cataluña."
+      },
+      {
+        "label": "b",
+        "text": "Aragón"
+      },
+      {
+        "label": "c",
+        "text": "Castilla y León."
+      }
+    ]
+  },
+  "3015": {
+    "question": "3015 En el norte de África están Ceuta y…",
+    "options": [
+      {
+        "label": "a",
+        "text": "Almería."
+      },
+      {
+        "label": "b",
+        "text": "Melilla."
+      },
+      {
+        "label": "c",
+        "text": "Cádiz."
+      }
+    ]
+  },
+  "3016": {
+    "question": "3016 ¿En qué lugar de España hay un clima que se caracteriza por inviernos fríos y veranos muy calurosos?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Canarias."
+      },
+      {
+        "label": "b",
+        "text": "Comunidad Valenciana."
+      },
+      {
+        "label": "c",
+        "text": "Madrid."
+      }
+    ]
+  },
+  "3017": {
+    "question": "3017 ¿Cuál de estos ríos desemboca en el océano Atlántico?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El Guadalquivir."
+      },
+      {
+        "label": "b",
+        "text": "El Manzanares."
+      },
+      {
+        "label": "c",
+        "text": "El Júcar."
+      }
+    ]
+  },
+  "3018": {
+    "question": "3018 ¿Cuál de estas provincias forma parte de la Comunidad de Castilla y León?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Burgos."
+      },
+      {
+        "label": "b",
+        "text": "Huesca."
+      },
+      {
+        "label": "c",
+        "text": "Guadalajara."
+      }
+    ]
+  },
+  "3019": {
+    "question": "3019 ¿En qué comunidad autónoma está la ciudad de Huesca?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Castilla-La Mancha."
+      },
+      {
+        "label": "b",
+        "text": "Aragón."
+      },
+      {
+        "label": "c",
+        "text": "Extremadura."
+      }
+    ]
+  },
+  "3020": {
+    "question": "Canarias tiene un clima…",
+    "options": [
+      {
+        "label": "a",
+        "text": "mediterráneo."
+      },
+      {
+        "label": "b",
+        "text": "oceánico."
+      },
+      {
+        "label": "c",
+        "text": "subtropical."
+      }
+    ]
+  },
+  "3021": {
+    "question": "El principal río que desemboca en el mar Mediterráneo es el…",
+    "options": [
+      {
+        "label": "a",
+        "text": "Ebro."
+      },
+      {
+        "label": "b",
+        "text": "Duero."
+      },
+      {
+        "label": "c",
+        "text": "Tajo."
+      }
+    ]
+  },
+  "3022": {
+    "question": "España está entre los países de Europa más…",
+    "options": [
+      {
+        "label": "a",
+        "text": "lluviosos."
+      },
+      {
+        "label": "b",
+        "text": "montañosos."
+      },
+      {
+        "label": "c",
+        "text": "fríos."
+      }
+    ]
+  },
+  "3023": {
+    "question": "¿En qué provincia está el parque nacional de Monfragüe?",
+    "options": [
+      {
+        "label": "a",
+        "text": "En Cáceres."
+      },
+      {
+        "label": "b",
+        "text": "En Murcia."
+      },
+      {
+        "label": "c",
+        "text": "En Ciudad Real."
+      }
+    ]
+  },
+  "3024": {
+    "question": "¿Cuál es la capital de la comunidad autónoma de Extremadura?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Cáceres."
+      },
+      {
+        "label": "b",
+        "text": "Badajoz."
+      },
+      {
+        "label": "c",
+        "text": "Mérida."
+      }
+    ]
+  },
+  "4001": {
+    "question": "Los personajes principales de la novela el Quijote son don Quijote y…",
+    "options": [
+      {
+        "label": "a",
+        "text": "Don Juan."
+      },
+      {
+        "label": "b",
+        "text": "Sancho Panza."
+      },
+      {
+        "label": "c",
+        "text": "Doña Inés."
+      }
+    ]
+  },
+  "4002": {
+    "question": "¿Qué científica española es reconocida por sus investigaciones?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Almudena Grandes."
+      },
+      {
+        "label": "b",
+        "text": "Montserrat Caballé."
+      },
+      {
+        "label": "c",
+        "text": "Margarita Salas."
+      }
+    ]
+  },
+  "4003": {
+    "question": "¿Quién escribió La casa de Bernarda Alba?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Federico García Lorca."
+      },
+      {
+        "label": "b",
+        "text": "Miguel de Cervantes."
+      },
+      {
+        "label": "c",
+        "text": "Antonio Machado."
+      }
+    ]
+  },
+  "4004": {
+    "question": "¿Quién escribió Nada, una novela sobre la posguerra española?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Carmen Laforet."
+      },
+      {
+        "label": "b",
+        "text": "Ana María Matute."
+      },
+      {
+        "label": "c",
+        "text": "María Dueñas."
+      }
+    ]
+  },
+  "4005": {
+    "question": "¿Qué músico compuso El amor brujo?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Manuel de Falla."
+      },
+      {
+        "label": "b",
+        "text": "Isaac Albéniz."
+      },
+      {
+        "label": "c",
+        "text": "Joaquín Rodrigo."
+      }
+    ]
+  },
+  "4006": {
+    "question": "¿Qué es típico en la Noche de San Juan?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Comer uvas."
+      },
+      {
+        "label": "b",
+        "text": "Encender hogueras."
+      },
+      {
+        "label": "c",
+        "text": "Regalar libros."
+      }
+    ]
+  },
+  "4007": {
+    "question": "¿Cuál es el instrumento más característico de la música flamenca?",
+    "options": [
+      {
+        "label": "a",
+        "text": "La gaita."
+      },
+      {
+        "label": "b",
+        "text": "La guitarra."
+      },
+      {
+        "label": "c",
+        "text": "El piano."
+      }
+    ]
+  },
+  "4008": {
+    "question": "Isabel Coixet es una…",
+    "options": [
+      {
+        "label": "a",
+        "text": "cantante pop."
+      },
+      {
+        "label": "b",
+        "text": "bailarina clásica."
+      },
+      {
+        "label": "c",
+        "text": "directora de cine."
+      }
+    ]
+  },
+  "4009": {
+    "question": "Una de las cantantes españolas más famosas actualmente es...",
+    "options": [
+      {
+        "label": "a",
+        "text": "Rosalía."
+      },
+      {
+        "label": "b",
+        "text": "Marisol."
+      },
+      {
+        "label": "c",
+        "text": "Lola Flores."
+      }
+    ]
+  },
+  "4010": {
+    "question": "¿En qué ciudad de España hay una mezquita que es Patrimonio de la Humanidad?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Santiago de Compostela."
+      },
+      {
+        "label": "b",
+        "text": "Madrid."
+      },
+      {
+        "label": "c",
+        "text": "Córdoba."
+      }
+    ]
+  },
+  "4011": {
+    "question": "¿En qué ciudad de España se encuentra La Alhambra, que es Patrimonio de la Humanidad?",
+    "options": [
+      {
+        "label": "a",
+        "text": "En Sevilla."
+      },
+      {
+        "label": "b",
+        "text": "En Córdoba."
+      },
+      {
+        "label": "c",
+        "text": "En Granada."
+      }
+    ]
+  },
+  "4012": {
+    "question": "¿Cuál es el nombre de la directora española que ha destacado por su mirada crítica y por modernizar el cine nacional?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Pilar Miró."
+      },
+      {
+        "label": "b",
+        "text": "Sara Baras."
+      },
+      {
+        "label": "c",
+        "text": "Penélope Cruz."
+      }
+    ]
+  },
+  "4013": {
+    "question": "¿Qué novela de éxito ha escrito Irene Vallejo?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El infinito en un junco."
+      },
+      {
+        "label": "b",
+        "text": "El tiempo entre costuras."
+      },
+      {
+        "label": "c",
+        "text": "El camino."
+      }
+    ]
+  },
+  "4014": {
+    "question": "¿Cómo se llama la mayor institución pública dedicada a la investigación en España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Real Academia Española (RAE)."
+      },
+      {
+        "label": "b",
+        "text": "Consejo Superior de investigaciones Científicas (CSIC)."
+      },
+      {
+        "label": "c",
+        "text": "La sociedad General de Autores (SGAE)."
+      }
+    ]
+  },
+  "4015": {
+    "question": "Paco de Lucía fue un famoso….",
+    "options": [
+      {
+        "label": "a",
+        "text": "científico."
+      },
+      {
+        "label": "b",
+        "text": "guitarrista."
+      },
+      {
+        "label": "c",
+        "text": "pintor."
+      }
+    ]
+  },
+  "4016": {
+    "question": "¿Qué celebramos el 24 de diciembre?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Carnaval."
+      },
+      {
+        "label": "b",
+        "text": "Nochebuena."
+      },
+      {
+        "label": "c",
+        "text": "San Juan."
+      }
+    ]
+  },
+  "4017": {
+    "question": "Juan Mari Arzak es un famoso....",
+    "options": [
+      {
+        "label": "a",
+        "text": "escritor."
+      },
+      {
+        "label": "b",
+        "text": "músico."
+      },
+      {
+        "label": "c",
+        "text": "cocinero."
+      }
+    ]
+  },
+  "4018": {
+    "question": "¿Quién fue Clara Campoamor?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Una defensora de los derechos de la mujer."
+      },
+      {
+        "label": "b",
+        "text": "Una cantante lírica."
+      },
+      {
+        "label": "c",
+        "text": "Una directora de cine."
+      }
+    ]
+  },
+  "4019": {
+    "question": "¿Qué canciones típicas se cantan en Navidad?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Flamenco."
+      },
+      {
+        "label": "b",
+        "text": "Villancicos."
+      },
+      {
+        "label": "c",
+        "text": "Jotas."
+      }
+    ]
+  },
+  "4020": {
+    "question": "La Liga y la Copa del Rey son competiciones de…",
+    "options": [
+      {
+        "label": "a",
+        "text": "natación."
+      },
+      {
+        "label": "b",
+        "text": "atletismo."
+      },
+      {
+        "label": "c",
+        "text": "fútbol."
+      }
+    ]
+  },
+  "4021": {
+    "question": "¿Quién ha recibido el premio Nobel de Literatura?",
+    "options": [
+      {
+        "label": "a",
+        "text": "María Zambrano."
+      },
+      {
+        "label": "b",
+        "text": "Pablo Picasso."
+      },
+      {
+        "label": "c",
+        "text": "Vicente Aleixandre."
+      }
+    ]
+  },
+  "4022": {
+    "question": "¿Qué fiesta se celebra en Pamplona el 7 de julio?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Los sanfermines."
+      },
+      {
+        "label": "b",
+        "text": "Las Fallas."
+      },
+      {
+        "label": "c",
+        "text": "La Feria de Abril."
+      }
+    ]
+  },
+  "4023": {
+    "question": "Teresa Perales y Daniel Molina son...",
+    "options": [
+      {
+        "label": "a",
+        "text": "campeones paraolímpicos."
+      },
+      {
+        "label": "b",
+        "text": "músicos famosos."
+      },
+      {
+        "label": "c",
+        "text": "artistas de cine."
+      }
+    ]
+  },
+  "4024": {
+    "question": "¿Qué toman los españoles la noche del 31 de diciembre para celebrar el cambio de año?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Lentejas."
+      },
+      {
+        "label": "b",
+        "text": "Uvas."
+      },
+      {
+        "label": "c",
+        "text": "Aceitunas."
+      }
+    ]
+  },
+  "4025": {
+    "question": "¿Qué mujer es autora del cuadro La verbena?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Maruja Mallo."
+      },
+      {
+        "label": "b",
+        "text": "Carmen Maura."
+      },
+      {
+        "label": "c",
+        "text": "Clara Lago."
+      }
+    ]
+  },
+  "4026": {
+    "question": "¿En qué museo español puedes ver el cuadro Guernica de Picasso?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Museo del Prado."
+      },
+      {
+        "label": "b",
+        "text": "Museo Reina Sofía."
+      },
+      {
+        "label": "c",
+        "text": "Museo Thyssen-Bornemisza."
+      }
+    ]
+  },
+  "4027": {
+    "question": "¿Qué escritora española escribe en otra lengua oficial de España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Mercè Rodoreda."
+      },
+      {
+        "label": "b",
+        "text": "Almudena Grandes."
+      },
+      {
+        "label": "c",
+        "text": "Ana María Matute."
+      }
+    ]
+  },
+  "4028": {
+    "question": "¿Qué tres culturas convivieron en la España medieval?",
+    "options": [
+      {
+        "label": "a",
+        "text": "La cristiana, la judía y la musulmana."
+      },
+      {
+        "label": "b",
+        "text": "La fenicia, la judía y la musulmana."
+      },
+      {
+        "label": "c",
+        "text": "La griega, la cristiana y la judía."
+      }
+    ]
+  },
+  "4029": {
+    "question": "El 6 de diciembre se celebra en España…",
+    "options": [
+      {
+        "label": "a",
+        "text": "el Día de la Constitución."
+      },
+      {
+        "label": "b",
+        "text": "la llegada de Colón a América."
+      },
+      {
+        "label": "c",
+        "text": "el Día del Libro."
+      }
+    ]
+  },
+  "4030": {
+    "question": "¿Qué ciudad fue un centro científico en Al-Ándalus, donde se estudiaba medicina y astronomía?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Barcelona."
+      },
+      {
+        "label": "b",
+        "text": "Madrid."
+      },
+      {
+        "label": "c",
+        "text": "Córdoba."
+      }
+    ]
+  },
+  "4031": {
+    "question": "¿En qué ciudad española está el Museo Guggenheim?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Bilbao."
+      },
+      {
+        "label": "b",
+        "text": "Madrid."
+      },
+      {
+        "label": "c",
+        "text": "Valencia."
+      }
+    ]
+  },
+  "4032": {
+    "question": "El Premio Cervantes se da a…",
+    "options": [
+      {
+        "label": "a",
+        "text": "actores."
+      },
+      {
+        "label": "b",
+        "text": "escritores."
+      },
+      {
+        "label": "c",
+        "text": "pintores."
+      }
+    ]
+  },
+  "4033": {
+    "question": "¿Qué premio reconoce a los mejores actores y películas?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Premio Goya."
+      },
+      {
+        "label": "b",
+        "text": "Premio Nobel."
+      },
+      {
+        "label": "c",
+        "text": "Premio Cervantes."
+      }
+    ]
+  },
+  "4034": {
+    "question": "¿Qué premios promueven en España valores científicos, culturales y humanísticos?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Los Premios Cervantes."
+      },
+      {
+        "label": "b",
+        "text": "Los Premios Princesa de Asturias."
+      },
+      {
+        "label": "c",
+        "text": "Los Premios Goya."
+      }
+    ]
+  },
+  "4035": {
+    "question": "¿Cuál de estos deportes es muy popular en España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El fútbol."
+      },
+      {
+        "label": "b",
+        "text": "El esquí"
+      },
+      {
+        "label": "c",
+        "text": "El golf."
+      }
+    ]
+  },
+  "4036": {
+    "question": "¿Cuál de estos deportistas juega al tenis?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Pau Gasol."
+      },
+      {
+        "label": "b",
+        "text": "Carlos Sainz."
+      },
+      {
+        "label": "c",
+        "text": "Carlos Alcaraz."
+      }
+    ]
+  },
+  "5001": {
+    "question": "¿Qué documento deben solicitar los extranjeros para residir legalmente en España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El Documento Nacional de Identidad (DNI)."
+      },
+      {
+        "label": "b",
+        "text": "La Tarjeta de Identidad de Extranjero (TIE)."
+      },
+      {
+        "label": "c",
+        "text": "El certificado de empadronamiento."
+      }
+    ]
+  },
+  "5002": {
+    "question": "¿Cuál es el documento que certifica el lugar de residencia del titular?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El certificado de empadronamiento."
+      },
+      {
+        "label": "b",
+        "text": "La partida de nacimiento."
+      },
+      {
+        "label": "c",
+        "text": "El carné de conducir."
+      }
+    ]
+  },
+  "5003": {
+    "question": "¿A qué sustituye el registro electrónico individual?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Al DNI."
+      },
+      {
+        "label": "b",
+        "text": "Al permiso de conducir."
+      },
+      {
+        "label": "c",
+        "text": "Al libro de familia."
+      }
+    ]
+  },
+  "5004": {
+    "question": "¿Cuál es la edad mínima para conducir un coche en España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "16 años."
+      },
+      {
+        "label": "b",
+        "text": "18 años."
+      },
+      {
+        "label": "c",
+        "text": "20 años."
+      }
+    ]
+  },
+  "5005": {
+    "question": "El carné de conducir se hace en…",
+    "options": [
+      {
+        "label": "a",
+        "text": "la Dirección General de Tráfico (DGT)."
+      },
+      {
+        "label": "b",
+        "text": "la Policía Nacional."
+      },
+      {
+        "label": "c",
+        "text": "el Registro Civil."
+      }
+    ]
+  },
+  "5006": {
+    "question": "Para sacar el carné de conducir hay que aprobar…",
+    "options": [
+      {
+        "label": "a",
+        "text": "un examen teórico."
+      },
+      {
+        "label": "b",
+        "text": "un examen práctico."
+      },
+      {
+        "label": "c",
+        "text": "un examen teórico y otro práctico."
+      }
+    ]
+  },
+  "5007": {
+    "question": "¿Dónde se tramita el libro de familia?",
+    "options": [
+      {
+        "label": "a",
+        "text": "En el Registro Civil."
+      },
+      {
+        "label": "b",
+        "text": "En la Seguridad Social."
+      },
+      {
+        "label": "c",
+        "text": "En las comisarías de policía."
+      }
+    ]
+  },
+  "5008": {
+    "question": "¿Cuál de estos canales de televisión es autonómico?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Telecinco."
+      },
+      {
+        "label": "b",
+        "text": "Nova."
+      },
+      {
+        "label": "c",
+        "text": "Canal Sur."
+      }
+    ]
+  },
+  "5009": {
+    "question": "¿Cuánto dura el permiso de maternidad o paternidad?",
+    "options": [
+      {
+        "label": "a",
+        "text": "12 semanas."
+      },
+      {
+        "label": "b",
+        "text": "16 semanas."
+      },
+      {
+        "label": "c",
+        "text": "22 semanas."
+      }
+    ]
+  },
+  "5010": {
+    "question": "¿Cuál es la tasa máxima de alcohol en sangre permitida a los conductores, en gramos por litro (g/l)?",
+    "options": [
+      {
+        "label": "a",
+        "text": "0,5."
+      },
+      {
+        "label": "b",
+        "text": "0,7."
+      },
+      {
+        "label": "c",
+        "text": "0,9."
+      }
+    ]
+  },
+  "5011": {
+    "question": "¿Cuál es el tipo de residencia más habitual en España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Casa rural."
+      },
+      {
+        "label": "b",
+        "text": "Piso en un edificio de viviendas."
+      },
+      {
+        "label": "c",
+        "text": "Chalet independiente."
+      }
+    ]
+  },
+  "5012": {
+    "question": "¿Qué comunidad autónoma es conocida por la calidad de su aceite de oliva?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Cantabria."
+      },
+      {
+        "label": "b",
+        "text": "Andalucía."
+      },
+      {
+        "label": "c",
+        "text": "La Rioja."
+      }
+    ]
+  },
+  "5013": {
+    "question": "¿Cómo se llama la revisión que deben pasar obligatoriamente los coches?",
+    "options": [
+      {
+        "label": "a",
+        "text": "IBI (Impuesto sobre Bienes Inmuebles)."
+      },
+      {
+        "label": "b",
+        "text": "ITV (Inspección Técnica de Vehículos)."
+      },
+      {
+        "label": "c",
+        "text": "ITE (Inspección Técnica de Edificios)."
+      }
+    ]
+  },
+  "5014": {
+    "question": "El aperitivo que acompaña a la bebida en bares y restaurantes se llama...",
+    "options": [
+      {
+        "label": "a",
+        "text": "bocadillo."
+      },
+      {
+        "label": "b",
+        "text": "tapa."
+      },
+      {
+        "label": "c",
+        "text": "primer plato."
+      }
+    ]
+  },
+  "5015": {
+    "question": "¿Dónde se tramita la tarjeta sanitaria?",
+    "options": [
+      {
+        "label": "a",
+        "text": "En la comisaría de policía."
+      },
+      {
+        "label": "b",
+        "text": "En el centro de salud."
+      },
+      {
+        "label": "c",
+        "text": "En el Ministerio de Sanidad."
+      }
+    ]
+  },
+  "5016": {
+    "question": "¿Con cuántos hijos una familia es numerosa?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Con 1 hijo."
+      },
+      {
+        "label": "b",
+        "text": "Con 2 hijos."
+      },
+      {
+        "label": "c",
+        "text": "Con 3 hijos."
+      }
+    ]
+  },
+  "5017": {
+    "question": "En España está permitido el matrimonio…",
+    "options": [
+      {
+        "label": "a",
+        "text": "solo entre personas del mismo sexo."
+      },
+      {
+        "label": "b",
+        "text": "entre personas del mismo y diferente sexo."
+      },
+      {
+        "label": "c",
+        "text": "solo entre personas de diferente sexo."
+      }
+    ]
+  },
+  "5018": {
+    "question": "Los propietarios de perros deben registrarlos en…",
+    "options": [
+      {
+        "label": "a",
+        "text": "el Ministerio de Justicia."
+      },
+      {
+        "label": "b",
+        "text": "la comisaría de policía."
+      },
+      {
+        "label": "c",
+        "text": "el Ayuntamiento."
+      }
+    ]
+  },
+  "5019": {
+    "question": "Los principales ingredientes de la tortilla española son huevos y…",
+    "options": [
+      {
+        "label": "a",
+        "text": "pimientos."
+      },
+      {
+        "label": "b",
+        "text": "patatas."
+      },
+      {
+        "label": "c",
+        "text": "tomates."
+      }
+    ]
+  },
+  "5020": {
+    "question": "¿Cuál es uno de los platos más conocidos internacionalmente de la gastronomía española?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Gazpacho."
+      },
+      {
+        "label": "b",
+        "text": "Pizza."
+      },
+      {
+        "label": "c",
+        "text": "Pasta."
+      }
+    ]
+  },
+  "5021": {
+    "question": "¿Cuál de estos canales de televisión es público?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Tele 5."
+      },
+      {
+        "label": "b",
+        "text": "La 1."
+      },
+      {
+        "label": "c",
+        "text": "Antena 3."
+      }
+    ]
+  },
+  "5022": {
+    "question": "En una comunidad de vecinos, una de las normas es…",
+    "options": [
+      {
+        "label": "a",
+        "text": "abrir la puerta al cartero."
+      },
+      {
+        "label": "b",
+        "text": "no molestar con ruido."
+      },
+      {
+        "label": "c",
+        "text": "limpiar los espacios comunes."
+      }
+    ]
+  },
+  "5023": {
+    "question": "¿Cuál de estos es el principal ingrediente de la paella valenciana?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Arroz."
+      },
+      {
+        "label": "b",
+        "text": "Chorizo."
+      },
+      {
+        "label": "c",
+        "text": "Garbanzos."
+      }
+    ]
+  },
+  "5024": {
+    "question": "La sidra es una bebida típica de…",
+    "options": [
+      {
+        "label": "a",
+        "text": "Asturias."
+      },
+      {
+        "label": "b",
+        "text": "Valencia."
+      },
+      {
+        "label": "c",
+        "text": "Canarias."
+      }
+    ]
+  },
+  "5025": {
+    "question": "Los españoles tienen dos apellidos, el primero es…",
+    "options": [
+      {
+        "label": "a",
+        "text": "obligatoriamente el de la madre."
+      },
+      {
+        "label": "b",
+        "text": "obligatoriamente el del padre."
+      },
+      {
+        "label": "c",
+        "text": "puede ser el de la madre o el del padre."
+      }
+    ]
+  },
+  "5026": {
+    "question": "La Fiesta Nacional de España es el…",
+    "options": [
+      {
+        "label": "a",
+        "text": "6 de diciembre."
+      },
+      {
+        "label": "b",
+        "text": "15 de agosto."
+      },
+      {
+        "label": "c",
+        "text": "12 de octubre."
+      }
+    ]
+  },
+  "5027": {
+    "question": "¿Qué días suelen cerrar la mayoría de las tiendas o el pequeño comercio?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Los lunes."
+      },
+      {
+        "label": "b",
+        "text": "Los domingos."
+      },
+      {
+        "label": "c",
+        "text": "Los sábados por la tarde."
+      }
+    ]
+  },
+  "5028": {
+    "question": "¿Dónde se hace el pasaporte?",
+    "options": [
+      {
+        "label": "a",
+        "text": "En el registro civil."
+      },
+      {
+        "label": "b",
+        "text": "En una comisaría de policía."
+      },
+      {
+        "label": "c",
+        "text": "En el Ayuntamiento."
+      }
+    ]
+  },
+  "5029": {
+    "question": "El Ministerio de Igualdad es el encargado de luchar contra la violencia de género y la…",
+    "options": [
+      {
+        "label": "a",
+        "text": "separación."
+      },
+      {
+        "label": "b",
+        "text": "discriminación."
+      },
+      {
+        "label": "c",
+        "text": "solidaridad."
+      }
+    ]
+  },
+  "5030": {
+    "question": "5030 ¿Qué comunidad autónoma es conocida por la calidad de sus cavas?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Galicia."
+      },
+      {
+        "label": "b",
+        "text": "Cataluña."
+      },
+      {
+        "label": "c",
+        "text": "Castilla-La Mancha."
+      }
+    ]
+  },
+  "5031": {
+    "question": "5031 ¿Qué documento se necesita para recibir atención médica en la sanidad pública?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El pasaporte."
+      },
+      {
+        "label": "b",
+        "text": "La tarjeta sanitaria."
+      },
+      {
+        "label": "c",
+        "text": "El certificado de nacimiento."
+      }
+    ]
+  },
+  "5032": {
+    "question": "5032 El horario de Canarias, con respecto a la Península, es de…",
+    "options": [
+      {
+        "label": "a",
+        "text": "dos horas menos."
+      },
+      {
+        "label": "b",
+        "text": "una hora menos."
+      },
+      {
+        "label": "c",
+        "text": "una hora más."
+      }
+    ]
+  },
+  "5033": {
+    "question": "5033 Para acceder a la Universidad se debe superar una prueba de evaluación llamada…",
+    "options": [
+      {
+        "label": "a",
+        "text": "Selectividad."
+      },
+      {
+        "label": "b",
+        "text": "Examen preuniversitario."
+      },
+      {
+        "label": "c",
+        "text": "Prueba de Acceso a la Universidad."
+      }
+    ]
+  },
+  "5034": {
+    "question": "5034 ¿Cuál de estos productos necesita importar España de otros países?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Petróleo."
+      },
+      {
+        "label": "b",
+        "text": "Aceite de oliva."
+      },
+      {
+        "label": "c",
+        "text": "Medicamentos."
+      }
+    ]
+  },
+  "5035": {
+    "question": "¿Qué tipo de impuestos tienen que pagar los ciudadanos en España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Impuestos directos como el IRPF."
+      },
+      {
+        "label": "b",
+        "text": "Impuestos indirectos como el IVA."
+      },
+      {
+        "label": "c",
+        "text": "Impuestos directos e indirectos."
+      }
+    ]
+  },
+  "5036": {
+    "question": "Los adultos sin Bachillerato pueden estudiar en la Universidad haciendo una prueba especial a partir de los…",
+    "options": [
+      {
+        "label": "a",
+        "text": "18 años."
+      },
+      {
+        "label": "b",
+        "text": "23 años."
+      },
+      {
+        "label": "c",
+        "text": "25 años."
+      }
+    ]
+  },
+  "5037": {
+    "question": "¿Dónde puede encontrarse la siguiente norma «No pisar el césped, ni arrancar flores»?",
+    "options": [
+      {
+        "label": "a",
+        "text": "En zonas de recreo."
+      },
+      {
+        "label": "b",
+        "text": "En los teatros."
+      },
+      {
+        "label": "c",
+        "text": "En los estadios de fútbol."
+      }
+    ]
+  },
+  "5038": {
+    "question": "El Bachillerato en España…",
+    "options": [
+      {
+        "label": "a",
+        "text": "es obligatorio."
+      },
+      {
+        "label": "b",
+        "text": "se compone de dos cursos acad�micos."
+      },
+      {
+        "label": "c",
+        "text": "es la enseñanza a alumnos de 14 a 16 años."
+      }
+    ]
+  },
+  "5039": {
+    "question": "El Impuesto sobre el Valor Añadido (IVA) forma parte de los…",
+    "options": [
+      {
+        "label": "a",
+        "text": "Impuestos indirectos."
+      },
+      {
+        "label": "b",
+        "text": "Impuestos sobre la renta."
+      },
+      {
+        "label": "c",
+        "text": "Impuestos sobre sociedades."
+      }
+    ]
+  },
+  "5040": {
+    "question": "¿Qué número reciben los trabajadores al comenzar su primer empleo?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El de la Seguridad Social."
+      },
+      {
+        "label": "b",
+        "text": "El pasaporte."
+      },
+      {
+        "label": "c",
+        "text": "El número de servicio."
+      }
+    ]
+  },
+  "5041": {
+    "question": "Los colegios públicos son gratuitos.",
+    "options": [
+      {
+        "label": "a",
+        "text": "pueden decidir su número de plazas."
+      },
+      {
+        "label": "b",
+        "text": "pueden contratar a los profesores que quieran."
+      },
+      {
+        "label": "c",
+        "text": "son gratuitos."
+      }
+    ]
+  },
+  "5042": {
+    "question": "¿Cuál de estos puertos es uno de los principales de España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Tenerife."
+      },
+      {
+        "label": "b",
+        "text": "Alicante."
+      },
+      {
+        "label": "c",
+        "text": "Algeciras."
+      }
+    ]
+  },
+  "5043": {
+    "question": "Un colegio concertado es un colegio privado que…",
+    "options": [
+      {
+        "label": "a",
+        "text": "recibe dinero de la Administración."
+      },
+      {
+        "label": "b",
+        "text": "financian los padres de los alumnos."
+      },
+      {
+        "label": "c",
+        "text": "recibe dinero de los bancos."
+      }
+    ]
+  },
+  "5044": {
+    "question": "España exporta productos principalmente a países…",
+    "options": [
+      {
+        "label": "a",
+        "text": "de Hispanoamérica."
+      },
+      {
+        "label": "b",
+        "text": "de la Unión Europea."
+      },
+      {
+        "label": "c",
+        "text": "del norte de África."
+      }
+    ]
+  },
+  "5045": {
+    "question": "Las bibliotecas públicas son gratuitas para…",
+    "options": [
+      {
+        "label": "a",
+        "text": "todos."
+      },
+      {
+        "label": "b",
+        "text": "los parados."
+      },
+      {
+        "label": "c",
+        "text": "los niños."
+      }
+    ]
+  },
+  "5046": {
+    "question": "¿Cuál de estos productos exporta España más que importa?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Gas."
+      },
+      {
+        "label": "b",
+        "text": "Ropa."
+      },
+      {
+        "label": "c",
+        "text": "Calzado."
+      }
+    ]
+  },
+  "5047": {
+    "question": "Una persona mayor de 18 años puede obtener el título de Graduado en Educación Secundaria Obligatoria en…",
+    "options": [
+      {
+        "label": "a",
+        "text": "un Centro de Educación de Personas Adultas."
+      },
+      {
+        "label": "b",
+        "text": "un centro de enseñanza primaria."
+      },
+      {
+        "label": "c",
+        "text": "una universidad."
+      }
+    ]
+  },
+  "5048": {
+    "question": "La formación profesional…",
+    "options": [
+      {
+        "label": "a",
+        "text": "es para mayores de 25 años."
+      },
+      {
+        "label": "b",
+        "text": "puede ser de grado medio o superior."
+      },
+      {
+        "label": "c",
+        "text": "es obligatoria."
+      }
+    ]
+  },
+  "5049": {
+    "question": "¿Adónde vamos para ver al médico de familia o al pediatra?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Al hospital."
+      },
+      {
+        "label": "b",
+        "text": "Al centro de salud."
+      },
+      {
+        "label": "c",
+        "text": "A la farmacia."
+      }
+    ]
+  },
+  "5050": {
+    "question": "¿Para cuántos años vale la tarjeta sanitaria europea?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Para un año."
+      },
+      {
+        "label": "b",
+        "text": "Para dos años."
+      },
+      {
+        "label": "c",
+        "text": "Para 10 años."
+      }
+    ]
+  },
+  "5051": {
+    "question": "¿A qué hora se cena normalmente en España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "A las 18 h."
+      },
+      {
+        "label": "b",
+        "text": "A las 23 h."
+      },
+      {
+        "label": "c",
+        "text": "A las 21 o 22 h."
+      }
+    ]
+  },
+  "5052": {
+    "question": "¿Cuál es el número de teléfono único para cualquier emergencia?",
+    "options": [
+      {
+        "label": "a",
+        "text": "060."
+      },
+      {
+        "label": "b",
+        "text": "112."
+      },
+      {
+        "label": "c",
+        "text": "911."
+      }
+    ]
+  },
+  "5053": {
+    "question": "¿Cuál de estos periódicos se publica a nivel nacional?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El Diario Vasco."
+      },
+      {
+        "label": "b",
+        "text": "El País."
+      },
+      {
+        "label": "c",
+        "text": "La Voz de Galicia."
+      }
+    ]
+  },
+  "5054": {
+    "question": "¿Dónde se venden sellos y tabaco?",
+    "options": [
+      {
+        "label": "a",
+        "text": "En el quiosco."
+      },
+      {
+        "label": "b",
+        "text": "En la farmacia."
+      },
+      {
+        "label": "c",
+        "text": "En el estanco."
+      }
+    ]
+  },
+  "5055": {
+    "question": "¿Cuándo se puede llamar al número de teléfono para atención a víctimas de violencia de género?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Las 24 horas del día."
+      },
+      {
+        "label": "b",
+        "text": "En horario de mañana."
+      },
+      {
+        "label": "c",
+        "text": "De lunes a viernes."
+      }
+    ]
+  },
+  "5056": {
+    "question": "La organización que trabaja para conseguir la integración de las personas con discapacidad visual es…",
+    "options": [
+      {
+        "label": "a",
+        "text": "la ONCE."
+      },
+      {
+        "label": "b",
+        "text": "Unicef."
+      },
+      {
+        "label": "c",
+        "text": "Cáritas."
+      }
+    ]
+  },
+  "5057": {
+    "question": "El Camino de Santiago es…",
+    "options": [
+      {
+        "label": "a",
+        "text": "Patrimonio de la Humanidad."
+      },
+      {
+        "label": "b",
+        "text": "una vía de ferrocarril."
+      },
+      {
+        "label": "c",
+        "text": "una ruta para excursionistas."
+      }
+    ]
+  },
+  "5058": {
+    "question": "¿Cuál es el canal de televisión estatal que transmite noticias de actualidad nacional e internacional continuamente?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Teledeporte."
+      },
+      {
+        "label": "b",
+        "text": "La 1."
+      },
+      {
+        "label": "c",
+        "text": "Canal 24 horas."
+      }
+    ]
+  },
+  "5059": {
+    "question": "El teléfono gratuito para las víctimas de violencia de género es el…",
+    "options": [
+      {
+        "label": "a",
+        "text": "091."
+      },
+      {
+        "label": "b",
+        "text": "112."
+      },
+      {
+        "label": "c",
+        "text": "016."
+      }
+    ]
+  },
+  "5060": {
+    "question": "En España, la red de trenes puede ser de larga distancia, de media distancia y…",
+    "options": [
+      {
+        "label": "a",
+        "text": "de cercanías."
+      },
+      {
+        "label": "b",
+        "text": "rural."
+      },
+      {
+        "label": "c",
+        "text": "transnacional."
+      }
+    ]
+  },
+  "5061": {
+    "question": "¿Qué está prohibido en la puerta de un colegio?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Fumar un cigarrillo."
+      },
+      {
+        "label": "b",
+        "text": "Conducir un coche."
+      },
+      {
+        "label": "c",
+        "text": "Vender refrescos."
+      }
+    ]
+  },
+  "5062": {
+    "question": "¿Qué título se obtiene al finalizar un ciclo de grado medio de Formación Profesional?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Bachiller."
+      },
+      {
+        "label": "b",
+        "text": "Técnico."
+      },
+      {
+        "label": "c",
+        "text": "Graduado en ESO."
+      }
+    ]
+  },
+  "5063": {
+    "question": "¿Qué título se obtiene tras realizar una tesis doctoral en España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Máster."
+      },
+      {
+        "label": "b",
+        "text": "Graduado."
+      },
+      {
+        "label": "c",
+        "text": "Doctor."
+      }
+    ]
+  },
+  "5064": {
+    "question": "¿Dónde se compran las medicinas con receta?",
+    "options": [
+      {
+        "label": "a",
+        "text": "En el hospital"
+      },
+      {
+        "label": "b",
+        "text": "En el centro de salud."
+      },
+      {
+        "label": "c",
+        "text": "En la farmacia."
+      }
+    ]
+  },
+  "5065": {
+    "question": "¿Cuál de estas tres recomendaciones podemos encontrar en un parque?",
+    "options": [
+      {
+        "label": "a",
+        "text": "No pisar el césped."
+      },
+      {
+        "label": "b",
+        "text": "Se recomienda pagar el billete con el dinero justo."
+      },
+      {
+        "label": "c",
+        "text": "Respetar las normas sobre equipaje."
+      }
+    ]
+  },
+  "5066": {
+    "question": "¿Cuál de las siguientes cosas es obligatoria para el propietario de un coche en España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El garaje"
+      },
+      {
+        "label": "b",
+        "text": "El seguro."
+      },
+      {
+        "label": "c",
+        "text": "La alarma."
+      }
+    ]
+  },
+  "5067": {
+    "question": "El aeropuerto Adolfo Suárez está en…",
+    "options": [
+      {
+        "label": "a",
+        "text": "Barcelona."
+      },
+      {
+        "label": "b",
+        "text": "Madrid"
+      },
+      {
+        "label": "c",
+        "text": "Bilbao."
+      }
+    ]
+  },
+  "5068": {
+    "question": "En un coche es obligatorio el uso del cinturón de seguridad...",
+    "options": [
+      {
+        "label": "a",
+        "text": "solo en el asiento del conductor."
+      },
+      {
+        "label": "b",
+        "text": "en los asientos delanteros."
+      },
+      {
+        "label": "c",
+        "text": "en todos los asientos."
+      }
+    ]
+  },
+  "5069": {
+    "question": "¿Cuál es el límite de velocidad en autopista?",
+    "options": [
+      {
+        "label": "a",
+        "text": "90 km/h."
+      },
+      {
+        "label": "b",
+        "text": "120 km/h."
+      },
+      {
+        "label": "c",
+        "text": "150 km/h."
+      }
+    ]
+  },
+  "5070": {
+    "question": "Ceder el asiento a las personas con movilidad reducida es una norma que encontramos indicada en…",
+    "options": [
+      {
+        "label": "a",
+        "text": "el transporte público."
+      },
+      {
+        "label": "b",
+        "text": "las bibliotecas."
+      },
+      {
+        "label": "c",
+        "text": "los museos."
+      }
+    ]
+  },
+  "5071": {
+    "question": "¿Cuál es el medio de transporte público que tiene una luz verde encendida si está libre?",
+    "options": [
+      {
+        "label": "a",
+        "text": "El autobús."
+      },
+      {
+        "label": "b",
+        "text": "El taxi."
+      },
+      {
+        "label": "c",
+        "text": "El tranvía."
+      }
+    ]
+  },
+  "5072": {
+    "question": "¿Qué debes hacer si tienes un perro?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Pasearlo sin correa."
+      },
+      {
+        "label": "b",
+        "text": "Ponerle un microchip y vacunarlo"
+      },
+      {
+        "label": "c",
+        "text": "No recoger sus excrementos."
+      }
+    ]
+  },
+  "5073": {
+    "question": "Los españoles necesitan el pasaporte para viajar a…",
+    "options": [
+      {
+        "label": "a",
+        "text": "Italia."
+      },
+      {
+        "label": "b",
+        "text": "China."
+      },
+      {
+        "label": "c",
+        "text": "Alemania."
+      }
+    ]
+  },
+  "5074": {
+    "question": "¿Cuál es la edad mínima para trabajar en España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "16 años."
+      },
+      {
+        "label": "b",
+        "text": "18 años."
+      },
+      {
+        "label": "c",
+        "text": "21 años."
+      }
+    ]
+  },
+  "5075": {
+    "question": "¿Cuál es el sector de mayor peso en la economía española?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Agricultura."
+      },
+      {
+        "label": "b",
+        "text": "Servicios."
+      },
+      {
+        "label": "c",
+        "text": "Construcción."
+      }
+    ]
+  },
+  "5076": {
+    "question": "España es innovadora en el sector de…",
+    "options": [
+      {
+        "label": "a",
+        "text": "la ingeniería aeroespacial."
+      },
+      {
+        "label": "b",
+        "text": "las energías renovables."
+      },
+      {
+        "label": "c",
+        "text": "la energía nuclear."
+      }
+    ]
+  },
+  "5077": {
+    "question": "¿Cómo se llama la ley laboral más importante de España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "La Constitución."
+      },
+      {
+        "label": "b",
+        "text": "El Estatuto de los Trabajadores."
+      },
+      {
+        "label": "c",
+        "text": "El Servicio Público de Empleo Estatal."
+      }
+    ]
+  },
+  "5078": {
+    "question": "¿Cuál de estos establecimientos está abierto 24 horas si es necesario?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Farmacia."
+      },
+      {
+        "label": "b",
+        "text": "Pescadería."
+      },
+      {
+        "label": "c",
+        "text": "Librería."
+      }
+    ]
+  },
+  "5079": {
+    "question": "La educación infantil en España…",
+    "options": [
+      {
+        "label": "a",
+        "text": "es obligatoria."
+      },
+      {
+        "label": "b",
+        "text": "tiene dos ciclos."
+      },
+      {
+        "label": "c",
+        "text": "empieza a los 4 años."
+      }
+    ]
+  },
+  "5080": {
+    "question": "¿Cuándo empieza el calendario escolar?",
+    "options": [
+      {
+        "label": "a",
+        "text": "En agosto."
+      },
+      {
+        "label": "b",
+        "text": "En septiembre."
+      },
+      {
+        "label": "c",
+        "text": "En octubre."
+      }
+    ]
+  },
+  "5081": {
+    "question": "Las Escuelas Oficiales de Idiomas…",
+    "options": [
+      {
+        "label": "a",
+        "text": "son centros de enseñanza privada."
+      },
+      {
+        "label": "b",
+        "text": "son para mayores de 16 años."
+      },
+      {
+        "label": "c",
+        "text": "dependen del Instituto Cervantes."
+      }
+    ]
+  },
+  "5082": {
+    "question": "¿Cuál es el documento que recoge los años de cotización a la Seguridad Social?",
+    "options": [
+      {
+        "label": "a",
+        "text": "Informe de vida laboral."
+      },
+      {
+        "label": "b",
+        "text": "Recibo de finiquito."
+      },
+      {
+        "label": "c",
+        "text": "Certificado de profesionalidad."
+      }
+    ]
+  },
+  "5083": {
+    "question": "Los convenios colectivos de una empresa son los que se firman con los representantes de los trabajadores sobre…",
+    "options": [
+      {
+        "label": "a",
+        "text": "las condiciones laborales."
+      },
+      {
+        "label": "b",
+        "text": "el futuro de la empresa."
+      },
+      {
+        "label": "c",
+        "text": "la relación con los clientes."
+      }
+    ]
+  },
+  "5084": {
+    "question": "¿En cuál de estos sectores destaca España?",
+    "options": [
+      {
+        "label": "a",
+        "text": "En el turismo."
+      },
+      {
+        "label": "b",
+        "text": "En la industria automovilística."
+      },
+      {
+        "label": "c",
+        "text": "En tecnología digital."
+      }
+    ]
+  }
+}
