@@ -589,12 +589,17 @@
 
         /* Print mode styles - Dense layout */
         @media print {
+            @page {
+                margin: 12mm 8mm;
+                size: letter;
+            }
+
             body {
                 background: white;
                 color: black;
                 padding: 0;
-                font-size: 10pt;
-                line-height: 1.3;
+                font-size: 8pt;
+                line-height: 1.15;
             }
 
             .header, .stats, .search-box, .bottom-nav, .header-controls, .theme-toggle, .menu-toggle, .index-menu, .menu-overlay {
@@ -607,35 +612,41 @@
 
             .container {
                 max-width: 100%;
-                padding: 0;
+                padding: 0 8mm;
             }
 
             .section-header {
                 position: static;
                 page-break-after: avoid;
-                border-bottom: 2px solid #000;
-                padding: 4px 0;
-                margin: 12px 0 6px;
+                border-bottom: 1.5px solid #000;
+                padding: 2px 0;
+                margin: 8px 0 3px;
+                background: white;
             }
 
             .section-header h2 {
                 color: black;
-                font-size: 13pt;
-                margin-bottom: 2px;
+                font-size: 11pt;
+                margin: 0;
+                font-weight: 600;
             }
 
             .section-ru {
-                color: #666;
+                color: #555;
                 font-size: 8pt;
+                margin: 0;
             }
 
             .question-card {
                 background: white;
                 border: none;
-                border-bottom: 1px solid #e0e0e0;
-                page-break-inside: avoid;
+                border-bottom: 0.5px solid #ddd;
+                page-break-inside: auto;
+                orphans: 2;
+                widows: 2;
                 margin-bottom: 0;
-                padding: 6px 0;
+                padding: 3px 0;
+                box-shadow: none;
             }
 
             .question-card.print-hide {
@@ -644,15 +655,45 @@
 
             .q-number {
                 color: #666;
-                font-size: 8pt;
-                margin-bottom: 3px;
+                font-size: 7pt;
+                margin-bottom: 1px;
+                font-weight: 500;
             }
 
             .question {
                 color: black;
-                font-size: 10pt;
-                margin-bottom: 4px;
-                line-height: 1.3;
+                font-size: 8.5pt;
+                margin-bottom: 2px;
+                line-height: 1.2;
+                font-weight: 600;
+            }
+
+            .options-container {
+                margin-bottom: 2px;
+            }
+
+            .option {
+                font-size: 7.5pt;
+                line-height: 1.2;
+                padding: 1px 0;
+                margin-bottom: 1px;
+                border: none;
+                background: none;
+                color: black;
+                display: block;
+            }
+
+            .option.correct {
+                font-weight: 600;
+                color: #059669;
+            }
+
+            .option.incorrect {
+                color: #999;
+            }
+
+            .option.disabled {
+                opacity: 1;
             }
 
             .answer-container {
@@ -1178,12 +1219,11 @@
             background: #451a03;
         }
 
-        /* Results Page */
+        /* Results Page - Editorial Magazine Aesthetic */
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700;900&family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&display=swap');
+
         .results-page {
             display: none;
-            padding: 48px 24px;
-            max-width: 900px;
-            margin: 0 auto;
         }
 
         body.quiz-results .results-page {
@@ -1199,112 +1239,393 @@
         }
 
         body.quiz-results .index-menu {
-            display: none;
+            display: none !important;
+        }
+
+        body.quiz-results .menu-toggle {
+            display: none !important;
+        }
+
+        .results-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0;
         }
 
         .results-card {
             background: var(--bg-card);
-            border: 2px solid var(--border);
-            border-radius: 20px;
-            padding: 48px;
-            text-align: center;
-            margin-bottom: 48px;
-            box-shadow: 0 8px 24px var(--shadow-hover);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 0;
+            margin-top: 48px;
+            margin-bottom: 32px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            position: relative;
+            overflow: hidden;
         }
 
-        .results-score {
-            font-size: 5rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-            background: linear-gradient(135deg, var(--accent), var(--success));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .results-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 100%;
+            background: linear-gradient(180deg, #065f46 0%, #059669 50%, #10b981 100%);
+        }
+
+        .results-card.failed::before {
+            background: linear-gradient(180deg, #b45309 0%, #d97706 50%, #f59e0b 100%);
+        }
+
+        .results-hero {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            padding: 32px;
+            gap: 28px;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .results-content {
+            animation: slideInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .results-kicker {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-tertiary);
+            margin-bottom: 12px;
+            font-weight: 600;
         }
 
         .results-status {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .results-status.passed {
-            color: var(--success);
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            color: #065f46;
         }
 
         .results-status.failed {
-            color: var(--error);
+            color: #b45309;
         }
 
-        .results-details {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
+        [data-theme="dark"] .results-status {
+            color: #10b981;
         }
 
-        .results-time {
+        [data-theme="dark"] .results-status.failed {
+            color: #f59e0b;
+        }
+
+        .results-subtitle {
+            font-family: 'Source Serif 4', Georgia, serif;
             font-size: 1rem;
+            line-height: 1.5;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            max-width: 420px;
+        }
+
+        .results-meta {
+            display: flex;
+            gap: 28px;
+            font-family: 'Source Serif 4', Georgia, serif;
+        }
+
+        .results-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .results-meta-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
             color: var(--text-tertiary);
+            font-weight: 600;
+        }
+
+        .results-meta-value {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .results-score-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            animation: scaleIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .results-score-circle {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            margin-bottom: 12px;
+        }
+
+        .results-score-circle svg {
+            transform: rotate(-90deg);
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08));
+        }
+
+        .results-circle-bg {
+            fill: none;
+            stroke: rgba(0, 0, 0, 0.05);
+            stroke-width: 3;
+        }
+
+        [data-theme="dark"] .results-circle-bg {
+            stroke: rgba(255, 255, 255, 0.08);
+        }
+
+        .results-circle-progress {
+            fill: none;
+            stroke: url(#scoreGradient);
+            stroke-width: 3;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
+        }
+
+        .results-score {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .results-score-number {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            color: #065f46;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .results-score-number.failed {
+            color: #b45309;
+        }
+
+        [data-theme="dark"] .results-score-number {
+            color: #10b981;
+        }
+
+        [data-theme="dark"] .results-score-number.failed {
+            color: #f59e0b;
+        }
+
+        .results-score-label {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-tertiary);
+            font-weight: 600;
+            margin-top: 4px;
         }
 
         .section-performance {
-            margin-bottom: 48px;
+            padding: 32px;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .section-performance h3 {
+            font-family: 'Source Serif 4', Georgia, serif;
             font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
             margin-bottom: 24px;
             color: var(--text);
         }
 
+        .performance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
         .performance-bar {
             display: flex;
-            align-items: center;
-            margin-bottom: 16px;
-            gap: 16px;
+            flex-direction: column;
+            gap: 8px;
+            padding: 0;
+            background: transparent;
+            border-radius: 0;
+            transition: none;
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .performance-bar:nth-child(1) { animation-delay: 0.7s; }
+        .performance-bar:nth-child(2) { animation-delay: 0.8s; }
+        .performance-bar:nth-child(3) { animation-delay: 0.9s; }
+        .performance-bar:nth-child(4) { animation-delay: 1s; }
+        .performance-bar:nth-child(5) { animation-delay: 1.1s; }
+
+        .performance-bar:hover {
+            transform: none;
         }
 
         .performance-label {
-            flex: 0 0 200px;
-            color: var(--text);
-            font-weight: 500;
+            font-family: 'Source Serif 4', Georgia, serif;
+            flex: none;
+            width: 100%;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            line-height: 1.3;
         }
 
         .performance-track {
-            flex: 1;
-            height: 32px;
+            flex: none;
+            width: 100%;
+            height: 6px;
             background: var(--border);
-            border-radius: 8px;
+            border-radius: 3px;
             overflow: hidden;
             position: relative;
+            box-shadow: none;
         }
 
         .performance-fill {
             height: 100%;
-            background: var(--success);
-            border-radius: 8px;
-            transition: width 0.5s ease;
+            background: #065f46;
+            border-radius: 3px;
+            transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.8s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .performance-fill {
+            background: #10b981;
+        }
+
+        .performance-fill::after {
+            display: none;
         }
 
         .performance-percentage {
-            flex: 0 0 60px;
-            text-align: right;
-            font-weight: 600;
-            color: var(--text);
+            flex: none;
+            width: 100%;
+            text-align: center;
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-weight: 700;
+            font-size: 1.125rem;
+            color: #065f46;
+            font-variant-numeric: tabular-nums;
+        }
+
+        [data-theme="dark"] .performance-percentage {
+            color: #10b981;
         }
 
         .results-actions {
             display: flex;
             gap: 16px;
-            justify-content: center;
+            padding: 40px 40px 40px 56px;
             flex-wrap: wrap;
-            margin-bottom: 48px;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.2s both;
         }
 
         .results-actions .btn-primary,
         .results-actions .btn-secondary {
-            padding: 14px 28px;
-            font-size: 1.125rem;
+            font-family: 'Literata', Georgia, serif;
+            padding: 16px 32px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            border-radius: 0;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .results-actions .btn-primary {
+            background: #065f46;
+            border: 2px solid #065f46;
+        }
+
+        .results-actions .btn-primary:hover {
+            background: #064e3b;
+            border-color: #064e3b;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(6, 95, 70, 0.3);
+        }
+
+        [data-theme="dark"] .results-actions .btn-primary {
+            background: #10b981;
+            border-color: #10b981;
+            color: #1c1917;
+        }
+
+        [data-theme="dark"] .results-actions .btn-primary:hover {
+            background: #059669;
+            border-color: #059669;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .results-actions .btn-secondary {
+            background: transparent;
+            color: #1c1917;
+            border: 2px solid rgba(0, 0, 0, 0.15);
+        }
+
+        .results-actions .btn-secondary:hover {
+            border-color: #1c1917;
+            background: rgba(0, 0, 0, 0.02);
+            transform: translateY(-2px);
+        }
+
+        [data-theme="dark"] .results-actions .btn-secondary {
+            color: #fafaf9;
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        [data-theme="dark"] .results-actions .btn-secondary:hover {
+            border-color: #fafaf9;
+            background: rgba(255, 255, 255, 0.05);
         }
 
         /* Question Review */
@@ -1394,16 +1715,69 @@
                 width: 100px;
             }
 
-            .results-card {
-                padding: 32px 24px;
+            .results-container {
+                padding: 0;
             }
 
-            .results-score {
-                font-size: 3.5rem;
+            .results-hero {
+                grid-template-columns: 1fr;
+                padding: 32px 24px;
+                gap: 28px;
             }
 
             .results-status {
-                font-size: 1.5rem;
+                font-size: 3rem;
+            }
+
+            .results-subtitle {
+                font-size: 1rem;
+            }
+
+            .results-meta {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .results-score-circle {
+                width: 160px;
+                height: 160px;
+            }
+
+            .results-score-number {
+                font-size: 3.5rem;
+            }
+
+            .results-score-label {
+                font-size: 0.7rem;
+            }
+
+            .section-performance {
+                padding: 32px 24px;
+            }
+
+            .section-performance h3 {
+                font-size: 1.75rem;
+                margin-bottom: 28px;
+            }
+
+            .performance-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .results-actions {
+                padding: 32px 24px;
+                flex-direction: column;
+            }
+
+            .results-card {
+                border-radius: 12px;
+            }
+
+            .results-actions .btn-primary,
+            .results-actions .btn-secondary {
+                width: 100%;
+                padding: 18px 24px;
             }
 
             .modal-content {
@@ -1434,8 +1808,8 @@
     <div class="index-menu" id="indexMenu">
         <div class="sidebar-top">
             <div class="index-title">Оглавление</div>
-            <button class="quiz-toggle sidebar-btn" onclick="openQuizConfig()">
-                <span class="quiz-toggle-text">Режим Экзамена</span>
+            <button class="quiz-toggle sidebar-btn" id="quizToggleBtn" onclick="toggleQuizMode()">
+                <span class="quiz-toggle-text" id="quizToggleText">Режим Экзамена</span>
             </button>
         </div>
         <div id="indexContent"></div>
@@ -8695,6 +9069,32 @@
         // All question numbers for quiz mode
         const allQuestionNumbers = [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020, 1021, 1022, 1023, 1024, 1025, 1026, 1027, 1028, 1029, 1030, 1031, 1032, 1033, 1034, 1035, 1036, 1037, 1038, 1039, 1040, 1041, 1042, 1043, 1044, 1045, 1046, 1047, 1048, 1049, 1050, 1051, 1052, 1053, 1054, 1055, 1056, 1057, 1058, 1059, 1060, 1061, 1062, 1063, 1064, 1065, 1066, 1067, 1068, 1069, 1070, 1071, 1072, 1073, 1074, 1075, 1076, 1077, 1078, 1079, 1080, 1081, 1082, 1083, 1084, 1085, 1086, 1087, 1088, 1089, 1090, 1091, 1092, 1093, 1094, 1095, 1096, 1097, 1098, 1099, 1100, 1101, 1102, 1103, 1104, 1105, 1106, 1107, 1108, 1109, 1110, 1111, 1112, 1113, 1114, 1115, 1116, 1117, 1118, 1119, 1120, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3011, 3012, 3013, 3014, 3015, 3016, 3017, 3018, 3019, 3020, 3021, 3022, 3023, 3024, 4001, 4002, 4003, 4004, 4005, 4006, 4007, 4008, 4009, 4010, 4011, 4012, 4013, 4014, 4015, 4016, 4017, 4018, 4019, 4020, 4021, 4022, 4023, 4024, 4025, 4026, 4027, 4028, 4029, 4030, 4031, 4032, 4033, 4034, 4035, 4036, 5001, 5002, 5003, 5004, 5005, 5006, 5007, 5008, 5009, 5010, 5011, 5012, 5013, 5014, 5015, 5016, 5017, 5018, 5019, 5020, 5021, 5022, 5023, 5024, 5025, 5026, 5027, 5028, 5029, 5030, 5031, 5032, 5033, 5034, 5035, 5036, 5037, 5038, 5039, 5040, 5041, 5042, 5043, 5044, 5045, 5046, 5047, 5048, 5049, 5050, 5051, 5052, 5053, 5054, 5055, 5056, 5057, 5058, 5059, 5060, 5061, 5062, 5063, 5064, 5065, 5066, 5067, 5068, 5069, 5070, 5071, 5072, 5073, 5074, 5075, 5076, 5077, 5078, 5079, 5080, 5081, 5082, 5083, 5084];
 
+        // Quiz toggle button update
+        function updateQuizToggleButton() {
+            const toggleBtn = document.getElementById('quizToggleBtn');
+            const toggleText = document.getElementById('quizToggleText');
+
+            if (!toggleBtn || !toggleText) return;
+
+            if (quizMode.active || document.body.classList.contains('quiz-mode')) {
+                // In quiz mode - show "Study Mode" button
+                toggleText.textContent = t('studyMode');
+                toggleBtn.onclick = exitQuiz;
+            } else {
+                // In study mode - show "Quiz Mode" button
+                toggleText.textContent = t('quizMode');
+                toggleBtn.onclick = openQuizConfig;
+            }
+        }
+
+        function toggleQuizMode() {
+            if (quizMode.active || document.body.classList.contains('quiz-mode')) {
+                exitQuiz();
+            } else {
+                openQuizConfig();
+            }
+        }
+
         // Language translations
         const translations = {
             es: {
@@ -8926,10 +9326,8 @@
             document.querySelector('.subtitle').textContent = t('subtitle');
             document.querySelector('.search-box').placeholder = t('searchPlaceholder');
 
-            // Sidebar buttons
-            const quizBtn = document.querySelector('.quiz-toggle');
-            const quizBtnText = document.querySelector('.quiz-toggle-text');
-            if (quizBtnText) quizBtnText.textContent = t('quizMode');
+            // Sidebar buttons - update quiz toggle based on mode
+            updateQuizToggleButton();
 
             const printBtns = document.querySelectorAll('.print-btn');
             if (printBtns[0]) printBtns[0].title = t('printAll');
@@ -9566,6 +9964,9 @@
 
             // Save session to localStorage
             saveQuizSession();
+
+            // Update toggle button
+            updateQuizToggleButton();
         }
 
         function showQuizQuestion(index) {
@@ -9582,14 +9983,22 @@
                     card.style.display = 'block';
                     card.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-                    // Show next button if question is already answered and not last question
-                    if (quizMode.session.answers[qNum] && index < quizMode.session.questions.length - 1) {
+                    // Show next/end button if question is already answered
+                    if (quizMode.session.answers[qNum]) {
                         let quizNextCardBtn = card.querySelector('.quiz-next-card-btn');
                         if (!quizNextCardBtn) {
                             quizNextCardBtn = document.createElement('button');
                             quizNextCardBtn.className = 'quiz-next-card-btn btn-primary';
-                            quizNextCardBtn.textContent = t('next');
-                            quizNextCardBtn.onclick = () => navigateQuizQuestion(1);
+
+                            // If last question, show "End Exam" button
+                            if (index >= quizMode.session.questions.length - 1) {
+                                quizNextCardBtn.textContent = t('finishExam');
+                                quizNextCardBtn.onclick = () => submitQuiz();
+                            } else {
+                                quizNextCardBtn.textContent = t('next');
+                                quizNextCardBtn.onclick = () => navigateQuizQuestion(1);
+                            }
+
                             card.appendChild(quizNextCardBtn);
                         }
                     }
@@ -9634,13 +10043,21 @@
                 }
             });
 
-            // Show next button if not last question
+            // Show next button or end exam button
             let quizNextCardBtn = card.querySelector('.quiz-next-card-btn');
-            if (!quizNextCardBtn && quizMode.currentQuestionIndex < quizMode.session.questions.length - 1) {
+            if (!quizNextCardBtn) {
                 quizNextCardBtn = document.createElement('button');
                 quizNextCardBtn.className = 'quiz-next-card-btn btn-primary';
-                quizNextCardBtn.textContent = t('next');
-                quizNextCardBtn.onclick = () => navigateQuizQuestion(1);
+
+                // If last question, show "End Exam" button
+                if (quizMode.currentQuestionIndex >= quizMode.session.questions.length - 1) {
+                    quizNextCardBtn.textContent = t('finishExam');
+                    quizNextCardBtn.onclick = () => submitQuiz();
+                } else {
+                    quizNextCardBtn.textContent = t('next');
+                    quizNextCardBtn.onclick = () => navigateQuizQuestion(1);
+                }
+
                 card.appendChild(quizNextCardBtn);
             }
 
@@ -9797,32 +10214,86 @@
                 `;
             });
 
+            // Calculate circle progress
+            const radius = 106;
+            const circumference = 2 * Math.PI * radius;
+            const progressOffset = circumference - (results.percentage / 100 * circumference);
+
+            const passMessage = {
+                'es': 'Has aprobado el examen con éxito.',
+                'en': 'You have successfully passed the examination.',
+                'ru': 'Вы успешно сдали экзамен.'
+            };
+
+            const failMessage = {
+                'es': 'No has alcanzado la puntuación mínima. ¡Sigue practicando!',
+                'en': 'You have not reached the minimum score. Keep practicing!',
+                'ru': 'Вы не набрали минимальный балл. Продолжайте практиковаться!'
+            };
+
             const html = `
-                <div class="results-card">
-                    <div class="results-score">${results.percentage}%</div>
-                    <div class="results-status ${results.passed ? 'passed' : 'failed'}">
-                        ${results.passed ? '✓ ' + t('passed') : '✗ ' + t('failed')}
+                <div class="results-container">
+                    <div class="results-card ${results.passed ? 'passed' : 'failed'}">
+                        <div class="results-hero">
+                            <div class="results-content">
+                                <div class="results-kicker">CCSE 2026 — ${t('examTimeExpired').split('.')[0] || 'RESULTADO DEL EXAMEN'}</div>
+                                <h1 class="results-status ${results.passed ? 'passed' : 'failed'}">
+                                    ${results.passed ? t('passed') : t('failed')}
+                                </h1>
+                                <p class="results-subtitle">
+                                    ${results.passed ? passMessage[currentLanguage] : failMessage[currentLanguage]}
+                                </p>
+                                <div class="results-meta">
+                                    <div class="results-meta-item">
+                                        <div class="results-meta-label">${t('correctAnswers')}</div>
+                                        <div class="results-meta-value">${results.correct} / ${results.total}</div>
+                                    </div>
+                                    <div class="results-meta-item">
+                                        <div class="results-meta-label">${t('time')}</div>
+                                        <div class="results-meta-value">${results.timeTaken}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="results-score-section">
+                                <div class="results-score-circle">
+                                    <svg width="220" height="220" viewBox="0 0 220 220">
+                                        <defs>
+                                            <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                <stop offset="0%" style="stop-color:${results.passed ? '#065f46' : '#b45309'};stop-opacity:1" />
+                                                <stop offset="100%" style="stop-color:${results.passed ? '#10b981' : '#f59e0b'};stop-opacity:1" />
+                                            </linearGradient>
+                                        </defs>
+                                        <circle class="results-circle-bg" cx="110" cy="110" r="${radius}" />
+                                        <circle
+                                            class="results-circle-progress"
+                                            cx="110"
+                                            cy="110"
+                                            r="${radius}"
+                                            stroke-dasharray="${circumference}"
+                                            stroke-dashoffset="${progressOffset}"
+                                        />
+                                    </svg>
+                                    <div class="results-score">
+                                        <div class="results-score-number ${results.passed ? 'passed' : 'failed'}">${results.percentage}%</div>
+                                        <div class="results-score-label">${t('questionsAnswered').toUpperCase()}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section-performance">
+                            <h3>${t('sectionPerformance')}</h3>
+                            <div class="performance-grid">
+                                ${sectionHTML}
+                            </div>
+                        </div>
+                        <div class="results-actions">
+                            <button class="btn-primary" onclick="retryQuiz()">${t('newExam')}</button>
+                            <button class="btn-secondary" onclick="reviewQuizQuestions()">${t('reviewQuestions')}</button>
+                            <button class="btn-secondary" onclick="exitToStudyMode()">${t('studyMode')}</button>
+                        </div>
                     </div>
-                    <div class="results-details">
-                        ${results.correct} / ${results.total} ${t('correctAnswers')}
-                    </div>
-                    <div class="results-time">
-                        ${t('time')} ${results.timeTaken}
-                    </div>
+                    <div id="questionReviewContainer"></div>
                 </div>
-
-                <div class="section-performance">
-                    <h3>${t('sectionPerformance')}</h3>
-                    ${sectionHTML}
-                </div>
-
-                <div class="results-actions">
-                    <button class="btn-secondary" onclick="reviewQuizQuestions()">${t('reviewQuestions')}</button>
-                    <button class="btn-primary" onclick="retryQuiz()">${t('newExam')}</button>
-                    <button class="btn-secondary" onclick="exitToStudyMode()">${t('studyMode')}</button>
-                </div>
-
-                <div id="questionReviewContainer"></div>
             `;
 
             const resultsPageEl = document.getElementById('resultsPage');
@@ -9833,7 +10304,14 @@
 
         function reviewQuizQuestions() {
             const container = document.getElementById('questionReviewContainer');
-            let html = `<h3 style="margin: 32px 0 24px; font-size: 1.5rem;">${t('detailedReview')}</h3>`;
+
+            // If already showing review, scroll to it
+            if (container.innerHTML) {
+                container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                return;
+            }
+
+            let html = `<h3 style="margin: 32px 0 24px; font-size: 1.5rem; font-family: 'Crimson Pro', Georgia, serif; font-weight: 700;">${t('detailedReview')}</h3>`;
 
             quizMode.results.details.forEach(detail => {
                 const qNum = detail.qNum;
@@ -9870,9 +10348,42 @@
             });
 
             container.innerHTML = html;
+
+            // Scroll to review section
+            setTimeout(() => {
+                container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
         }
 
         function retryQuiz() {
+            // Exit results mode first
+            document.body.classList.remove('quiz-results');
+            quizMode.active = false;
+            quizMode.results = null;
+
+            // Reset quiz session
+            quizMode.session = {
+                questions: [],
+                answers: {},
+                flagged: new Set(),
+                startTime: null,
+                endTime: null,
+                timerInterval: null
+            };
+
+            // Show all cards and clean up quiz state
+            allCards.forEach(card => {
+                card.style.display = 'block';
+                // Remove quiz next button if it exists
+                const quizNextBtn = card.querySelector('.quiz-next-card-btn');
+                if (quizNextBtn) quizNextBtn.remove();
+                // Remove quiz selection state
+                card.querySelectorAll('.option').forEach(opt => {
+                    opt.classList.remove('selected-quiz');
+                });
+            });
+
+            // Open quiz config
             openQuizConfig();
         }
 
@@ -9881,13 +10392,33 @@
             quizMode.active = false;
             quizMode.results = null;
 
-            // Show all cards
+            // Reset quiz session
+            quizMode.session = {
+                questions: [],
+                answers: {},
+                flagged: new Set(),
+                startTime: null,
+                endTime: null,
+                timerInterval: null
+            };
+
+            // Show all cards and clean up quiz state
             allCards.forEach(card => {
                 card.style.display = 'block';
+                // Remove quiz next button if it exists
+                const quizNextBtn = card.querySelector('.quiz-next-card-btn');
+                if (quizNextBtn) quizNextBtn.remove();
+                // Remove quiz selection state
+                card.querySelectorAll('.option').forEach(opt => {
+                    opt.classList.remove('selected-quiz');
+                });
             });
 
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Update toggle button
+            updateQuizToggleButton();
         }
 
         function exitQuiz() {
@@ -9908,6 +10439,9 @@
 
                 // Scroll to top
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // Update toggle button
+                updateQuizToggleButton();
             }
         }
 
@@ -10020,6 +10554,7 @@
 
                             updateQuizProgress();
                             updateQuizNavButtons();
+                            updateQuizToggleButton();
 
                             // Resume timer if enabled
                             if (session.config.timerEnabled) {
