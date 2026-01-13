@@ -1268,12 +1268,25 @@ def generate_html(explanations):
             border-color: var(--text-secondary);
         }}
 
+        .btn-secondary:disabled {{
+            opacity: 0.5;
+            cursor: not-allowed;
+        }}
+
+        .btn-secondary:disabled:hover {{
+            background: var(--bg);
+            border-color: var(--border);
+            transform: none;
+        }}
+
         /* Quiz Mode Active State */
         body.quiz-mode .header,
         body.quiz-mode .stats,
         body.quiz-mode .search-box,
         body.quiz-mode .index-menu,
-        body.quiz-mode .menu-toggle {{
+        body.quiz-mode .menu-toggle,
+        body.quiz-mode .bottom-nav,
+        body.quiz-mode .section-header {{
             display: none !important;
         }}
 
@@ -2133,6 +2146,7 @@ def generate_html(explanations):
                         const qNum = nextEl.querySelector('.q-number').textContent;
                         const question = nextEl.querySelector('.question').textContent;
                         const answer = nextEl.querySelector('.answer');
+                        const cardId = nextEl.id; // Capture the card ID
 
                         const link = document.createElement('a');
                         link.href = '#';
@@ -2143,7 +2157,10 @@ def generate_html(explanations):
                         link.textContent = qNum + ' ' + (question.length > 40 ? question.substring(0, 40) + '...' : question);
                         link.onclick = (e) => {{
                             e.preventDefault();
-                            nextEl.scrollIntoView({{ behavior: 'smooth', block: 'center' }});
+                            const targetCard = document.getElementById(cardId);
+                            if (targetCard) {{
+                                targetCard.scrollIntoView({{ behavior: 'smooth', block: 'center' }});
+                            }}
                             // Close menu only on mobile
                             if (window.innerWidth <= 768) {{
                                 toggleMenu();
@@ -2278,8 +2295,9 @@ def generate_html(explanations):
             // Show only the current question
             showQuizQuestion(0);
 
-            // Update progress
+            // Update progress and navigation buttons
             updateQuizProgress();
+            updateQuizNavButtons();
 
             // Start timer if enabled
             if (config.timerEnabled) {{
@@ -2315,7 +2333,21 @@ def generate_html(explanations):
                 quizMode.currentQuestionIndex = newIndex;
                 showQuizQuestion(newIndex);
                 updateQuizProgress();
+                updateQuizNavButtons();
                 saveQuizSession();
+            }}
+        }}
+
+        function updateQuizNavButtons() {{
+            const prevBtn = document.getElementById('quizPrevBtn');
+            const nextBtn = document.getElementById('quizNextBtn');
+
+            if (prevBtn) {{
+                prevBtn.disabled = quizMode.currentQuestionIndex === 0;
+            }}
+
+            if (nextBtn) {{
+                nextBtn.disabled = quizMode.currentQuestionIndex >= quizMode.session.questions.length - 1;
             }}
         }}
 
@@ -2601,6 +2633,7 @@ def generate_html(explanations):
             if (quizMode.active && !quizMode.results) {{
                 const session = {{
                     config: quizMode.config,
+                    currentQuestionIndex: quizMode.currentQuestionIndex,
                     questions: quizMode.session.questions,
                     answers: quizMode.session.answers,
                     flagged: Array.from(quizMode.session.flagged),
@@ -2618,6 +2651,7 @@ def generate_html(explanations):
                     if (confirm('¿Quieres continuar el examen anterior?')) {{
                         quizMode.config = session.config;
                         quizMode.active = true;
+                        quizMode.currentQuestionIndex = session.currentQuestionIndex || 0;
                         quizMode.session.questions = session.questions;
                         quizMode.session.answers = session.answers;
                         quizMode.session.flagged = new Set(session.flagged);
@@ -2625,26 +2659,29 @@ def generate_html(explanations):
 
                         document.body.classList.add('quiz-mode');
 
-                        // Hide non-quiz cards
+                        // Hide all cards first
                         allCards.forEach(card => {{
-                            const qNum = parseInt(card.id.substring(1));
-                            if (session.questions.includes(qNum)) {{
-                                card.style.display = 'block';
-                                // Restore answer state
-                                if (session.answers[qNum]) {{
-                                    const options = card.querySelectorAll('.option');
-                                    options.forEach(opt => {{
-                                        if (opt.dataset.label === session.answers[qNum]) {{
-                                            opt.classList.add('selected-quiz');
-                                        }}
-                                    }});
-                                }}
-                            }} else {{
-                                card.style.display = 'none';
+                            card.style.display = 'none';
+                        }});
+
+                        // Restore answer state for all quiz questions
+                        session.questions.forEach(qNum => {{
+                            const card = document.getElementById('q' + qNum);
+                            if (card && session.answers[qNum]) {{
+                                const options = card.querySelectorAll('.option');
+                                options.forEach(opt => {{
+                                    if (opt.dataset.label === session.answers[qNum]) {{
+                                        opt.classList.add('selected-quiz');
+                                    }}
+                                }});
                             }}
                         }});
 
+                        // Show only the current question
+                        showQuizQuestion(quizMode.currentQuestionIndex);
+
                         updateQuizProgress();
+                        updateQuizNavButtons();
 
                         // Resume timer if enabled
                         if (session.config.timerEnabled) {{
@@ -2656,6 +2693,8 @@ def generate_html(explanations):
                                 alert('El tiempo del examen ha expirado.');
                                 calculateResults();
                             }}
+                        }} else {{
+                            document.getElementById('quizTimer').textContent = '';
                         }}
                     }} else {{
                         localStorage.removeItem('quizSession');
