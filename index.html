@@ -15079,12 +15079,16 @@
         }
 
         function scrollToNextUnanswered() {
-            const unanswered = allCards.find((card, index) => {
-                const answer = card.querySelector('.answer');
-                return index > currentQuestionIndex &&
-                       answer &&
-                       !answer.classList.contains('revealed') &&
+            // Check if a card is unanswered by looking for disabled options
+            const isUnanswered = (card) => {
+                const options = card.querySelectorAll('.option');
+                return options.length > 0 &&
+                       !Array.from(options).some(opt => opt.classList.contains('disabled')) &&
                        card.style.display !== 'none';
+            };
+
+            const unanswered = allCards.find((card, index) => {
+                return index > currentQuestionIndex && isUnanswered(card);
             });
 
             if (unanswered) {
@@ -15093,12 +15097,7 @@
                 updateNavButtons();
             } else {
                 // Wrap around to first unanswered
-                const firstUnanswered = allCards.find(card => {
-                    const answer = card.querySelector('.answer');
-                    return answer &&
-                           !answer.classList.contains('revealed') &&
-                           card.style.display !== 'none';
-                });
+                const firstUnanswered = allCards.find(card => isUnanswered(card));
                 if (firstUnanswered) {
                     currentQuestionIndex = allCards.indexOf(firstUnanswered);
                     firstUnanswered.scrollIntoView({ behavior: 'smooth', block: 'center' });
