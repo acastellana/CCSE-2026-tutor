@@ -312,6 +312,17 @@
             border-color: var(--translate);
         }
 
+        .btn.translate.active {
+            background: var(--translate);
+            color: white;
+            border-color: var(--translate);
+        }
+
+        .btn.translate.active:hover {
+            background: var(--translate);
+            opacity: 0.9;
+        }
+
         .translation, .explanation {
             display: none;
             margin-top: 16px;
@@ -1819,6 +1830,7 @@
                 <button class="language-btn sidebar-btn icon-btn" onclick="cycleLanguage()" title="Язык">🇷🇺</button>
                 <button class="print-btn sidebar-btn icon-btn" onclick="window.print()" title="Печать всех">🖨️</button>
                 <button class="theme-toggle sidebar-btn icon-btn" onclick="toggleTheme()" title="Темный режим">🌙</button>
+                <button class="clear-progress-btn sidebar-btn icon-btn" onclick="clearStudyProgress()" title="Сбросить прогресс">🗑️</button>
             </div>
         </div>
     </div>
@@ -1827,33 +1839,33 @@
     <div class="modal-overlay" id="quizModal" style="display: none;">
         <div class="modal-content quiz-config">
             <div class="modal-header">
-                <h2>Configurar Examen</h2>
+                <h2 id="modalTitle">Настроить Экзамен</h2>
                 <button class="modal-close" onclick="closeQuizConfig()">✕</button>
             </div>
             <div class="modal-body">
                 <div class="config-section">
-                    <label class="config-label">Selección de preguntas:</label>
+                    <label class="config-label" id="questionSelectionLabel">Выбор вопросов:</label>
                     <div class="radio-group">
                         <label class="radio-option">
                             <input type="radio" name="questionMode" value="all" checked>
-                            <span>Examen completo (300 preguntas)</span>
+                            <span id="fullExamLabel">Полный экзамен (300 вопросов)</span>
                         </label>
                         <label class="radio-option">
                             <input type="radio" name="questionMode" value="section">
-                            <span>Por sección:</span>
+                            <span id="bySectionLabel">По разделу:</span>
                             <select id="sectionSelect" disabled>
-                                <option value="1">TAREA 1 (120 preguntas)</option>
-                                <option value="2">TAREA 2 (36 preguntas)</option>
-                                <option value="3">TAREA 3 (24 preguntas)</option>
-                                <option value="4">TAREA 4 (36 preguntas)</option>
-                                <option value="5">TAREA 5 (84 preguntas)</option>
+                                <option value="1">РАЗДЕЛ 1 (120 вопросов)</option>
+                                <option value="2">РАЗДЕЛ 2 (36 вопросов)</option>
+                                <option value="3">РАЗДЕЛ 3 (24 вопроса)</option>
+                                <option value="4">РАЗДЕЛ 4 (36 вопросов)</option>
+                                <option value="5">РАЗДЕЛ 5 (84 вопроса)</option>
                             </select>
                         </label>
                         <label class="radio-option">
                             <input type="radio" name="questionMode" value="custom">
-                            <span>Práctica rápida:</span>
+                            <span id="quickPracticeLabel">Быстрая практика:</span>
                             <input type="number" id="customCount" min="1" max="300" value="25" disabled>
-                            <span>preguntas</span>
+                            <span id="questionsLabel">вопросов</span>
                         </label>
                     </div>
                 </div>
@@ -1861,31 +1873,31 @@
                 <div class="config-section">
                     <label class="checkbox-option">
                         <input type="checkbox" id="randomOrder">
-                        <span>Orden aleatorio</span>
+                        <span id="randomOrderLabel">Случайный порядок</span>
                     </label>
                 </div>
 
                 <div class="config-section">
-                    <label class="config-label">Temporizador:</label>
+                    <label class="config-label" id="timerLabel">Таймер:</label>
                     <div class="radio-group">
                         <label class="radio-option">
                             <input type="radio" name="timerMode" value="none" checked>
-                            <span>Sin temporizador</span>
+                            <span id="noTimerLabel">Без таймера</span>
                         </label>
                         <label class="radio-option">
                             <input type="radio" name="timerMode" value="full">
-                            <span>45 minutos (examen completo)</span>
+                            <span id="fullTimerLabel">45 минут (полный экзамен)</span>
                         </label>
                         <label class="radio-option">
                             <input type="radio" name="timerMode" value="proportional">
-                            <span>Proporcional al número de preguntas</span>
+                            <span id="proportionalTimerLabel">Пропорционально количеству вопросов</span>
                         </label>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn-secondary" onclick="closeQuizConfig()">Cancelar</button>
-                <button class="btn-primary" onclick="startQuizFromConfig()">Iniciar Examen</button>
+                <button class="btn-secondary" id="cancelBtn" onclick="closeQuizConfig()">Отмена</button>
+                <button class="btn-primary" id="startExamBtn" onclick="startQuizFromConfig()">Начать Экзамен</button>
             </div>
         </div>
     </div>
@@ -1894,16 +1906,16 @@
     <div class="quiz-header" id="quizHeader">
         <div class="quiz-timer" id="quizTimer"></div>
         <div class="quiz-progress">
-            <span id="quizProgressText">Pregunta 1/25 (0 respondidas)</span>
+            <span id="quizProgressText">Вопрос 1/25 (0 отвечено)</span>
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill" style="width: 0%"></div>
             </div>
         </div>
         <div class="quiz-actions">
-            <button class="btn-secondary" onclick="navigateQuizQuestion(-1)" id="quizPrevBtn">← Anterior</button>
-            <button class="btn-secondary" onclick="navigateQuizQuestion(1)" id="quizNextBtn">Siguiente →</button>
-            <button class="btn-secondary" onclick="submitQuiz()">Terminar Examen</button>
-            <button class="btn-secondary" onclick="exitQuiz()">Salir</button>
+            <button class="btn-secondary" onclick="navigateQuizQuestion(-1)" id="quizPrevBtn">← Назад</button>
+            <button class="btn-secondary" onclick="navigateQuizQuestion(1)" id="quizNextBtn">Далее →</button>
+            <button class="btn-secondary" id="finishExamBtn" onclick="submitQuiz()">Завершить Экзамен</button>
+            <button class="btn-secondary" id="exitBtn" onclick="exitQuiz()">Выход</button>
         </div>
     </div>
 
@@ -14446,19 +14458,19 @@
     <div class="bottom-nav">
         <button class="nav-btn" onclick="scrollToTop()">
             ⬆️
-            <span>Inicio</span>
+            <span>Главная</span>
         </button>
         <button class="nav-btn" id="prevBtn" onclick="navigateQuestion(-1)">
             ←
-            <span>Anterior</span>
+            <span>Назад</span>
         </button>
         <button class="nav-btn" onclick="scrollToNextUnanswered()">
             ❓
-            <span>Próxima</span>
+            <span>Следующий</span>
         </button>
         <button class="nav-btn" id="nextBtn" onclick="navigateQuestion(1)">
             →
-            <span>Siguiente</span>
+            <span>Далее</span>
         </button>
     </div>
 
@@ -14560,6 +14572,13 @@
                 home: 'Inicio',
                 nextUnanswered: 'Próxima',
 
+                // Sections
+                section1: 'TAREA 1 (120 preguntas)',
+                section2: 'TAREA 2 (36 preguntas)',
+                section3: 'TAREA 3 (24 preguntas)',
+                section4: 'TAREA 4 (36 preguntas)',
+                section5: 'TAREA 5 (84 preguntas)',
+
                 // Alerts
                 confirmFinish: '¿Estás seguro de que quieres terminar el examen?',
                 unansweredQuestions: 'Tienes',
@@ -14570,7 +14589,10 @@
                 continueButton: 'Continuar',
                 startNewButton: 'Empezar nuevo',
                 examTimeExpired: 'El tiempo del examen ha expirado.',
-                confirmLeave: '¿Seguro que quieres salir? Se guardará tu progreso.'
+                confirmLeave: '¿Seguro que quieres salir? Se guardará tu progreso.',
+                confirmClearProgress: '¿Estás seguro de que quieres borrar tu progreso?',
+                clearButton: 'Borrar',
+                clearProgress: 'Reiniciar progreso'
             },
             en: {
                 // Header
@@ -14632,6 +14654,13 @@
                 home: 'Home',
                 nextUnanswered: 'Next',
 
+                // Sections
+                section1: 'SECTION 1 (120 questions)',
+                section2: 'SECTION 2 (36 questions)',
+                section3: 'SECTION 3 (24 questions)',
+                section4: 'SECTION 4 (36 questions)',
+                section5: 'SECTION 5 (84 questions)',
+
                 // Alerts
                 confirmFinish: 'Are you sure you want to finish the exam?',
                 unansweredQuestions: 'You have',
@@ -14642,7 +14671,10 @@
                 continueButton: 'Continue',
                 startNewButton: 'Start New',
                 examTimeExpired: 'The exam time has expired.',
-                confirmLeave: 'Are you sure you want to leave? Your progress will be saved.'
+                confirmLeave: 'Are you sure you want to leave? Your progress will be saved.',
+                confirmClearProgress: 'Are you sure you want to clear your progress?',
+                clearButton: 'Clear',
+                clearProgress: 'Reset progress'
             },
             ru: {
                 // Header
@@ -14704,6 +14736,13 @@
                 home: 'Главная',
                 nextUnanswered: 'Следующий',
 
+                // Sections
+                section1: 'РАЗДЕЛ 1 (120 вопросов)',
+                section2: 'РАЗДЕЛ 2 (36 вопросов)',
+                section3: 'РАЗДЕЛ 3 (24 вопроса)',
+                section4: 'РАЗДЕЛ 4 (36 вопросов)',
+                section5: 'РАЗДЕЛ 5 (84 вопроса)',
+
                 // Alerts
                 confirmFinish: 'Вы уверены, что хотите завершить экзамен?',
                 unansweredQuestions: 'У вас',
@@ -14714,7 +14753,10 @@
                 continueButton: 'Продолжить',
                 startNewButton: 'Начать новый',
                 examTimeExpired: 'Время экзамена истекло.',
-                confirmLeave: 'Вы уверены, что хотите выйти? Ваш прогресс будет сохранен.'
+                confirmLeave: 'Вы уверены, что хотите выйти? Ваш прогресс будет сохранен.',
+                confirmClearProgress: 'Вы уверены, что хотите очистить ваш прогресс?',
+                clearButton: 'Очистить',
+                clearProgress: 'Сбросить прогресс'
             }
         };
 
@@ -14746,6 +14788,9 @@
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             if (themeBtn) themeBtn.title = isDark ? t('lightMode') : t('darkMode');
 
+            const clearProgressBtn = document.querySelector('.clear-progress-btn');
+            if (clearProgressBtn) clearProgressBtn.title = t('clearProgress');
+
             // Stats
             const statsText = document.querySelector('.stats');
             if (statsText) {
@@ -14753,32 +14798,55 @@
                 statsText.innerHTML = `<span id="revealed">${count}</span> / ${totalQuestions} ${t('questionsAnswered')}`;
             }
 
-            // Quiz modal
-            const modalTitle = document.querySelector('#quizModal .modal-header h2');
+            // Quiz modal - using IDs for reliable updates
+            const modalTitle = document.getElementById('modalTitle');
             if (modalTitle) modalTitle.textContent = t('configureExam');
 
-            const configLabels = document.querySelectorAll('.config-label');
-            if (configLabels[0]) configLabels[0].textContent = t('questionSelection');
-            if (configLabels[1]) configLabels[1].textContent = t('timer');
+            const questionSelectionLabel = document.getElementById('questionSelectionLabel');
+            if (questionSelectionLabel) questionSelectionLabel.textContent = t('questionSelection');
 
-            const modalRadios = document.querySelectorAll('#quizModal .radio-option span');
-            if (modalRadios.length >= 3) {
-                modalRadios[0].textContent = t('fullExam');
+            const timerLabel = document.getElementById('timerLabel');
+            if (timerLabel) timerLabel.textContent = t('timer');
+
+            const fullExamLabel = document.getElementById('fullExamLabel');
+            if (fullExamLabel) fullExamLabel.textContent = t('fullExam');
+
+            const bySectionLabel = document.getElementById('bySectionLabel');
+            if (bySectionLabel) bySectionLabel.textContent = t('bySection');
+
+            const quickPracticeLabel = document.getElementById('quickPracticeLabel');
+            if (quickPracticeLabel) quickPracticeLabel.textContent = t('quickPractice');
+
+            const questionsLabel = document.getElementById('questionsLabel');
+            if (questionsLabel) questionsLabel.textContent = t('questions');
+
+            const randomOrderLabel = document.getElementById('randomOrderLabel');
+            if (randomOrderLabel) randomOrderLabel.textContent = t('randomOrder');
+
+            const noTimerLabel = document.getElementById('noTimerLabel');
+            if (noTimerLabel) noTimerLabel.textContent = t('noTimer');
+
+            const fullTimerLabel = document.getElementById('fullTimerLabel');
+            if (fullTimerLabel) fullTimerLabel.textContent = t('fullTimer');
+
+            const proportionalTimerLabel = document.getElementById('proportionalTimerLabel');
+            if (proportionalTimerLabel) proportionalTimerLabel.textContent = t('proportionalTimer');
+
+            const cancelBtn = document.getElementById('cancelBtn');
+            if (cancelBtn) cancelBtn.textContent = t('cancel');
+
+            const startExamBtn = document.getElementById('startExamBtn');
+            if (startExamBtn) startExamBtn.textContent = t('startExam');
+
+            // Section select options
+            const sectionSelect = document.getElementById('sectionSelect');
+            if (sectionSelect) {
+                sectionSelect.options[0].textContent = t('section1');
+                sectionSelect.options[1].textContent = t('section2');
+                sectionSelect.options[2].textContent = t('section3');
+                sectionSelect.options[3].textContent = t('section4');
+                sectionSelect.options[4].textContent = t('section5');
             }
-
-            const randomCheckbox = document.querySelector('#randomOrder + span');
-            if (randomCheckbox) randomCheckbox.textContent = t('randomOrder');
-
-            const timerRadios = document.querySelectorAll('input[name="timerMode"] + span');
-            if (timerRadios.length >= 3) {
-                timerRadios[0].textContent = t('noTimer');
-                timerRadios[1].textContent = t('fullTimer');
-                timerRadios[2].textContent = t('proportionalTimer');
-            }
-
-            const modalButtons = document.querySelectorAll('#quizModal .modal-footer button');
-            if (modalButtons[0]) modalButtons[0].textContent = t('cancel');
-            if (modalButtons[1]) modalButtons[1].textContent = t('startExam');
 
             // Quiz header
             const quizPrevBtn = document.querySelector('#quizPrevBtn');
@@ -14786,9 +14854,11 @@
             if (quizPrevBtn) quizPrevBtn.textContent = '← ' + t('previous');
             if (quizNextBtn) quizNextBtn.textContent = t('next') + ' →';
 
-            const quizActions = document.querySelectorAll('.quiz-actions .btn-secondary');
-            if (quizActions[2]) quizActions[2].textContent = t('finishExam');
-            if (quizActions[3]) quizActions[3].textContent = t('exit');
+            const finishExamBtn2 = document.getElementById('finishExamBtn');
+            if (finishExamBtn2) finishExamBtn2.textContent = t('finishExam');
+
+            const exitBtn2 = document.getElementById('exitBtn');
+            if (exitBtn2) exitBtn2.textContent = t('exit');
 
             // Index
             const indexTitle = document.querySelector('.index-title');
@@ -14931,6 +15001,10 @@
             const options = card.querySelectorAll('.option');
             const resultDiv = document.getElementById('result' + qNum);
 
+            // Store selected answer on card for persistence
+            card.dataset.selected = selectedLabel;
+            card.dataset.isCorrect = (selectedLabel === correctLabel);
+
             // Disable all options
             options.forEach(opt => opt.classList.add('disabled'));
 
@@ -14957,54 +15031,281 @@
                 });
                 resultDiv.innerHTML = '✗ Incorrecto';
             }
+
+            // Save study session after each answer
+            saveStudySession();
         }
+
+        // Track if restore has completed (to prevent overwriting saved data on page load)
+        let studySessionRestored = false;
+
+        // Study session persistence functions
+        function saveStudySession() {
+            // Don't save if quiz mode is active
+            if (quizMode.active) return;
+
+            // Don't save until restore has completed (prevents overwriting on page load)
+            if (!studySessionRestored) return;
+
+            // Don't save if no answers (prevents overwriting with empty data)
+            if (answeredQuestions.size === 0) return;
+
+            try {
+                const answers = {};
+                answeredQuestions.forEach(qNum => {
+                    const card = document.getElementById('q' + qNum);
+                    if (!card) return;
+
+                    // Read from data attributes set during selectOption
+                    const selected = card.dataset.selected;
+                    const correct = card.dataset.correct;
+                    const isCorrect = card.dataset.isCorrect === 'true';
+
+                    if (selected) {
+                        answers[qNum] = {
+                            selected: selected,
+                            correct: correct,
+                            isCorrect: isCorrect
+                        };
+                    }
+                });
+
+                const session = {
+                    version: 1,
+                    answers: answers,
+                    revealedCount: revealedCount,
+                    lastQuestionIndex: currentQuestionIndex,
+                    lastScrollPosition: window.scrollY,
+                    lastUpdated: Date.now()
+                };
+
+                localStorage.setItem('studySession', JSON.stringify(session));
+            } catch (e) {
+                console.error('Error saving study session:', e);
+            }
+        }
+
+        function restoreStudySession() {
+            // Don't restore if quiz mode is active
+            if (quizMode.active) {
+                studySessionRestored = true;
+                return;
+            }
+
+            try {
+                const saved = localStorage.getItem('studySession');
+                if (!saved) {
+                    studySessionRestored = true;
+                    return;
+                }
+
+                const session = JSON.parse(saved);
+
+                // Validate version
+                if (session.version !== 1) {
+                    localStorage.removeItem('studySession');
+                    studySessionRestored = true;
+                    return;
+                }
+
+                // Check for 30-day expiry
+                const thirtyDays = 30 * 24 * 60 * 60 * 1000;
+                if (Date.now() - session.lastUpdated > thirtyDays) {
+                    localStorage.removeItem('studySession');
+                    studySessionRestored = true;
+                    return;
+                }
+
+                // Restore answers
+                for (const [qNum, data] of Object.entries(session.answers)) {
+                    const card = document.getElementById('q' + qNum);
+                    if (!card) continue;
+
+                    const options = card.querySelectorAll('.screen-only .option');
+                    const resultDiv = document.getElementById('result' + qNum);
+
+                    // Mark as answered
+                    answeredQuestions.add(parseInt(qNum));
+
+                    // Restore data attributes for future saves
+                    card.dataset.selected = data.selected;
+                    card.dataset.isCorrect = data.isCorrect;
+
+                    // Apply visual states
+                    options.forEach(opt => {
+                        opt.classList.add('disabled');
+
+                        if (opt.dataset.label === data.selected) {
+                            if (data.isCorrect) {
+                                opt.classList.add('correct');
+                            } else {
+                                opt.classList.add('incorrect');
+                            }
+                        }
+
+                        // Highlight the correct answer if user got it wrong
+                        if (!data.isCorrect && opt.dataset.label === data.correct) {
+                            opt.classList.add('correct');
+                        }
+                    });
+
+                    // Set result text
+                    if (resultDiv) {
+                        if (data.isCorrect) {
+                            resultDiv.innerHTML = '✓ Correcto';
+                            resultDiv.classList.add('correct');
+                        } else {
+                            resultDiv.innerHTML = '✗ Incorrecto';
+                        }
+                    }
+                }
+
+                // Restore counter
+                revealedCount = session.revealedCount || 0;
+                document.getElementById('revealed').textContent = revealedCount;
+
+                // Restore scroll position after a brief delay
+                if (session.lastScrollPosition > 0) {
+                    setTimeout(() => {
+                        window.scrollTo(0, session.lastScrollPosition);
+                    }, 100);
+                }
+
+                // Restore question index
+                if (typeof session.lastQuestionIndex === 'number') {
+                    currentQuestionIndex = session.lastQuestionIndex;
+                }
+
+            } catch (e) {
+                console.error('Error restoring study session:', e);
+                localStorage.removeItem('studySession');
+            } finally {
+                // Mark restore as complete so saves can proceed
+                studySessionRestored = true;
+            }
+        }
+
+        function clearStudyProgress() {
+            showConfirmDialog(
+                t('confirmClearProgress'),
+                t('clearButton'),
+                t('cancel'),
+                () => {
+                    // Clear localStorage
+                    localStorage.removeItem('studySession');
+
+                    // Clear memory state
+                    answeredQuestions.clear();
+                    revealedCount = 0;
+
+                    // Clear DOM
+                    const cards = document.querySelectorAll('.question-card');
+                    cards.forEach(card => {
+                        // Clear data attributes
+                        delete card.dataset.selected;
+                        delete card.dataset.isCorrect;
+
+                        const options = card.querySelectorAll('.option');
+                        options.forEach(opt => {
+                            opt.classList.remove('correct', 'incorrect', 'disabled');
+                        });
+
+                        const resultDiv = card.querySelector('.result');
+                        if (resultDiv) {
+                            resultDiv.innerHTML = '';
+                            resultDiv.classList.remove('correct');
+                        }
+                    });
+
+                    // Update counter display
+                    document.getElementById('revealed').textContent = '0';
+                }
+            );
+        }
+
+        // Track which questions are showing Russian translation
+        const translatedQuestions = new Set();
 
         function toggleTranslate(qNum, ruQ, ruOptionsJson, esOptionsJson, correctLabel) {
             // Disable in quiz mode until results
             if (quizMode.active && !quizMode.results) return;
 
-            const el = document.getElementById('trans' + qNum);
-            if (el.classList.contains('show')) {
-                el.classList.remove('show');
-                el.innerHTML = '';
-            } else {
-                let ruOptions = [];
-                let esOptions = [];
-                try {
-                    // Parse the JSON directly - it's already properly escaped by Python
-                    ruOptions = JSON.parse(ruOptionsJson);
-                    esOptions = JSON.parse(esOptionsJson);
-                } catch (e) {
-                    console.error('Error parsing options:', e);
-                    console.error('RU JSON string:', ruOptionsJson);
-                    console.error('ES JSON string:', esOptionsJson);
-                    ruOptions = [];
-                    esOptions = [];
+            const card = document.getElementById('q' + qNum);
+            if (!card) return;
+
+            const questionDiv = card.querySelector('.screen-only .question');
+            const options = card.querySelectorAll('.screen-only .option');
+            const translateBtn = card.querySelector('.btn.translate');
+
+            // Parse options
+            let ruOptions = [];
+            let esOptions = [];
+            try {
+                ruOptions = JSON.parse(ruOptionsJson);
+                esOptions = JSON.parse(esOptionsJson);
+            } catch (e) {
+                console.error('Error parsing options:', e);
+                return;
+            }
+
+            // Create maps for easy lookup
+            const ruMap = {};
+            ruOptions.forEach(opt => {
+                ruMap[opt.label] = opt.text;
+            });
+            const esMap = {};
+            esOptions.forEach(opt => {
+                esMap[opt.label] = opt.text;
+            });
+
+            if (translatedQuestions.has(qNum)) {
+                // Currently showing Russian - switch back to Spanish
+                if (questionDiv) {
+                    const esQ = questionDiv.dataset.originalText;
+                    if (esQ) questionDiv.textContent = esQ;
                 }
 
-                // Create a map of Spanish options by label
-                const esMap = {};
-                esOptions.forEach(opt => {
-                    esMap[opt.label] = opt.text;
+                options.forEach(opt => {
+                    const label = opt.dataset.label;
+                    const esText = esMap[label];
+                    if (esText) {
+                        opt.textContent = label + ') ' + esText;
+                    }
                 });
 
-                let html = '<strong>Вопрос:</strong> ' + ruQ + '<br><br>';
-
-                if (ruOptions.length > 0) {
-                    html += '<strong>Варианты:</strong><br>';
-                    ruOptions.forEach(opt => {
-                        const isCorrect = opt.label === correctLabel;
-                        const checkmark = isCorrect ? ' ✓' : '';
-                        const spanishText = isCorrect && esMap[opt.label] ? ' <span style="color: var(--text-secondary); font-weight: 400; font-size: 0.95em;">(' + esMap[opt.label] + ')</span>' : '';
-                        const style = isCorrect ? ' style="color: var(--success); font-weight: 600;"' : '';
-                        html += opt.label + ') ' + '<span' + style + '>' + opt.text + checkmark + '</span>' + spanishText + '<br>';
-                    });
-                } else {
-                    html += '<em style="color: var(--text-tertiary);">Перевод вариантов пока недоступен</em>';
+                if (translateBtn) {
+                    translateBtn.textContent = t('translate');
+                    translateBtn.classList.remove('active');
                 }
 
-                el.innerHTML = html;
-                el.classList.add('show');
+                card.classList.remove('showing-translation');
+                translatedQuestions.delete(qNum);
+            } else {
+                // Currently showing Spanish - switch to Russian
+                // Store original Spanish text if not already stored
+                if (questionDiv && !questionDiv.dataset.originalText) {
+                    questionDiv.dataset.originalText = questionDiv.textContent;
+                }
+
+                if (questionDiv) {
+                    questionDiv.textContent = ruQ;
+                }
+
+                options.forEach(opt => {
+                    const label = opt.dataset.label;
+                    const ruText = ruMap[label];
+                    if (ruText) {
+                        opt.textContent = label + ') ' + ruText;
+                    }
+                });
+
+                if (translateBtn) {
+                    translateBtn.textContent = 'ES';
+                    translateBtn.classList.add('active');
+                }
+
+                card.classList.add('showing-translation');
+                translatedQuestions.add(qNum);
             }
         }
 
@@ -15166,6 +15467,24 @@
                 updateNavButtons();
             }, 100);
         }, { passive: true });
+
+        // Save study session on scroll (debounced 500ms)
+        let scrollSaveTimeout;
+        window.addEventListener('scroll', () => {
+            clearTimeout(scrollSaveTimeout);
+            scrollSaveTimeout = setTimeout(() => {
+                if (!quizMode.active) {
+                    saveStudySession();
+                }
+            }, 500);
+        }, { passive: true });
+
+        // Save study session when tab is hidden (for mobile)
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'hidden' && !quizMode.active) {
+                saveStudySession();
+            }
+        });
 
         // Initialize nav buttons
         updateNavButtons();
@@ -16056,16 +16375,26 @@
             }
         }
 
-        // Warn before leaving during quiz
+        // Warn before leaving during quiz and save study session
         window.addEventListener('beforeunload', (e) => {
             if (quizMode.active && !quizMode.results) {
                 e.preventDefault();
                 e.returnValue = t('confirmLeave');
+            } else {
+                // Save study session when leaving
+                saveStudySession();
             }
         });
 
         // Try to restore quiz session on page load
         setTimeout(restoreQuizSession, 500);
+
+        // Restore study session after quiz restore check (only if quiz mode not active)
+        setTimeout(() => {
+            if (!quizMode.active) {
+                restoreStudySession();
+            }
+        }, 600);
 
         // Build index on load
         console.log('About to call buildIndex()');
