@@ -323,6 +323,101 @@
             opacity: 0.9;
         }
 
+        .btn.hide:hover {
+            background: var(--error-soft);
+            color: var(--error);
+            border-color: var(--error);
+        }
+
+        .btn.hide.active {
+            background: var(--error);
+            color: white;
+            border-color: var(--error);
+        }
+
+        .btn.hide.active:hover {
+            background: var(--error);
+            opacity: 0.9;
+        }
+
+        /* Hidden questions badge */
+        .hidden-count-badge {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--error);
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 600;
+            min-width: 14px;
+            height: 14px;
+            border-radius: 7px;
+            padding: 0 3px;
+        }
+
+        .hidden-count-badge:empty {
+            display: none;
+        }
+
+        /* Hidden questions modal */
+        .hidden-questions-modal {
+            max-width: 600px;
+        }
+
+        .hidden-questions-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .hidden-question-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 8px;
+            background: var(--bg);
+        }
+
+        .hidden-question-item:hover {
+            background: var(--accent-soft);
+            border-color: var(--accent);
+        }
+
+        .hidden-question-info {
+            flex: 1;
+            margin-right: 12px;
+            overflow: hidden;
+        }
+
+        .hidden-question-num {
+            color: var(--text-tertiary);
+            font-size: 0.85rem;
+            margin-right: 8px;
+        }
+
+        .hidden-question-text {
+            color: var(--text);
+        }
+
+        .no-hidden-message {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+        }
+
+        .modal-footer {
+            padding: 16px 24px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+
         .translation, .explanation {
             display: none;
             margin-top: 16px;
@@ -475,7 +570,9 @@
 
         .sidebar-icon-group {
             display: flex;
-            gap: 6px;
+            gap: 4px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .menu-overlay {
@@ -513,13 +610,14 @@
 
         .icon-btn {
             text-align: center;
-            font-size: 1.25rem;
-            padding: 10px 12px;
-            flex: 1;
+            font-size: 1.1rem;
+            padding: 8px;
+            min-width: 36px;
             line-height: 1;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
         }
 
         .sidebar-top .quiz-toggle {
@@ -848,8 +946,9 @@
             }
 
             .icon-btn {
-                font-size: 1.4rem;
-                padding: 12px;
+                font-size: 1.1rem;
+                padding: 8px;
+                min-width: 36px;
             }
 
             .menu-overlay {
@@ -1831,6 +1930,29 @@
                 <button class="print-btn sidebar-btn icon-btn" onclick="window.print()" title="Печать всех">🖨️</button>
                 <button class="theme-toggle sidebar-btn icon-btn" onclick="toggleTheme()" title="Темный режим">🌙</button>
                 <button class="clear-progress-btn sidebar-btn icon-btn" onclick="clearStudyProgress()" title="Сбросить прогресс">🗑️</button>
+                <button class="hidden-btn sidebar-btn icon-btn" onclick="openHiddenQuestionsModal()" title="Скрытые вопросы">🙈<span class="hidden-count-badge" id="hiddenCountBadge"></span></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden Questions Modal -->
+    <div class="modal-overlay" id="hiddenQuestionsModal" style="display: none;">
+        <div class="modal-content hidden-questions-modal">
+            <div class="modal-header">
+                <h2 id="hiddenModalTitle">Скрытые вопросы</h2>
+                <button class="modal-close" onclick="closeHiddenQuestionsModal()">&#10005;</button>
+            </div>
+            <div class="modal-body">
+                <div id="hiddenQuestionsList" class="hidden-questions-list">
+                    <!-- Populated dynamically -->
+                </div>
+                <div id="noHiddenQuestions" class="no-hidden-message" style="display: none;">
+                    <p id="noHiddenText">У вас нет скрытых вопросов.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" id="unhideAllBtn" onclick="unhideAllQuestions()">Показать все</button>
+                <button class="btn" id="closeHiddenModalBtn" onclick="closeHiddenQuestionsModal()">Закрыть</button>
             </div>
         </div>
     </div>
@@ -14592,7 +14714,15 @@
                 confirmLeave: '¿Seguro que quieres salir? Se guardará tu progreso.',
                 confirmClearProgress: '¿Estás seguro de que quieres borrar tu progreso?',
                 clearButton: 'Borrar',
-                clearProgress: 'Reiniciar progreso'
+                clearProgress: 'Reiniciar progreso',
+                // Hidden questions
+                hideQuestion: 'Ocultar',
+                unhideQuestion: 'Mostrar',
+                hiddenQuestions: 'Preguntas ocultas',
+                noHiddenQuestions: 'No tienes preguntas ocultas.',
+                unhideAll: 'Mostrar todas',
+                close: 'Cerrar',
+                hiddenQuestionsTooltip: 'Preguntas ocultas'
             },
             en: {
                 // Header
@@ -14674,7 +14804,15 @@
                 confirmLeave: 'Are you sure you want to leave? Your progress will be saved.',
                 confirmClearProgress: 'Are you sure you want to clear your progress?',
                 clearButton: 'Clear',
-                clearProgress: 'Reset progress'
+                clearProgress: 'Reset progress',
+                // Hidden questions
+                hideQuestion: 'Hide',
+                unhideQuestion: 'Unhide',
+                hiddenQuestions: 'Hidden Questions',
+                noHiddenQuestions: 'You have no hidden questions.',
+                unhideAll: 'Unhide All',
+                close: 'Close',
+                hiddenQuestionsTooltip: 'Hidden questions'
             },
             ru: {
                 // Header
@@ -14756,7 +14894,15 @@
                 confirmLeave: 'Вы уверены, что хотите выйти? Ваш прогресс будет сохранен.',
                 confirmClearProgress: 'Вы уверены, что хотите очистить ваш прогресс?',
                 clearButton: 'Очистить',
-                clearProgress: 'Сбросить прогресс'
+                clearProgress: 'Сбросить прогресс',
+                // Hidden questions
+                hideQuestion: 'Скрыть',
+                unhideQuestion: 'Показать',
+                hiddenQuestions: 'Скрытые вопросы',
+                noHiddenQuestions: 'У вас нет скрытых вопросов.',
+                unhideAll: 'Показать все',
+                close: 'Закрыть',
+                hiddenQuestionsTooltip: 'Скрытые вопросы'
             }
         };
 
@@ -14790,6 +14936,12 @@
 
             const clearProgressBtn = document.querySelector('.clear-progress-btn');
             if (clearProgressBtn) clearProgressBtn.title = t('clearProgress');
+
+            const hiddenBtn = document.querySelector('.hidden-btn');
+            if (hiddenBtn) hiddenBtn.title = t('hiddenQuestionsTooltip');
+
+            // Update hide buttons text
+            updateHideButtonStates();
 
             // Stats
             const statsText = document.querySelector('.stats');
@@ -15328,7 +15480,9 @@
             const q = query.toLowerCase();
             cards.forEach(card => {
                 const text = card.textContent.toLowerCase();
-                card.style.display = text.includes(q) ? 'block' : 'none';
+                const matchesSearch = text.includes(q);
+                const isHiddenByUser = card.classList.contains('hidden-by-user');
+                card.style.display = (matchesSearch && !isHiddenByUser) ? 'block' : 'none';
             });
         }
 
@@ -15647,6 +15801,7 @@
 
         function getQuizQuestions(config) {
             let pool = [];
+            const hiddenIds = getHiddenQuestions();
 
             if (config.sections.length === 0) {
                 // All questions
@@ -15661,6 +15816,9 @@
                     }
                 });
             }
+
+            // Filter out hidden questions
+            pool = pool.filter(qNum => !hiddenIds.includes(qNum));
 
             if (config.randomOrder) {
                 pool = pool.sort(() => Math.random() - 0.5);
@@ -16149,6 +16307,9 @@
                 });
             });
 
+            // Restore hidden questions
+            applyHiddenQuestions();
+
             // Open quiz config
             openQuizConfig();
         }
@@ -16180,6 +16341,9 @@
                 });
             });
 
+            // Restore hidden questions
+            applyHiddenQuestions();
+
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -16202,6 +16366,9 @@
                     options.forEach(opt => opt.classList.remove('selected-quiz'));
                     card.style.display = 'block';
                 });
+
+                // Restore hidden questions
+                applyHiddenQuestions();
 
                 // Scroll to top
                 window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -16258,6 +16425,178 @@
             dialog.appendChild(buttons);
             overlay.appendChild(dialog);
             document.body.appendChild(overlay);
+        }
+
+        // =====================
+        // Hidden Questions Feature
+        // =====================
+
+        // Get hidden questions from localStorage
+        function getHiddenQuestions() {
+            try {
+                const saved = localStorage.getItem('hiddenQuestions');
+                return saved ? JSON.parse(saved) : [];
+            } catch (e) {
+                console.error('Error loading hidden questions:', e);
+                return [];
+            }
+        }
+
+        // Save hidden questions to localStorage
+        function saveHiddenQuestions(hiddenIds) {
+            try {
+                localStorage.setItem('hiddenQuestions', JSON.stringify(hiddenIds));
+                updateHiddenCountBadge();
+            } catch (e) {
+                console.error('Error saving hidden questions:', e);
+            }
+        }
+
+        // Toggle hide/unhide a question
+        function toggleHideQuestion(qNum) {
+            const hiddenIds = getHiddenQuestions();
+            const index = hiddenIds.indexOf(qNum);
+
+            if (index === -1) {
+                // Hide the question
+                hiddenIds.push(qNum);
+                hideQuestionCard(qNum);
+            } else {
+                // Unhide the question
+                hiddenIds.splice(index, 1);
+                unhideQuestionCard(qNum);
+            }
+
+            saveHiddenQuestions(hiddenIds);
+            updateHideButtonStates();
+        }
+
+        // Hide a question card from view
+        function hideQuestionCard(qNum) {
+            const card = document.getElementById('q' + qNum);
+            if (card && !quizMode.active) {
+                card.style.display = 'none';
+                card.classList.add('hidden-by-user');
+            }
+        }
+
+        // Unhide a question card
+        function unhideQuestionCard(qNum) {
+            const card = document.getElementById('q' + qNum);
+            if (card) {
+                card.style.display = '';
+                card.classList.remove('hidden-by-user');
+            }
+        }
+
+        // Apply hidden state to all cards (called on page load)
+        function applyHiddenQuestions() {
+            const hiddenIds = getHiddenQuestions();
+            hiddenIds.forEach(qNum => hideQuestionCard(qNum));
+            updateHiddenCountBadge();
+            updateHideButtonStates();
+        }
+
+        // Update hide button text/state based on current hidden status
+        function updateHideButtonStates() {
+            const hiddenIds = getHiddenQuestions();
+            document.querySelectorAll('.btn.hide').forEach(btn => {
+                const qNum = parseInt(btn.getAttribute('data-qnum'));
+                const isHidden = hiddenIds.includes(qNum);
+                btn.textContent = isHidden ? t('unhideQuestion') : t('hideQuestion');
+                btn.classList.toggle('active', isHidden);
+            });
+        }
+
+        // Update the badge count in sidebar
+        function updateHiddenCountBadge() {
+            const badge = document.getElementById('hiddenCountBadge');
+            if (badge) {
+                const count = getHiddenQuestions().length;
+                badge.textContent = count > 0 ? count : '';
+            }
+        }
+
+        // Add hide buttons to all question cards
+        function addHideButtons() {
+            document.querySelectorAll('.question-card').forEach(card => {
+                const buttonsDiv = card.querySelector('.screen-only .buttons');
+                if (buttonsDiv && !buttonsDiv.querySelector('.btn.hide')) {
+                    const qNum = card.id.replace('q', '');
+                    const hideBtn = document.createElement('button');
+                    hideBtn.className = 'btn hide';
+                    hideBtn.setAttribute('data-qnum', qNum);
+                    hideBtn.onclick = () => toggleHideQuestion(parseInt(qNum));
+                    hideBtn.textContent = t('hideQuestion');
+                    buttonsDiv.appendChild(hideBtn);
+                }
+            });
+        }
+
+        // Open hidden questions modal
+        function openHiddenQuestionsModal() {
+            const modal = document.getElementById('hiddenQuestionsModal');
+            const list = document.getElementById('hiddenQuestionsList');
+            const noHiddenDiv = document.getElementById('noHiddenQuestions');
+            const hiddenIds = getHiddenQuestions();
+
+            // Update modal text for current language
+            document.getElementById('hiddenModalTitle').textContent = t('hiddenQuestions');
+            document.getElementById('noHiddenText').textContent = t('noHiddenQuestions');
+            document.getElementById('unhideAllBtn').textContent = t('unhideAll');
+            document.getElementById('closeHiddenModalBtn').textContent = t('close');
+
+            // Clear previous content
+            list.innerHTML = '';
+
+            if (hiddenIds.length === 0) {
+                noHiddenDiv.style.display = 'block';
+                list.style.display = 'none';
+                document.getElementById('unhideAllBtn').style.display = 'none';
+            } else {
+                noHiddenDiv.style.display = 'none';
+                list.style.display = 'block';
+                document.getElementById('unhideAllBtn').style.display = '';
+
+                hiddenIds.forEach(qNum => {
+                    const card = document.getElementById('q' + qNum);
+                    if (card) {
+                        const questionText = card.querySelector('.screen-only .question').textContent;
+                        const item = document.createElement('div');
+                        item.className = 'hidden-question-item';
+                        item.innerHTML = `
+                            <div class="hidden-question-info">
+                                <span class="hidden-question-num">#${qNum}</span>
+                                <span class="hidden-question-text">${questionText.substring(0, 60)}${questionText.length > 60 ? '...' : ''}</span>
+                            </div>
+                            <button class="btn" onclick="unhideFromModal(${qNum})">${t('unhideQuestion')}</button>
+                        `;
+                        list.appendChild(item);
+                    }
+                });
+            }
+
+            modal.style.display = 'flex';
+        }
+
+        // Close hidden questions modal
+        function closeHiddenQuestionsModal() {
+            document.getElementById('hiddenQuestionsModal').style.display = 'none';
+        }
+
+        // Unhide from modal (unhides and refreshes list)
+        function unhideFromModal(qNum) {
+            toggleHideQuestion(qNum);
+            openHiddenQuestionsModal(); // Refresh the list
+        }
+
+        // Unhide all questions
+        function unhideAllQuestions() {
+            const hiddenIds = getHiddenQuestions();
+            hiddenIds.forEach(qNum => unhideQuestionCard(qNum));
+            saveHiddenQuestions([]);
+            updateHideButtonStates();
+            closeHiddenQuestionsModal();
         }
 
         function saveQuizSession() {
@@ -16404,6 +16743,10 @@
         } catch (error) {
             console.error('Error in buildIndex():', error);
         }
+
+        // Add hide buttons and apply hidden state
+        addHideButtons();
+        applyHiddenQuestions();
     </script>
 </body>
 </html>
