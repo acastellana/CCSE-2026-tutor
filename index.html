@@ -609,10 +609,10 @@
         }
 
         .icon-btn {
+            width: auto;
             text-align: center;
             font-size: 1.1rem;
             padding: 8px;
-            min-width: 36px;
             line-height: 1;
             display: flex;
             align-items: center;
@@ -948,7 +948,6 @@
             .icon-btn {
                 font-size: 1.1rem;
                 padding: 8px;
-                min-width: 36px;
             }
 
             .menu-overlay {
@@ -14943,6 +14942,18 @@
             // Update hide buttons text
             updateHideButtonStates();
 
+            // Update translate/explain buttons on all question cards
+            document.querySelectorAll('.question-card').forEach(card => {
+                const translateBtn = card.querySelector('.btn.translate');
+                const explainBtn = card.querySelector('.btn.explain');
+                if (translateBtn && !translateBtn.classList.contains('active')) {
+                    translateBtn.textContent = t('translate');
+                }
+                if (explainBtn && !explainBtn.classList.contains('active')) {
+                    explainBtn.textContent = t('explain');
+                }
+            });
+
             // Stats
             const statsText = document.querySelector('.stats');
             if (statsText) {
@@ -16747,6 +16758,9 @@
         // Add hide buttons and apply hidden state
         addHideButtons();
         applyHiddenQuestions();
+
+        // Ensure UI reflects current language
+        updateInterfaceLanguage();
     </script>
 </body>
 </html>
