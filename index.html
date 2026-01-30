@@ -203,6 +203,12 @@
             border-color: var(--text-tertiary);
         }
 
+        .question-card.hiding {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
         .q-number {
             color: var(--text-tertiary);
             font-size: 0.9rem;
@@ -16483,11 +16489,25 @@
         }
 
         // Hide a question card from view
-        function hideQuestionCard(qNum) {
+        function hideQuestionCard(qNum, instant = false) {
             const card = document.getElementById('q' + qNum);
             if (card && !quizMode.active) {
-                card.style.display = 'none';
                 card.classList.add('hidden-by-user');
+
+                if (instant) {
+                    card.style.display = 'none';
+                } else {
+                    card.classList.add('hiding');
+
+                    // Delay actual hide to allow animation
+                    setTimeout(() => {
+                        // Only hide if still marked as hidden (prevents race condition)
+                        if (card.classList.contains('hidden-by-user')) {
+                            card.style.display = 'none';
+                        }
+                        card.classList.remove('hiding');
+                    }, 200);
+                }
             }
         }
 
@@ -16503,7 +16523,7 @@
         // Apply hidden state to all cards (called on page load)
         function applyHiddenQuestions() {
             const hiddenIds = getHiddenQuestions();
-            hiddenIds.forEach(qNum => hideQuestionCard(qNum));
+            hiddenIds.forEach(qNum => hideQuestionCard(qNum, true)); // instant=true on page load
             updateHiddenCountBadge();
             updateHideButtonStates();
         }
