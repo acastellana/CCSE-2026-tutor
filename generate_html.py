@@ -350,6 +350,9 @@ def generate_html(explanations):
 
         html_questions.append(f'''
         <div class="question-card" id="q{q_num}" data-correct="{correct_label}">
+            <div class="score-indicator not-attempted" id="indicator{q_num}" title="Sin responder">
+                <span class="score-tooltip">Sin responder</span>
+            </div>
             <div class="print-columns">
                 <div class="print-spanish">
                     <div class="q-number">#{q_num}</div>
@@ -392,7 +395,8 @@ def generate_html(explanations):
     <title>CCSE 2026 - Preguntas de Estudio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=optional" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700;900&family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&display=optional" rel="stylesheet">
     <style>
         :root {{
             --bg: #fafafa;
@@ -456,7 +460,7 @@ def generate_html(explanations):
         }}
 
         .header {{
-            margin-bottom: 48px;
+            margin-bottom: 24px;
             text-align: center;
         }}
 
@@ -502,41 +506,41 @@ def generate_html(explanations):
         }}
 
         h1 {{
-            font-size: 2.75rem;
+            font-size: 2rem;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
             letter-spacing: -0.02em;
             color: var(--text);
         }}
 
         .subtitle {{
             color: var(--text-secondary);
-            font-size: 1.125rem;
+            font-size: 0.95rem;
             font-weight: 400;
             font-style: italic;
         }}
 
         .stats {{
             text-align: center;
-            margin-bottom: 32px;
-            padding: 16px;
+            margin-bottom: 20px;
+            padding: 10px 16px;
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 12px;
-            font-size: 1.05rem;
+            font-size: 0.95rem;
             color: var(--text-secondary);
         }}
 
         .search-box {{
             width: 100%;
-            padding: 14px 20px;
+            padding: 10px 16px;
             border-radius: 12px;
             border: 1px solid var(--border);
             background: var(--bg-card);
             color: var(--text);
-            font-size: 1.125rem;
+            font-size: 1rem;
             font-family: 'Source Serif 4', Georgia, serif;
-            margin-bottom: 32px;
+            margin-bottom: 24px;
             transition: all 0.2s ease;
         }}
 
@@ -808,6 +812,7 @@ def generate_html(explanations):
             z-index: 300;
             font-size: 1.5rem;
             box-shadow: 0 2px 8px var(--shadow);
+            color: var(--text);
         }}
 
         .menu-toggle:hover {{
@@ -886,9 +891,13 @@ def generate_html(explanations):
 
         .icon-btn {{
             text-align: center;
-            font-size: 1.1rem;
-            padding: 8px 10px;
+            font-size: 1.25rem;
+            padding: 10px 12px;
             flex: 1;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }}
 
         .sidebar-top .quiz-toggle {{
@@ -1099,11 +1108,6 @@ def generate_html(explanations):
                 margin-bottom: 0.5px;
                 color: black;
             }}
-
-            .print-option.correct, .ru-option.correct {{
-                font-weight: 600;
-                color: #059669;
-            }}
         }}
 
         /* Emoji explosion animation */
@@ -1141,7 +1145,7 @@ def generate_html(explanations):
             }}
 
             h1 {{
-                font-size: 2rem;
+                font-size: 1.75rem;
             }}
 
             .header-controls {{
@@ -1156,7 +1160,7 @@ def generate_html(explanations):
             }}
 
             .header {{
-                margin-bottom: 32px;
+                margin-bottom: 20px;
             }}
 
             .question-card {{
@@ -1207,6 +1211,11 @@ def generate_html(explanations):
 
             .menu-toggle {{
                 display: block;
+            }}
+
+            .icon-btn {{
+                font-size: 1.4rem;
+                padding: 12px;
             }}
 
             .menu-overlay {{
@@ -1588,7 +1597,6 @@ def generate_html(explanations):
         }}
 
         /* Results Page - Editorial Magazine Aesthetic */
-        @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700;900&family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&display=swap');
 
         .results-page {{
             display: none;
@@ -2165,6 +2173,314 @@ def generate_html(explanations):
                 font-size: 0.9rem;
             }}
         }}
+
+        /* Practice Mode Button */
+        .practice-btn {{
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            animation: pulse-glow 2s infinite;
+        }}
+
+        .practice-btn:hover {{
+            background: linear-gradient(135deg, #5a6fd6 0%, #6a4190 100%);
+            color: white;
+            transform: translateY(-1px);
+        }}
+
+        .practice-btn .badge {{
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: #ef4444;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 10px;
+            min-width: 18px;
+            text-align: center;
+        }}
+
+        .practice-btn .badge.empty {{
+            display: none;
+        }}
+
+        @keyframes pulse-glow {{
+            0%, 100% {{ box-shadow: 0 0 15px rgba(102, 126, 234, 0.4); }}
+            50% {{ box-shadow: 0 0 25px rgba(102, 126, 234, 0.6); }}
+        }}
+
+        /* Stats Panel */
+        .stats-panel {{
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin: 12px 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }}
+
+        .stats-panel-header {{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            cursor: pointer;
+            user-select: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }}
+
+        .stats-panel-header:hover {{
+            background: var(--accent-soft);
+        }}
+
+        .stats-panel-toggle {{
+            transition: transform 0.3s ease;
+        }}
+
+        .stats-panel.collapsed .stats-panel-toggle {{
+            transform: rotate(-90deg);
+        }}
+
+        .stats-panel.collapsed .stats-panel-content {{
+            display: none;
+        }}
+
+        .stats-panel-content {{
+            padding: 0 16px 12px;
+        }}
+
+        .stats-row {{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.85rem;
+        }}
+
+        .stats-row:last-child {{
+            border-bottom: none;
+        }}
+
+        .stats-label {{
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }}
+
+        .stats-value {{
+            font-weight: 600;
+            color: var(--text);
+        }}
+
+        .stats-dot {{
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }}
+
+        .stats-dot.needs-practice {{ background: #f97316; }}
+        .stats-dot.mastered {{ background: #22c55e; }}
+        .stats-dot.not-attempted {{ background: #9ca3af; }}
+
+        .stats-reset-btn {{
+            width: 100%;
+            margin-top: 8px;
+            padding: 8px;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-tertiary);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }}
+
+        .stats-reset-btn:hover {{
+            background: var(--error-soft);
+            border-color: var(--error);
+            color: var(--error);
+        }}
+
+        /* Score Indicators on Cards */
+        .question-card {{
+            position: relative;
+        }}
+
+        .score-indicator {{
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            cursor: help;
+            transition: transform 0.2s ease;
+            z-index: 5;
+        }}
+
+        .score-indicator:hover {{
+            transform: scale(1.3);
+        }}
+
+        .score-indicator.struggling {{ background: #ef4444; }}
+        .score-indicator.needs-work {{ background: #f97316; }}
+        .score-indicator.learning {{ background: #eab308; }}
+        .score-indicator.mastered {{ background: #22c55e; }}
+        .score-indicator.not-attempted {{ background: #9ca3af; }}
+
+        .score-tooltip {{
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 4px;
+            padding: 4px 8px;
+            background: var(--text);
+            color: var(--bg);
+            font-size: 0.75rem;
+            border-radius: 4px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            z-index: 10;
+        }}
+
+        .score-indicator:hover .score-tooltip {{
+            opacity: 1;
+            visibility: visible;
+        }}
+
+        /* Practice Mode Styles */
+        body.practice-mode .question-card {{
+            display: none;
+        }}
+
+        body.practice-mode .question-card.practice-visible {{
+            display: block;
+        }}
+
+        body.practice-mode .section-header {{
+            display: none;
+        }}
+
+        body.practice-mode .search-box,
+        body.practice-mode .stats {{
+            display: none;
+        }}
+
+        .practice-header {{
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 280px;
+            right: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px 24px;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }}
+
+        body.practice-mode .practice-header {{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }}
+
+        body.practice-mode .container {{
+            padding-top: 80px;
+        }}
+
+        .practice-info {{
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }}
+
+        .practice-title {{
+            font-weight: 700;
+            font-size: 1.1rem;
+        }}
+
+        .practice-progress {{
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }}
+
+        .practice-actions {{
+            display: flex;
+            gap: 12px;
+        }}
+
+        .practice-actions button {{
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }}
+
+        .practice-actions button:hover {{
+            background: rgba(255,255,255,0.3);
+        }}
+
+        .practice-congrats {{
+            text-align: center;
+            padding: 60px 24px;
+            color: var(--text-secondary);
+        }}
+
+        .practice-congrats h2 {{
+            color: var(--success);
+            margin-bottom: 16px;
+            font-size: 1.5rem;
+        }}
+
+        .practice-congrats p {{
+            margin-bottom: 24px;
+        }}
+
+        /* Mobile adjustments for practice mode */
+        @media (max-width: 768px) {{
+            .practice-header {{
+                left: 0;
+                padding: 12px 16px;
+            }}
+
+            .practice-info {{
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }}
+
+            .practice-title {{
+                font-size: 1rem;
+            }}
+
+            .practice-progress {{
+                font-size: 0.8rem;
+            }}
+        }}
+
+        @media print {{
+            .score-indicator {{
+                display: none;
+            }}
+        }}
     </style>
 </head>
 <body>
@@ -2181,13 +2497,37 @@ def generate_html(explanations):
             <button class="quiz-toggle sidebar-btn" id="quizToggleBtn" onclick="toggleQuizMode()">
                 <span class="quiz-toggle-text" id="quizToggleText">Режим Экзамена</span>
             </button>
+            <button class="sidebar-btn practice-btn" id="practiceBtn" onclick="startFocusedPractice()">
+                <span id="practiceBtnText">Практика ошибок</span>
+                <span class="badge empty" id="practiceBadge">0</span>
+            </button>
+        </div>
+        <div class="stats-panel" id="statsPanel">
+            <div class="stats-panel-header" onclick="toggleStatsPanel()">
+                <span id="statsPanelTitle">Статистика</span>
+                <span class="stats-panel-toggle">▼</span>
+            </div>
+            <div class="stats-panel-content">
+                <div class="stats-row">
+                    <span class="stats-label"><span class="stats-dot needs-practice"></span><span id="statsNeedsPracticeLabel">Нужна практика</span></span>
+                    <span class="stats-value" id="statsNeedsPractice">0</span>
+                </div>
+                <div class="stats-row">
+                    <span class="stats-label"><span class="stats-dot mastered"></span><span id="statsMasteredLabel">Освоено</span></span>
+                    <span class="stats-value" id="statsMastered">0</span>
+                </div>
+                <div class="stats-row">
+                    <span class="stats-label"><span class="stats-dot not-attempted"></span><span id="statsNotAttemptedLabel">Без ответа</span></span>
+                    <span class="stats-value" id="statsNotAttempted">0</span>
+                </div>
+                <button class="stats-reset-btn" onclick="resetAllScores()" id="statsResetBtn">Сбросить статистику</button>
+            </div>
         </div>
         <div id="indexContent"></div>
         <div class="sidebar-bottom">
             <div class="sidebar-icon-group">
                 <button class="language-btn sidebar-btn icon-btn" onclick="cycleLanguage()" title="Язык">🇷🇺</button>
                 <button class="print-btn sidebar-btn icon-btn" onclick="window.print()" title="Печать всех">🖨️</button>
-                <button class="print-btn sidebar-btn icon-btn" onclick="printUnanswered()" title="Печать неотвеченных">📄</button>
                 <button class="theme-toggle sidebar-btn icon-btn" onclick="toggleTheme()" title="Темный режим">🌙</button>
             </div>
         </div>
@@ -2274,6 +2614,18 @@ def generate_html(explanations):
             <button class="btn-secondary" onclick="navigateQuizQuestion(1)" id="quizNextBtn">Siguiente →</button>
             <button class="btn-secondary" onclick="submitQuiz()">Terminar Examen</button>
             <button class="btn-secondary" onclick="exitQuiz()">Salir</button>
+        </div>
+    </div>
+
+    <!-- Practice Header (shown only in practice mode) -->
+    <div class="practice-header" id="practiceHeader">
+        <div class="practice-info">
+            <span class="practice-title" id="practiceTitle">Практика ошибок</span>
+            <span class="practice-progress" id="practiceProgressText">Осталось: 0 вопросов</span>
+        </div>
+        <div class="practice-actions">
+            <button onclick="skipPracticeQuestion()" id="practiceSkipBtn">Пропустить</button>
+            <button onclick="exitFocusedPractice()" id="practiceExitBtn">Выход</button>
         </div>
     </div>
 
@@ -2424,7 +2776,35 @@ def generate_html(explanations):
                 continueButton: 'Continuar',
                 startNewButton: 'Empezar nuevo',
                 examTimeExpired: 'El tiempo del examen ha expirado.',
-                confirmLeave: '¿Seguro que quieres salir? Se guardará tu progreso.'
+                confirmLeave: '¿Seguro que quieres salir? Se guardará tu progreso.',
+
+                // Practice mode
+                practiceMode: 'Práctica de errores',
+                practiceTitle: 'Práctica de errores',
+                practiceRemaining: 'Quedan',
+                practiceQuestions: 'preguntas',
+                practiceSkip: 'Saltar',
+                practiceExit: 'Salir',
+                practiceCongrats: '¡Felicidades!',
+                practiceCongratsText: 'Has dominado todas las preguntas difíciles.',
+                practiceNoQuestions: 'No hay preguntas para practicar.',
+                practiceNoQuestionsText: 'Responde algunas preguntas primero para ver cuáles necesitas practicar.',
+                practiceBackToStudy: 'Volver a estudiar',
+
+                // Stats panel
+                statsTitle: 'Estadísticas',
+                needsPractice: 'Necesita práctica',
+                mastered: 'Dominadas',
+                notAttempted: 'Sin intentar',
+                resetStats: 'Reiniciar estadísticas',
+                confirmReset: '¿Estás seguro de que quieres reiniciar todas las estadísticas? Esta acción no se puede deshacer.',
+
+                // Score indicators
+                scoreStruggling: 'Difícil',
+                scoreNeedsWork: 'Necesita práctica',
+                scoreLearning: 'Aprendiendo',
+                scoreMastered: 'Dominada',
+                scoreNotAttempted: 'Sin responder'
             }},
             en: {{
                 // Header
@@ -2496,7 +2876,35 @@ def generate_html(explanations):
                 continueButton: 'Continue',
                 startNewButton: 'Start New',
                 examTimeExpired: 'The exam time has expired.',
-                confirmLeave: 'Are you sure you want to leave? Your progress will be saved.'
+                confirmLeave: 'Are you sure you want to leave? Your progress will be saved.',
+
+                // Practice mode
+                practiceMode: 'Practice Mistakes',
+                practiceTitle: 'Practice Mistakes',
+                practiceRemaining: 'Remaining',
+                practiceQuestions: 'questions',
+                practiceSkip: 'Skip',
+                practiceExit: 'Exit',
+                practiceCongrats: 'Congratulations!',
+                practiceCongratsText: 'You have mastered all the difficult questions.',
+                practiceNoQuestions: 'No questions to practice.',
+                practiceNoQuestionsText: 'Answer some questions first to see which ones you need to practice.',
+                practiceBackToStudy: 'Back to study',
+
+                // Stats panel
+                statsTitle: 'Statistics',
+                needsPractice: 'Needs practice',
+                mastered: 'Mastered',
+                notAttempted: 'Not attempted',
+                resetStats: 'Reset statistics',
+                confirmReset: 'Are you sure you want to reset all statistics? This action cannot be undone.',
+
+                // Score indicators
+                scoreStruggling: 'Struggling',
+                scoreNeedsWork: 'Needs work',
+                scoreLearning: 'Learning',
+                scoreMastered: 'Mastered',
+                scoreNotAttempted: 'Not answered'
             }},
             ru: {{
                 // Header
@@ -2568,7 +2976,35 @@ def generate_html(explanations):
                 continueButton: 'Продолжить',
                 startNewButton: 'Начать новый',
                 examTimeExpired: 'Время экзамена истекло.',
-                confirmLeave: 'Вы уверены, что хотите выйти? Ваш прогресс будет сохранен.'
+                confirmLeave: 'Вы уверены, что хотите выйти? Ваш прогресс будет сохранен.',
+
+                // Practice mode
+                practiceMode: 'Практика ошибок',
+                practiceTitle: 'Практика ошибок',
+                practiceRemaining: 'Осталось',
+                practiceQuestions: 'вопросов',
+                practiceSkip: 'Пропустить',
+                practiceExit: 'Выход',
+                practiceCongrats: 'Поздравляем!',
+                practiceCongratsText: 'Вы освоили все сложные вопросы.',
+                practiceNoQuestions: 'Нет вопросов для практики.',
+                practiceNoQuestionsText: 'Сначала ответьте на несколько вопросов, чтобы увидеть, какие нужно практиковать.',
+                practiceBackToStudy: 'Вернуться к учебе',
+
+                // Stats panel
+                statsTitle: 'Статистика',
+                needsPractice: 'Нужна практика',
+                mastered: 'Освоено',
+                notAttempted: 'Без ответа',
+                resetStats: 'Сбросить статистику',
+                confirmReset: 'Вы уверены, что хотите сбросить всю статистику? Это действие нельзя отменить.',
+
+                // Score indicators
+                scoreStruggling: 'Сложный',
+                scoreNeedsWork: 'Нужна практика',
+                scoreLearning: 'Изучается',
+                scoreMastered: 'Освоен',
+                scoreNotAttempted: 'Без ответа'
             }}
         }};
 
@@ -2576,6 +3012,445 @@ def generate_html(explanations):
 
         function t(key) {{
             return translations[currentLanguage][key] || key;
+        }}
+
+        // ==========================================
+        // QUESTION SCORING SYSTEM
+        // ==========================================
+
+        // Get question scores from localStorage
+        function getQuestionScores() {{
+            try {{
+                const stored = localStorage.getItem('questionScores');
+                return stored ? JSON.parse(stored) : {{}};
+            }} catch (e) {{
+                console.error('Error parsing questionScores:', e);
+                localStorage.removeItem('questionScores');
+                return {{}};
+            }}
+        }}
+
+        // Save question scores to localStorage
+        function saveQuestionScores(scores) {{
+            localStorage.setItem('questionScores', JSON.stringify(scores));
+        }}
+
+        // Update score for a specific question
+        function updateQuestionScore(qNum, isCorrect) {{
+            const scores = getQuestionScores();
+            const qKey = String(qNum);
+
+            if (!scores[qKey]) {{
+                scores[qKey] = {{ score: 0, consecutiveWrong: 0 }};
+            }}
+
+            if (isCorrect) {{
+                scores[qKey].score += 1;
+                scores[qKey].consecutiveWrong = 0;
+            }} else {{
+                // Escalating penalty based on consecutive wrong answers
+                const consecutive = scores[qKey].consecutiveWrong + 1;
+                let penalty;
+                if (consecutive === 1) penalty = -2;
+                else if (consecutive === 2) penalty = -3;
+                else penalty = -4;
+
+                scores[qKey].score += penalty;
+                scores[qKey].consecutiveWrong = consecutive;
+            }}
+
+            saveQuestionScores(scores);
+            updateScoreIndicator(qNum);
+            updateStatsPanel();
+            updatePracticeBadge();
+        }}
+
+        // Get score indicator class based on score
+        function getScoreIndicatorClass(score) {{
+            if (score === null || score === undefined) return 'not-attempted';
+            if (score < -4) return 'struggling';
+            if (score >= -4 && score <= -1) return 'needs-work';
+            if (score >= 0 && score <= 1) return 'learning';
+            return 'mastered';
+        }}
+
+        // Get score indicator tooltip text
+        function getScoreTooltip(score) {{
+            if (score === null || score === undefined) return t('scoreNotAttempted');
+            if (score < -4) return t('scoreStruggling') + ': ' + score;
+            if (score >= -4 && score <= -1) return t('scoreNeedsWork') + ': ' + score;
+            if (score >= 0 && score <= 1) return t('scoreLearning') + ': ' + score;
+            return t('scoreMastered') + ': ' + score;
+        }}
+
+        // Update score indicator for a specific question
+        function updateScoreIndicator(qNum) {{
+            const scores = getQuestionScores();
+            const scoreData = scores[String(qNum)];
+            const score = scoreData ? scoreData.score : null;
+
+            const indicator = document.getElementById('indicator' + qNum);
+            if (indicator) {{
+                // Remove all score classes
+                indicator.classList.remove('struggling', 'needs-work', 'learning', 'mastered', 'not-attempted');
+                // Add the appropriate class
+                indicator.classList.add(getScoreIndicatorClass(score));
+                // Update tooltip
+                const tooltip = indicator.querySelector('.score-tooltip');
+                if (tooltip) {{
+                    tooltip.textContent = getScoreTooltip(score);
+                }}
+                indicator.title = getScoreTooltip(score);
+            }}
+        }}
+
+        // Render all score indicators on page load
+        function renderAllIndicators() {{
+            allQuestionNumbers.forEach(qNum => {{
+                updateScoreIndicator(qNum);
+            }});
+        }}
+
+        // Update stats panel with current counts
+        function updateStatsPanel() {{
+            const scores = getQuestionScores();
+            let needsPractice = 0;
+            let mastered = 0;
+            let notAttempted = 0;
+
+            allQuestionNumbers.forEach(qNum => {{
+                const scoreData = scores[String(qNum)];
+                if (!scoreData) {{
+                    notAttempted++;
+                }} else if (scoreData.score >= 2) {{
+                    mastered++;
+                }} else {{
+                    needsPractice++;
+                }}
+            }});
+
+            const needsPracticeEl = document.getElementById('statsNeedsPractice');
+            const masteredEl = document.getElementById('statsMastered');
+            const notAttemptedEl = document.getElementById('statsNotAttempted');
+
+            if (needsPracticeEl) needsPracticeEl.textContent = needsPractice;
+            if (masteredEl) masteredEl.textContent = mastered;
+            if (notAttemptedEl) notAttemptedEl.textContent = notAttempted;
+        }}
+
+        // Update practice button badge
+        function updatePracticeBadge() {{
+            const scores = getQuestionScores();
+            let count = 0;
+
+            allQuestionNumbers.forEach(qNum => {{
+                const scoreData = scores[String(qNum)];
+                if (scoreData && scoreData.score < 2) {{
+                    count++;
+                }}
+            }});
+
+            const badge = document.getElementById('practiceBadge');
+            if (badge) {{
+                badge.textContent = count;
+                badge.classList.toggle('empty', count === 0);
+            }}
+        }}
+
+        // Toggle stats panel collapse
+        function toggleStatsPanel() {{
+            const panel = document.getElementById('statsPanel');
+            if (panel) {{
+                panel.classList.toggle('collapsed');
+            }}
+        }}
+
+        // Reset all scores with confirmation
+        function resetAllScores() {{
+            if (confirm(t('confirmReset'))) {{
+                localStorage.removeItem('questionScores');
+                renderAllIndicators();
+                updateStatsPanel();
+                updatePracticeBadge();
+            }}
+        }}
+
+        // ==========================================
+        // FOCUSED PRACTICE MODE
+        // ==========================================
+
+        let practiceMode = {{
+            active: false,
+            questions: [],
+            currentIndex: 0,
+            recentQuestions: [] // Buffer to avoid showing same question repeatedly
+        }};
+
+        const RECENT_BUFFER_SIZE = 5; // Number of recent questions to exclude from selection
+
+        // Get questions that need practice (score < 2)
+        function getQuestionsNeedingPractice() {{
+            const scores = getQuestionScores();
+            const questions = [];
+
+            allQuestionNumbers.forEach(qNum => {{
+                const scoreData = scores[String(qNum)];
+                if (scoreData && scoreData.score < 2) {{
+                    questions.push({{
+                        qNum: qNum,
+                        score: scoreData.score,
+                        weight: Math.max(1, Math.abs(scoreData.score)) // Weight for random selection (min 1)
+                    }});
+                }}
+            }});
+
+            return questions;
+        }}
+
+        // Select a weighted random question (lower scores = higher chance)
+        function selectWeightedQuestion(questions) {{
+            if (questions.length === 0) return null;
+
+            // Filter out recently shown questions to avoid repetition
+            let candidates = questions.filter(q => !practiceMode.recentQuestions.includes(q.qNum));
+
+            // If all questions are in recent buffer, use full list
+            if (candidates.length === 0) {{
+                candidates = questions;
+            }}
+
+            // Calculate total weight
+            const totalWeight = candidates.reduce((sum, q) => sum + q.weight, 0);
+
+            // Select random based on weight
+            let random = Math.random() * totalWeight;
+            for (const q of candidates) {{
+                random -= q.weight;
+                if (random <= 0) {{
+                    // Add to recent buffer
+                    practiceMode.recentQuestions.push(q.qNum);
+                    if (practiceMode.recentQuestions.length > RECENT_BUFFER_SIZE) {{
+                        practiceMode.recentQuestions.shift();
+                    }}
+                    return q.qNum;
+                }}
+            }}
+
+            // Fallback to first candidate
+            const fallback = candidates[0].qNum;
+            practiceMode.recentQuestions.push(fallback);
+            if (practiceMode.recentQuestions.length > RECENT_BUFFER_SIZE) {{
+                practiceMode.recentQuestions.shift();
+            }}
+            return fallback;
+        }}
+
+        // Start focused practice mode
+        function startFocusedPractice() {{
+            // Prevent starting practice mode while quiz is active
+            if (quizMode.active) {{
+                console.warn('Cannot start practice mode while quiz is active');
+                return;
+            }}
+
+            const questions = getQuestionsNeedingPractice();
+
+            if (questions.length === 0) {{
+                // Check if there are any attempted questions
+                const scores = getQuestionScores();
+                const hasAttempted = Object.keys(scores).length > 0;
+
+                showPracticeMessage(
+                    hasAttempted ? t('practiceCongrats') : t('practiceNoQuestions'),
+                    hasAttempted ? t('practiceCongratsText') : t('practiceNoQuestionsText')
+                );
+                return;
+            }}
+
+            practiceMode.active = true;
+            practiceMode.questions = questions;
+            practiceMode.currentIndex = 0;
+            practiceMode.recentQuestions = []; // Clear recent buffer
+
+            document.body.classList.add('practice-mode');
+
+            // Hide all cards first
+            const allCards = document.querySelectorAll('.question-card');
+            allCards.forEach(card => {{
+                card.style.display = 'none';
+                card.classList.remove('practice-visible');
+                // Reset answer state for practice
+                const options = card.querySelectorAll('.option');
+                options.forEach(opt => {{
+                    opt.classList.remove('correct', 'incorrect', 'disabled');
+                }});
+                const result = card.querySelector('.result');
+                if (result) {{
+                    result.innerHTML = '';
+                    result.classList.remove('correct', 'incorrect');
+                }}
+            }});
+
+            // Show first question (answeredQuestions is reset per-question in showNextPracticeQuestion)
+            showNextPracticeQuestion();
+            updatePracticeHeader();
+        }}
+
+        // Show the next practice question
+        function showNextPracticeQuestion() {{
+            // Hide current visible card
+            const currentVisible = document.querySelector('.question-card.practice-visible');
+            if (currentVisible) {{
+                currentVisible.classList.remove('practice-visible');
+                currentVisible.style.display = 'none';
+            }}
+
+            // Get remaining questions that still need practice
+            const remainingQuestions = getQuestionsNeedingPractice();
+
+            if (remainingQuestions.length === 0) {{
+                // All questions mastered!
+                exitFocusedPractice();
+                showPracticeMessage(t('practiceCongrats'), t('practiceCongratsText'));
+                return;
+            }}
+
+            // Select next question with weighted random
+            const nextQNum = selectWeightedQuestion(remainingQuestions);
+
+            // Show the selected card
+            const card = document.getElementById('q' + nextQNum);
+            if (card) {{
+                card.style.display = 'block';
+                card.classList.add('practice-visible');
+                card.scrollIntoView({{ behavior: 'smooth', block: 'center' }});
+
+                // Allow this question to be answered
+                answeredQuestions.delete(nextQNum);
+
+                // Reset answer state
+                const options = card.querySelectorAll('.option');
+                options.forEach(opt => {{
+                    opt.classList.remove('correct', 'incorrect', 'disabled');
+                }});
+                const result = card.querySelector('.result');
+                if (result) {{
+                    result.innerHTML = '';
+                    result.classList.remove('correct', 'incorrect');
+                }}
+            }}
+
+            updatePracticeHeader();
+        }}
+
+        // Skip current practice question
+        function skipPracticeQuestion() {{
+            showNextPracticeQuestion();
+        }}
+
+        // Update practice header with remaining count
+        function updatePracticeHeader() {{
+            const remaining = getQuestionsNeedingPractice().length;
+            const progressText = document.getElementById('practiceProgressText');
+            if (progressText) {{
+                progressText.textContent = t('practiceRemaining') + ': ' + remaining + ' ' + t('practiceQuestions');
+            }}
+        }}
+
+        // Exit focused practice mode
+        function exitFocusedPractice() {{
+            practiceMode.active = false;
+            practiceMode.questions = [];
+            practiceMode.currentIndex = 0;
+            practiceMode.recentQuestions = [];
+
+            document.body.classList.remove('practice-mode');
+
+            // Show all cards again
+            const allCards = document.querySelectorAll('.question-card');
+            allCards.forEach(card => {{
+                card.style.display = 'block';
+                card.classList.remove('practice-visible');
+            }});
+
+            // Show section headers again
+            const headers = document.querySelectorAll('.section-header');
+            headers.forEach(h => h.style.display = 'block');
+        }}
+
+        // Show a practice message (congrats or no questions)
+        function showPracticeMessage(title, text) {{
+            // Create overlay for message using DOM methods to prevent XSS
+            const overlay = document.createElement('div');
+            overlay.className = 'modal-overlay';
+            overlay.style.display = 'flex';
+
+            const content = document.createElement('div');
+            content.className = 'modal-content';
+            content.style.cssText = 'text-align: center; padding: 40px;';
+
+            const h2 = document.createElement('h2');
+            h2.style.cssText = 'color: var(--success); margin-bottom: 16px;';
+            h2.textContent = title;
+
+            const p = document.createElement('p');
+            p.style.cssText = 'margin-bottom: 24px; color: var(--text-secondary);';
+            p.textContent = text;
+
+            const btn = document.createElement('button');
+            btn.className = 'btn-primary';
+            btn.textContent = t('practiceBackToStudy');
+            btn.onclick = () => overlay.remove();
+
+            content.appendChild(h2);
+            content.appendChild(p);
+            content.appendChild(btn);
+            overlay.appendChild(content);
+
+            // Close on overlay click (outside modal)
+            overlay.onclick = (e) => {{
+                if (e.target === overlay) overlay.remove();
+            }};
+
+            document.body.appendChild(overlay);
+        }}
+
+        // Update practice mode UI translations
+        function updatePracticeUI() {{
+            const practiceBtn = document.getElementById('practiceBtnText');
+            if (practiceBtn) practiceBtn.textContent = t('practiceMode');
+
+            const practiceTitle = document.getElementById('practiceTitle');
+            if (practiceTitle) practiceTitle.textContent = t('practiceTitle');
+
+            const practiceSkipBtn = document.getElementById('practiceSkipBtn');
+            if (practiceSkipBtn) practiceSkipBtn.textContent = t('practiceSkip');
+
+            const practiceExitBtn = document.getElementById('practiceExitBtn');
+            if (practiceExitBtn) practiceExitBtn.textContent = t('practiceExit');
+
+            // Stats panel translations
+            const statsPanelTitle = document.getElementById('statsPanelTitle');
+            if (statsPanelTitle) statsPanelTitle.textContent = t('statsTitle');
+
+            const statsNeedsPracticeLabel = document.getElementById('statsNeedsPracticeLabel');
+            if (statsNeedsPracticeLabel) statsNeedsPracticeLabel.textContent = t('needsPractice');
+
+            const statsMasteredLabel = document.getElementById('statsMasteredLabel');
+            if (statsMasteredLabel) statsMasteredLabel.textContent = t('mastered');
+
+            const statsNotAttemptedLabel = document.getElementById('statsNotAttemptedLabel');
+            if (statsNotAttemptedLabel) statsNotAttemptedLabel.textContent = t('notAttempted');
+
+            const statsResetBtn = document.getElementById('statsResetBtn');
+            if (statsResetBtn) statsResetBtn.textContent = t('resetStats');
+
+            updatePracticeHeader();
+
+            // Update all score indicator tooltips for language change
+            allQuestionNumbers.forEach(qNum => {{
+                updateScoreIndicator(qNum);
+            }});
         }}
 
         function updateInterfaceLanguage() {{
@@ -2593,9 +3468,8 @@ def generate_html(explanations):
                 console.error('Error updating quiz toggle button:', error);
             }}
 
-            const printBtns = document.querySelectorAll('.print-btn');
-            if (printBtns[0]) printBtns[0].title = t('printAll');
-            if (printBtns[1]) printBtns[1].title = t('printUnanswered');
+            const printBtn = document.querySelector('.print-btn');
+            if (printBtn) printBtn.title = t('printAll');
 
             const themeBtn = document.querySelector('.theme-toggle');
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
@@ -2657,6 +3531,9 @@ def generate_html(explanations):
                 navBtns[2].textContent = t('nextUnanswered');
                 navBtns[3].textContent = t('next');
             }}
+
+            // Practice mode UI
+            updatePracticeUI();
         }}
 
         // Theme management with system preference detection
@@ -2790,7 +3667,9 @@ def generate_html(explanations):
             options.forEach(opt => opt.classList.add('disabled'));
 
             // Mark selected option
-            if (selectedLabel === correctLabel) {{
+            const isCorrect = selectedLabel === correctLabel;
+
+            if (isCorrect) {{
                 button.classList.add('correct');
                 resultDiv.innerHTML = '✓ Correcto';
                 resultDiv.classList.add('correct');
@@ -2811,6 +3690,16 @@ def generate_html(explanations):
                     }}
                 }});
                 resultDiv.innerHTML = '✗ Incorrecto';
+            }}
+
+            // Update question score
+            updateQuestionScore(qNum, isCorrect);
+
+            // In practice mode, automatically show next question after a delay
+            if (practiceMode.active) {{
+                setTimeout(() => {{
+                    showNextPracticeQuestion();
+                }}, 1500);
             }}
         }}
 
@@ -3207,6 +4096,11 @@ def generate_html(explanations):
         }}
 
         function startQuiz(config) {{
+            // Exit practice mode if active
+            if (practiceMode.active) {{
+                exitFocusedPractice();
+            }}
+
             quizMode.config = config;
             quizMode.active = true;
             quizMode.currentQuestionIndex = 0;
@@ -3219,8 +4113,35 @@ def generate_html(explanations):
             // Add quiz mode class to body
             document.body.classList.add('quiz-mode');
 
-            // Hide all questions initially
+            // Reset all study mode selections
             allCards.forEach(card => {{
+                // Remove all selection states from options
+                const options = card.querySelectorAll('.option');
+                options.forEach(option => {{
+                    option.classList.remove('selected', 'correct', 'incorrect', 'selected-quiz', 'disabled');
+                    option.style.borderColor = '';
+                    option.style.background = '';
+                }});
+
+                // Clear result text (✓ Correcto / ✗ Incorrecto)
+                const resultDiv = card.querySelector('.result');
+                if (resultDiv) {{
+                    resultDiv.innerHTML = '';
+                    resultDiv.classList.remove('correct', 'incorrect');
+                }}
+
+                // Hide answer section
+                const answer = card.querySelector('.answer');
+                if (answer) {{
+                    answer.classList.remove('revealed');
+                    answer.style.display = 'none';
+                }}
+
+                // Remove any quiz next buttons from previous sessions
+                const quizNextBtn = card.querySelector('.quiz-next-card-btn');
+                if (quizNextBtn) quizNextBtn.remove();
+
+                // Hide card initially
                 card.style.display = 'none';
             }});
 
@@ -3439,6 +4360,11 @@ def generate_html(explanations):
                 if (isCorrect) results.bySection[section].correct++;
 
                 results.details.push({{qNum, userAnswer, correctLabel, isCorrect}});
+
+                // Update question score for spaced repetition
+                if (userAnswer !== undefined) {{
+                    updateQuestionScore(qNum, isCorrect);
+                }}
             }});
 
             results.percentage = (results.correct / results.total * 100).toFixed(1);
@@ -3491,7 +4417,7 @@ def generate_html(explanations):
             }});
 
             // Calculate circle progress
-            const radius = 106;
+            const radius = 75;
             const circumference = 2 * Math.PI * radius;
             const progressOffset = circumference - (results.percentage / 100 * circumference);
 
@@ -3532,18 +4458,18 @@ def generate_html(explanations):
                             </div>
                             <div class="results-score-section">
                                 <div class="results-score-circle">
-                                    <svg width="220" height="220" viewBox="0 0 220 220">
+                                    <svg width="160" height="160" viewBox="0 0 160 160">
                                         <defs>
                                             <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                                                 <stop offset="0%" style="stop-color:${{results.passed ? '#065f46' : '#b45309'}};stop-opacity:1" />
                                                 <stop offset="100%" style="stop-color:${{results.passed ? '#10b981' : '#f59e0b'}};stop-opacity:1" />
                                             </linearGradient>
                                         </defs>
-                                        <circle class="results-circle-bg" cx="110" cy="110" r="${{radius}}" />
+                                        <circle class="results-circle-bg" cx="80" cy="80" r="${{radius}}" />
                                         <circle
                                             class="results-circle-progress"
-                                            cx="110"
-                                            cy="110"
+                                            cx="80"
+                                            cy="80"
                                             r="${{radius}}"
                                             stroke-dasharray="${{circumference}}"
                                             stroke-dashoffset="${{progressOffset}}"
@@ -3807,8 +4733,35 @@ def generate_html(explanations):
 
                             document.body.classList.add('quiz-mode');
 
-                            // Hide all cards first
+                            // Reset all study mode selections
                             allCards.forEach(card => {{
+                                // Remove all selection states from options
+                                const options = card.querySelectorAll('.option');
+                                options.forEach(option => {{
+                                    option.classList.remove('selected', 'correct', 'incorrect', 'selected-quiz', 'disabled');
+                                    option.style.borderColor = '';
+                                    option.style.background = '';
+                                }});
+
+                                // Clear result text (✓ Correcto / ✗ Incorrecto)
+                                const resultDiv = card.querySelector('.result');
+                                if (resultDiv) {{
+                                    resultDiv.innerHTML = '';
+                                    resultDiv.classList.remove('correct', 'incorrect');
+                                }}
+
+                                // Hide answer section
+                                const answer = card.querySelector('.answer');
+                                if (answer) {{
+                                    answer.classList.remove('revealed');
+                                    answer.style.display = 'none';
+                                }}
+
+                                // Remove any quiz next buttons
+                                const quizNextBtn = card.querySelector('.quiz-next-card-btn');
+                                if (quizNextBtn) quizNextBtn.remove();
+
+                                // Hide card initially
                                 card.style.display = 'none';
                             }});
 
@@ -3858,9 +4811,9 @@ def generate_html(explanations):
             }}
         }}
 
-        // Warn before leaving during quiz
+        // Warn before leaving during quiz or practice mode
         window.addEventListener('beforeunload', (e) => {{
-            if (quizMode.active && !quizMode.results) {{
+            if ((quizMode.active && !quizMode.results) || practiceMode.active) {{
                 e.preventDefault();
                 e.returnValue = t('confirmLeave');
             }}
@@ -3876,6 +4829,16 @@ def generate_html(explanations):
             console.log('buildIndex() completed');
         }} catch (error) {{
             console.error('Error in buildIndex():', error);
+        }}
+
+        // Initialize scoring system on page load
+        try {{
+            renderAllIndicators();
+            updateStatsPanel();
+            updatePracticeBadge();
+            console.log('Scoring system initialized');
+        }} catch (error) {{
+            console.error('Error initializing scoring system:', error);
         }}
     </script>
 </body>
