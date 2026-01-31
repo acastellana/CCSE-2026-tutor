@@ -2153,20 +2153,20 @@
     <div class="modal-overlay" id="quizModal" style="display: none;">
         <div class="modal-content quiz-config">
             <div class="modal-header">
-                <h2>Configurar Examen</h2>
+                <h2 id="quizModalTitle">Configurar Examen</h2>
                 <button class="modal-close" onclick="closeQuizConfig()">✕</button>
             </div>
             <div class="modal-body">
                 <div class="config-section">
-                    <label class="config-label">Selección de preguntas:</label>
+                    <label class="config-label" id="questionSelectionLabel">Selección de preguntas:</label>
                     <div class="radio-group">
                         <label class="radio-option">
                             <input type="radio" name="questionMode" value="all" checked>
-                            <span>Examen completo (300 preguntas)</span>
+                            <span id="fullExamLabel">Examen completo (300 preguntas)</span>
                         </label>
                         <label class="radio-option">
                             <input type="radio" name="questionMode" value="section">
-                            <span>Por sección:</span>
+                            <span id="bySectionLabel">Por sección:</span>
                             <select id="sectionSelect" disabled>
                                 <option value="1">TAREA 1 (120 preguntas)</option>
                                 <option value="2">TAREA 2 (36 preguntas)</option>
@@ -2177,9 +2177,9 @@
                         </label>
                         <label class="radio-option">
                             <input type="radio" name="questionMode" value="custom">
-                            <span>Práctica rápida:</span>
+                            <span id="quickPracticeLabel">Práctica rápida:</span>
                             <input type="number" id="customCount" min="1" max="300" value="25" disabled>
-                            <span>preguntas</span>
+                            <span id="questionsLabel">preguntas</span>
                         </label>
                     </div>
                 </div>
@@ -2187,31 +2187,31 @@
                 <div class="config-section">
                     <label class="checkbox-option">
                         <input type="checkbox" id="randomOrder">
-                        <span>Orden aleatorio</span>
+                        <span id="randomOrderLabel">Orden aleatorio</span>
                     </label>
                 </div>
 
                 <div class="config-section">
-                    <label class="config-label">Temporizador:</label>
+                    <label class="config-label" id="timerLabel">Temporizador:</label>
                     <div class="radio-group">
                         <label class="radio-option">
                             <input type="radio" name="timerMode" value="none" checked>
-                            <span>Sin temporizador</span>
+                            <span id="noTimerLabel">Sin temporizador</span>
                         </label>
                         <label class="radio-option">
                             <input type="radio" name="timerMode" value="full">
-                            <span>45 minutos (examen completo)</span>
+                            <span id="fullTimerLabel">45 minutos (examen completo)</span>
                         </label>
                         <label class="radio-option">
                             <input type="radio" name="timerMode" value="proportional">
-                            <span>Proporcional al número de preguntas</span>
+                            <span id="proportionalTimerLabel">Proporcional al número de preguntas</span>
                         </label>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn-secondary" onclick="closeQuizConfig()">Cancelar</button>
-                <button class="btn-primary" onclick="startQuizFromConfig()">Iniciar Examen</button>
+                <button class="btn-secondary" id="quizCancelBtn" onclick="closeQuizConfig()">Cancelar</button>
+                <button class="btn-primary" id="quizStartBtn" onclick="startQuizFromConfig()">Iniciar Examen</button>
             </div>
         </div>
     </div>
@@ -2228,8 +2228,8 @@
         <div class="quiz-actions">
             <button class="btn-secondary" onclick="navigateQuizQuestion(-1)" id="quizPrevBtn">← Anterior</button>
             <button class="btn-secondary" onclick="navigateQuizQuestion(1)" id="quizNextBtn">Siguiente →</button>
-            <button class="btn-secondary" onclick="submitQuiz()">Terminar Examen</button>
-            <button class="btn-secondary" onclick="exitQuiz()">Salir</button>
+            <button class="btn-secondary" onclick="submitQuiz()" id="quizFinishBtn">Terminar Examen</button>
+            <button class="btn-secondary" onclick="exitQuiz()" id="quizExitBtn">Salir</button>
         </div>
     </div>
 
@@ -16514,42 +16514,58 @@
                 statsText.innerHTML = `<span id="revealed">${count}</span> / ${totalQuestions} ${t('questionsAnswered')}`;
             }
 
-            // Quiz modal
-            const modalTitle = document.querySelector('#quizModal .modal-header h2');
-            if (modalTitle) modalTitle.textContent = t('configureExam');
+            // Quiz modal - use specific IDs
+            const quizModalTitle = document.getElementById('quizModalTitle');
+            if (quizModalTitle) quizModalTitle.textContent = t('configureExam');
 
-            const configLabels = document.querySelectorAll('.config-label');
-            if (configLabels[0]) configLabels[0].textContent = t('questionSelection');
-            if (configLabels[1]) configLabels[1].textContent = t('timer');
+            const questionSelectionLabel = document.getElementById('questionSelectionLabel');
+            if (questionSelectionLabel) questionSelectionLabel.textContent = t('questionSelection');
 
-            const modalRadios = document.querySelectorAll('#quizModal .radio-option span');
-            if (modalRadios.length >= 3) {
-                modalRadios[0].textContent = t('fullExam');
-            }
+            const fullExamLabel = document.getElementById('fullExamLabel');
+            if (fullExamLabel) fullExamLabel.textContent = t('fullExam');
 
-            const randomCheckbox = document.querySelector('#randomOrder + span');
-            if (randomCheckbox) randomCheckbox.textContent = t('randomOrder');
+            const bySectionLabel = document.getElementById('bySectionLabel');
+            if (bySectionLabel) bySectionLabel.textContent = t('bySection');
 
-            const timerRadios = document.querySelectorAll('input[name="timerMode"] + span');
-            if (timerRadios.length >= 3) {
-                timerRadios[0].textContent = t('noTimer');
-                timerRadios[1].textContent = t('fullTimer');
-                timerRadios[2].textContent = t('proportionalTimer');
-            }
+            const quickPracticeLabel = document.getElementById('quickPracticeLabel');
+            if (quickPracticeLabel) quickPracticeLabel.textContent = t('quickPractice');
 
-            const modalButtons = document.querySelectorAll('#quizModal .modal-footer button');
-            if (modalButtons[0]) modalButtons[0].textContent = t('cancel');
-            if (modalButtons[1]) modalButtons[1].textContent = t('startExam');
+            const questionsLabel = document.getElementById('questionsLabel');
+            if (questionsLabel) questionsLabel.textContent = t('questions');
 
-            // Quiz header
-            const quizPrevBtn = document.querySelector('#quizPrevBtn');
-            const quizNextBtn = document.querySelector('#quizNextBtn');
+            const randomOrderLabel = document.getElementById('randomOrderLabel');
+            if (randomOrderLabel) randomOrderLabel.textContent = t('randomOrder');
+
+            const timerLabel = document.getElementById('timerLabel');
+            if (timerLabel) timerLabel.textContent = t('timer');
+
+            const noTimerLabel = document.getElementById('noTimerLabel');
+            if (noTimerLabel) noTimerLabel.textContent = t('noTimer');
+
+            const fullTimerLabel = document.getElementById('fullTimerLabel');
+            if (fullTimerLabel) fullTimerLabel.textContent = t('fullTimer');
+
+            const proportionalTimerLabel = document.getElementById('proportionalTimerLabel');
+            if (proportionalTimerLabel) proportionalTimerLabel.textContent = t('proportionalTimer');
+
+            const quizCancelBtn = document.getElementById('quizCancelBtn');
+            if (quizCancelBtn) quizCancelBtn.textContent = t('cancel');
+
+            const quizStartBtn = document.getElementById('quizStartBtn');
+            if (quizStartBtn) quizStartBtn.textContent = t('startExam');
+
+            // Quiz header - use specific IDs
+            const quizPrevBtn = document.getElementById('quizPrevBtn');
             if (quizPrevBtn) quizPrevBtn.textContent = '← ' + t('previous');
+
+            const quizNextBtn = document.getElementById('quizNextBtn');
             if (quizNextBtn) quizNextBtn.textContent = t('next') + ' →';
 
-            const quizActions = document.querySelectorAll('.quiz-actions .btn-secondary');
-            if (quizActions[2]) quizActions[2].textContent = t('finishExam');
-            if (quizActions[3]) quizActions[3].textContent = t('exit');
+            const quizFinishBtn = document.getElementById('quizFinishBtn');
+            if (quizFinishBtn) quizFinishBtn.textContent = t('finishExam');
+
+            const quizExitBtn = document.getElementById('quizExitBtn');
+            if (quizExitBtn) quizExitBtn.textContent = t('exit');
 
             // Index
             const indexTitle = document.querySelector('.index-title');
