@@ -392,7 +392,14 @@ def generate_html(explanations):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a365d">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="CCSE 2026">
+    <meta name="description" content="Aplicación de estudio para el examen CCSE de ciudadanía española">
     <title>CCSE 2026 - Preguntas de Estudio</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=optional" rel="stylesheet">
@@ -839,6 +846,36 @@ def generate_html(explanations):
             border-bottom: 1px solid var(--border);
             flex-shrink: 0;
             overflow: visible;
+        }}
+
+        .offline-indicator {{
+            display: none;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            margin-bottom: 12px;
+            background: var(--translate-soft);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--translate);
+        }}
+
+        .offline-indicator.visible {{
+            display: flex;
+        }}
+
+        .offline-indicator::before {{
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--translate);
+            border-radius: 50%;
+            animation: pulse-offline 2s infinite;
+        }}
+
+        @keyframes pulse-offline {{
+            0%, 100% {{ opacity: 1; }}
+            50% {{ opacity: 0.4; }}
         }}
 
         #indexContent {{
@@ -2498,6 +2535,9 @@ def generate_html(explanations):
     <!-- Index/Table of Contents Menu -->
     <div class="index-menu" id="indexMenu">
         <div class="sidebar-top">
+            <div class="offline-indicator" id="offlineIndicator">
+                <span id="offlineText">Modo sin conexión</span>
+            </div>
             <div class="index-title">Оглавление</div>
             <button class="quiz-toggle sidebar-btn" id="quizToggleBtn" onclick="toggleQuizMode()">
                 <span class="quiz-toggle-text" id="quizToggleText">Режим Экзамена</span>
@@ -2809,7 +2849,10 @@ def generate_html(explanations):
                 scoreNeedsWork: 'Necesita práctica',
                 scoreLearning: 'Aprendiendo',
                 scoreMastered: 'Dominada',
-                scoreNotAttempted: 'Sin responder'
+                scoreNotAttempted: 'Sin responder',
+
+                // Offline
+                offlineMode: 'Modo sin conexión'
             }},
             en: {{
                 // Header
@@ -2909,7 +2952,10 @@ def generate_html(explanations):
                 scoreNeedsWork: 'Needs work',
                 scoreLearning: 'Learning',
                 scoreMastered: 'Mastered',
-                scoreNotAttempted: 'Not answered'
+                scoreNotAttempted: 'Not answered',
+
+                // Offline
+                offlineMode: 'Offline mode'
             }},
             ru: {{
                 // Header
@@ -3009,7 +3055,10 @@ def generate_html(explanations):
                 scoreNeedsWork: 'Нужна практика',
                 scoreLearning: 'Изучается',
                 scoreMastered: 'Освоен',
-                scoreNotAttempted: 'Без ответа'
+                scoreNotAttempted: 'Без ответа',
+
+                // Offline
+                offlineMode: 'Автономный режим'
             }}
         }};
 
@@ -3555,7 +3604,27 @@ def generate_html(explanations):
 
             // Practice mode UI
             updatePracticeUI();
+
+            // Offline indicator
+            const offlineText = document.getElementById('offlineText');
+            if (offlineText) offlineText.textContent = t('offlineMode');
         }}
+
+        // Network status management
+        function updateOnlineStatus() {{
+            const indicator = document.getElementById('offlineIndicator');
+            if (indicator) {{
+                if (navigator.onLine) {{
+                    indicator.classList.remove('visible');
+                }} else {{
+                    indicator.classList.add('visible');
+                }}
+            }}
+        }}
+
+        window.addEventListener('online', updateOnlineStatus);
+        window.addEventListener('offline', updateOnlineStatus);
+        updateOnlineStatus();
 
         // Theme management with system preference detection
         const themeToggleBtn = document.querySelector('.theme-toggle');
@@ -4860,6 +4929,35 @@ def generate_html(explanations):
             console.log('Scoring system initialized');
         }} catch (error) {{
             console.error('Error initializing scoring system:', error);
+        }}
+
+        // Register Service Worker for offline support
+        if ('serviceWorker' in navigator) {{
+            window.addEventListener('load', () => {{
+                navigator.serviceWorker.register('./sw.js')
+                    .then(registration => {{
+                        console.log('SW registered:', registration.scope);
+
+                        // Check for updates periodically
+                        setInterval(() => {{
+                            registration.update();
+                        }}, 60 * 60 * 1000); // Check every hour
+
+                        // Handle updates
+                        registration.addEventListener('updatefound', () => {{
+                            const newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', () => {{
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {{
+                                    // New content available, could show update prompt
+                                    console.log('New content available, refresh to update');
+                                }}
+                            }});
+                        }});
+                    }})
+                    .catch(error => {{
+                        console.log('SW registration failed:', error);
+                    }});
+            }});
         }}
     </script>
 </body>
