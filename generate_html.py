@@ -835,8 +835,10 @@ def generate_html(explanations):
 
         .sidebar-top {{
             padding: 20px;
+            padding-top: 24px;
             border-bottom: 1px solid var(--border);
             flex-shrink: 0;
+            overflow: visible;
         }}
 
         #indexContent {{
@@ -2194,8 +2196,8 @@ def generate_html(explanations):
 
         .practice-btn .badge {{
             position: absolute;
-            top: -6px;
-            right: -6px;
+            top: -8px;
+            right: 8px;
             background: #ef4444;
             color: white;
             font-size: 0.7rem;
@@ -2204,6 +2206,7 @@ def generate_html(explanations):
             border-radius: 10px;
             min-width: 18px;
             text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }}
 
         .practice-btn .badge.empty {{
