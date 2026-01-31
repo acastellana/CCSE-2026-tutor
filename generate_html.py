@@ -3787,6 +3787,8 @@ def generate_html(explanations):
             loadStudySession();
             let correctCount = 0;
 
+            console.log('Restoring', Object.keys(studySession).length, 'answered questions');
+
             for (const [qNumStr, data] of Object.entries(studySession)) {{
                 const qNum = parseInt(qNumStr);
                 const card = document.getElementById('q' + qNum);
@@ -3811,13 +3813,18 @@ def generate_html(explanations):
                     }}
                 }});
 
-                // Restore result message
-                if (data.correct) {{
-                    resultDiv.innerHTML = '✓ Correcto';
-                    resultDiv.classList.add('correct');
+                // Restore result message only if resultDiv exists
+                if (resultDiv) {{
+                    if (data.correct) {{
+                        resultDiv.innerHTML = '✓ Correcto';
+                        resultDiv.classList.add('correct');
+                        correctCount++;
+                    }} else {{
+                        resultDiv.innerHTML = '✗ Incorrecto';
+                    }}
+                }} else if (data.correct) {{
+                    // Still count correct answers even if resultDiv is missing
                     correctCount++;
-                }} else {{
-                    resultDiv.innerHTML = '✗ Incorrecto';
                 }}
             }}
 
