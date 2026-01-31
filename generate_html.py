@@ -2181,7 +2181,7 @@ def generate_html(explanations):
             border: none;
             font-weight: 600;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
             animation: pulse-glow 2s infinite;
             margin-top: 12px;
         }}
