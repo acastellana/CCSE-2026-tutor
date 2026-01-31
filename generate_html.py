@@ -3832,10 +3832,8 @@ def generate_html(explanations):
             revealedCount = correctCount;
             document.getElementById('revealed').textContent = revealedCount;
 
-            // Scroll to first unanswered question if there are answered questions
-            if (Object.keys(studySession).length > 0) {{
-                scrollToFirstUnanswered();
-            }}
+            // Always scroll to first unanswered question on page load
+            scrollToFirstUnanswered();
         }}
 
         function scrollToFirstUnanswered() {{
