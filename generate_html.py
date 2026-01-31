@@ -3222,7 +3222,31 @@ def generate_html(explanations):
         // Reset all scores with confirmation
         function resetAllScores() {{
             if (confirm(t('confirmReset'))) {{
+                // Clear scores
                 localStorage.removeItem('questionScores');
+
+                // Clear study session and reset visual state
+                clearStudySession();
+                revealedCount = 0;
+                document.getElementById('revealed').textContent = '0';
+
+                // Reset all question cards to unanswered state
+                allQuestionNumbers.forEach(qNum => {{
+                    const card = document.getElementById('q' + qNum);
+                    if (card) {{
+                        const options = card.querySelectorAll('.option');
+                        options.forEach(opt => {{
+                            opt.classList.remove('correct', 'incorrect', 'disabled');
+                        }});
+                        const result = card.querySelector('.result');
+                        if (result) {{
+                            result.innerHTML = '';
+                            result.classList.remove('correct', 'incorrect');
+                        }}
+                    }}
+                }});
+
+                // Update UI
                 renderAllIndicators();
                 updateStatsPanel();
                 updatePracticeBadge();
@@ -3379,8 +3403,8 @@ def generate_html(explanations):
                 card.classList.add('practice-visible');
                 card.scrollIntoView({{ behavior: 'smooth', block: 'center' }});
 
-                // Allow this question to be answered
-                answeredQuestions.delete(nextQNum);
+                // Allow this question to be re-answered in practice mode
+                delete studySession[nextQNum];
 
                 // Reset answer state
                 const options = card.querySelectorAll('.option');
@@ -3733,7 +3757,79 @@ def generate_html(explanations):
             }}
         }}
 
-        let answeredQuestions = new Set();
+        // Study session persistence
+        let studySession = {{}};
+
+        function loadStudySession() {{
+            try {{
+                const stored = localStorage.getItem('studySession');
+                if (stored) {{
+                    studySession = JSON.parse(stored);
+                }} else {{
+                    studySession = {{}};
+                }}
+            }} catch (e) {{
+                console.error('Error loading study session:', e);
+                studySession = {{}};
+            }}
+            return studySession;
+        }}
+
+        function saveStudySession() {{
+            try {{
+                localStorage.setItem('studySession', JSON.stringify(studySession));
+            }} catch (e) {{
+                console.error('Error saving study session:', e);
+            }}
+        }}
+
+        function restoreStudyState() {{
+            loadStudySession();
+            let correctCount = 0;
+
+            for (const [qNumStr, data] of Object.entries(studySession)) {{
+                const qNum = parseInt(qNumStr);
+                const card = document.getElementById('q' + qNum);
+                if (!card) continue;
+
+                const options = card.querySelectorAll('.option');
+                const resultDiv = document.getElementById('result' + qNum);
+
+                // Disable all options
+                options.forEach(opt => opt.classList.add('disabled'));
+
+                // Restore visual state
+                options.forEach(opt => {{
+                    if (opt.dataset.label === data.selected) {{
+                        if (data.correct) {{
+                            opt.classList.add('correct');
+                        }} else {{
+                            opt.classList.add('incorrect');
+                        }}
+                    }} else if (!data.correct && opt.dataset.label === data.correctLabel) {{
+                        opt.classList.add('correct');
+                    }}
+                }});
+
+                // Restore result message
+                if (data.correct) {{
+                    resultDiv.innerHTML = '✓ Correcto';
+                    resultDiv.classList.add('correct');
+                    correctCount++;
+                }} else {{
+                    resultDiv.innerHTML = '✗ Incorrecto';
+                }}
+            }}
+
+            // Update revealed count
+            revealedCount = correctCount;
+            document.getElementById('revealed').textContent = revealedCount;
+        }}
+
+        function clearStudySession() {{
+            studySession = {{}};
+            localStorage.removeItem('studySession');
+        }}
 
         function selectOption(button, qNum, selectedLabel, correctLabel) {{
             // Check if in quiz mode
@@ -3743,10 +3839,9 @@ def generate_html(explanations):
             }}
 
             // Prevent multiple answers in study mode
-            if (answeredQuestions.has(qNum)) {{
+            if (studySession[qNum]) {{
                 return;
             }}
-            answeredQuestions.add(qNum);
 
             // Get all option buttons for this question
             const card = document.getElementById('q' + qNum);
@@ -3758,6 +3853,15 @@ def generate_html(explanations):
 
             // Mark selected option
             const isCorrect = selectedLabel === correctLabel;
+
+            // Save to study session
+            studySession[qNum] = {{
+                selected: selectedLabel,
+                correctLabel: correctLabel,
+                correct: isCorrect,
+                timestamp: Date.now()
+            }};
+            saveStudySession();
 
             if (isCorrect) {{
                 button.classList.add('correct');
@@ -4911,6 +5015,14 @@ def generate_html(explanations):
 
         // Try to restore quiz session on page load
         setTimeout(restoreQuizSession, 500);
+
+        // Restore study session on page load
+        try {{
+            restoreStudyState();
+            console.log('Study session restored');
+        }} catch (error) {{
+            console.error('Error restoring study session:', error);
+        }}
 
         // Build index on load
         console.log('About to call buildIndex()');
