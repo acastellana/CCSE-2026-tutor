@@ -16851,6 +16851,27 @@
             // Update revealed count
             revealedCount = correctCount;
             document.getElementById('revealed').textContent = revealedCount;
+
+            // Scroll to first unanswered question if there are answered questions
+            if (Object.keys(studySession).length > 0) {
+                scrollToFirstUnanswered();
+            }
+        }
+
+        function scrollToFirstUnanswered() {
+            // Find the first unanswered question in order
+            for (const qNum of allQuestionNumbers) {
+                if (!studySession[qNum]) {
+                    const card = document.getElementById('q' + qNum);
+                    if (card && card.style.display !== 'none') {
+                        // Small delay to ensure DOM is ready
+                        setTimeout(() => {
+                            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }, 100);
+                        return;
+                    }
+                }
+            }
         }
 
         function clearStudySession() {
