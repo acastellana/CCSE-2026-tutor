@@ -2183,6 +2183,7 @@ def generate_html(explanations):
             position: relative;
             overflow: hidden;
             animation: pulse-glow 2s infinite;
+            margin-top: 12px;
         }}
 
         .practice-btn:hover {{
@@ -2219,7 +2220,8 @@ def generate_html(explanations):
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 12px;
-            margin: 12px 16px;
+            margin: 16px;
+            margin-top: 0;
             overflow: hidden;
             transition: all 0.3s ease;
         }}
