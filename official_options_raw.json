@@ -986,19 +986,19 @@
     ]
   },
   "1059": {
-    "question": "¿Quién modera el funcionamiento de las instituciones españolas?",
+    "question": "¿Qué lengua cooficial se habla en las Islas Baleares?",
     "options": [
       {
         "label": "a",
-        "text": "El presidente del Gobierno."
+        "text": "Gallego."
       },
       {
         "label": "b",
-        "text": "El rey."
+        "text": "Catalán."
       },
       {
         "label": "c",
-        "text": "El director de la Real Academia Española."
+        "text": "Euskera."
       }
     ]
   },
@@ -4165,7 +4165,7 @@
       },
       {
         "label": "b",
-        "text": "se compone de dos cursos acad�micos."
+        "text": "se compone de dos cursos académicos."
       },
       {
         "label": "c",
@@ -4208,7 +4208,7 @@
     ]
   },
   "5041": {
-    "question": "Los colegios públicos son gratuitos.",
+    "question": "Los colegios públicos…",
     "options": [
       {
         "label": "a",
